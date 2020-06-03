@@ -11,6 +11,15 @@
   padding: 10px;
 }
 
+.menu-list-item a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu-list-item a:hover, .menu-list-item a:focus {
+  text-decoration: underline;
+}
+
 @media (min-width: 426px) {
   .menu-button {
     display: none;

@@ -2,11 +2,13 @@ import React from 'react';
 import Header from './components/Header';
 import './App.css';
 import Footer from './components/Footer';
+import Menu from './components/Menu';
 
 function App() {
   return (
     <div className="main-page">
       <Header/>
+      <Menu/>
       <div className="main-content">
         <p>
         Suspendisse maximus ips

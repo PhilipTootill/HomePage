@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.css';
-import Menu from './Menu'
 
 function Header() {
   return (
@@ -13,7 +12,6 @@ function Header() {
           By Philip Tootill
         </p>
       </div>
-      <Menu/>
     </header>
   );
 }
