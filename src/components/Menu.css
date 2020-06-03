@@ -1,0 +1,47 @@
+.menu {
+  background-color: #737373;
+}
+
+.menu-list {
+  list-style-type: none;
+}
+
+.menu-list-item {
+  color: white;
+  padding: 10px;
+}
+
+@media (min-width: 426px) {
+  .menu-button {
+    display: none;
+  }
+
+  .menu-list {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+  }
+
+  .menu-list-item {
+    border-right: 2px solid white;
+  }
+}
+
+@media (max-width: 425px) {
+  .menu-button {
+    color: white;
+    margin: 0 auto;
+    padding: 5px 0;
+    display: block;
+  }
+
+  .menu-list:not([open]) {
+    display: none;
+  }
+
+  .menu-list-item {
+    border-top: 1px solid white;
+    text-align: center;
+  }
+}
