@@ -1,11 +1,11 @@
 .header-content {
-  background-color: #adadad;
   color: white;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 20px;
+  font-weight: bold;
 }
 
 .header-title {

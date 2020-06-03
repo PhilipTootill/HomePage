@@ -1,5 +1,7 @@
 .menu {
   background-color: #737373;
+  border-top: 1px solid white;
+  box-sizing: border-box;
 }
 
 .menu-list {
@@ -33,7 +35,7 @@
   }
 
   .menu-list-item {
-    border-right: 2px solid white;
+    border-right: 1px solid white;
   }
 }
 
