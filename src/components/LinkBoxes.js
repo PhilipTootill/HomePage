@@ -1,7 +1,6 @@
 import React from 'react';
 import './Header.css';
-import Background from "../assets/Background.jpeg"
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function LinkBoxes(props) {
   return (

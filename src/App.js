@@ -10,7 +10,8 @@ import Menu from './components/Menu';
 import About from './pages/About';
 import BoardGamesIndex from './pages/boardGames/BoardGamesIndex';
 import BoardGamesDetails from './pages/boardGames/BoardGamesDetails';
-import DigitalGames from './pages/DigitalGames';
+import DigitalGamesIndex from './pages/digitalGames/DigitalGamesIndex';
+import DigitalGamesDetails from './pages/digitalGames/DigitalGamesDetails';
 import Contact from './pages/Contact';
 import './App.css';
 
@@ -28,8 +29,11 @@ function App() {
             <Route path="/board-games/:name">
               <BoardGamesDetails/>
             </Route>
-            <Route path="/digital-games">
-              <DigitalGames/>
+            <Route exact path="/digital-games">
+              <DigitalGamesIndex/>
+            </Route>
+            <Route path="/digital-games/:name">
+              <DigitalGamesDetails/>
             </Route>
             <Route path="/contact">
               <Contact/>
