@@ -47,3 +47,35 @@
     display: block;
   }
 }
+
+.link-boxes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.link-box {
+  height: 240px;
+  width: 300px;
+  margin: 20px;
+  position: relative;
+  background-size: cover;
+}
+
+.link-box-overlay {
+  background-color: rgba(0,0,0, 0.45);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  color: white;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link-box-overlay:hover {
+  background-color: rgba(0,0,0, 0.15);
+}
