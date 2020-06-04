@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import ReactMarkdown from "react-markdown";
 import HeraklesMarkdown from "./Herakles.md";
 import TheVinylAgeMarkdown from "./TheVinylAge.md";
+import PyxisMarkdown from "./Pyxis.md";
+import RulesIncMarkdown from "./RulesInc.md";
+import InternsOfHadesMarkdown from "./InternsOfHades.md";
 import {
   useParams
 } from "react-router-dom";
@@ -14,7 +17,10 @@ function BoardGamesDetails() {
 
   const markdownPages = {
     "herakles": HeraklesMarkdown,
-    "the-vinyl-age": TheVinylAgeMarkdown
+    "the-vinyl-age": TheVinylAgeMarkdown,
+    "rules-inc": RulesIncMarkdown,
+    "interns-of-hades": InternsOfHadesMarkdown,
+    "pyxis": PyxisMarkdown
   } 
 
   if (markdownPages[name] != null) {
