@@ -8,7 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
 import About from './pages/About';
-import BoardGames from './pages/BoardGames';
+import BoardGames from './pages/boardGames/BoardGames';
 import DigitalGames from './pages/DigitalGames';
 import Contact from './pages/Contact';
 import './App.css';

@@ -16,7 +16,7 @@ function Menu() {
           <Link to="/about">About</Link>
         </li>
         <li className="menu-list-item">
-          <Link to="/board-games">Board Games</Link>
+          <Link to="/board-games/index">Board Games</Link>
         </li>
         <li className="menu-list-item">
           <Link to="/digital-games">Digital Games</Link>

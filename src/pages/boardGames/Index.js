@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BoardGames() {
+function Index() {
   return (
     <div className="page-content">
       <p className="page-title">Board Games</p>
@@ -13,4 +13,4 @@ function BoardGames() {
   );
 }
 
-export default BoardGames;
+export default Index;
