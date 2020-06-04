@@ -8,7 +8,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
 import About from './pages/About';
-import BoardGames from './pages/boardGames/BoardGames';
+import BoardGamesIndex from './pages/boardGames/BoardGamesIndex';
+import BoardGamesDetails from './pages/boardGames/BoardGamesDetails';
 import DigitalGames from './pages/DigitalGames';
 import Contact from './pages/Contact';
 import './App.css';
@@ -21,8 +22,11 @@ function App() {
         <Menu/>
         <div className="main-content">
           <Switch>
-            <Route path="/board-games">
-              <BoardGames/>
+            <Route exact path="/board-games">
+              <BoardGamesIndex/>
+            </Route>
+            <Route path="/board-games/:name">
+              <BoardGamesDetails/>
             </Route>
             <Route path="/digital-games">
               <DigitalGames/>
