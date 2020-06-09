@@ -1,5 +1,7 @@
 import React from 'react';
 import './Numbers.css';
+import { randomInteger } from './NumbersUtils';
+
 
 class NumbersGame extends React.Component {
     constructor(props) {
@@ -7,15 +9,15 @@ class NumbersGame extends React.Component {
 
         var numbersArray = [];
         for (var i = 0; i < 4; i++) {
-            numbersArray.push(this.randomInteger(9, 1, 1));
+            numbersArray.push(randomInteger(9, 1, 1));
         }
 
-        numbersArray.push(this.randomInteger(25, 10, 5));
-        numbersArray.push(this.randomInteger(100, 25, 25));
+        numbersArray.push(randomInteger(25, 10, 5));
+        numbersArray.push(randomInteger(100, 25, 25));
 
         this.state = {
             numbers: numbersArray,
-            target: this.randomInteger(50, 21, 1),
+            target: randomInteger(50, 21, 1),
             score: 0,
             movesRemaining: 6,
             highlightedOperation: null,
@@ -24,25 +26,6 @@ class NumbersGame extends React.Component {
     }
 
     operations = ["+", "-", "X", "/"];
-
-    /*
-    * Return a random multiple of an integer, up to a set maximum.
-    */
-    randomInteger(max, min, multiple) {
-        //Scale everything down by the multiplier.
-        var scaledMax = Math.floor(max / multiple);
-        var scaledMin = Math.ceil(min / multiple);
-        var range = scaledMax - scaledMin;
-
-        var random;
-        random = Math.random(); //Between 0 and 1.
-        random = random * range; // Between 0 and range.
-        random = Math.round(random); //Integer between 0 and range
-        random = random + scaledMin; //Integer between scaledMin and scaledMax
-        random = random * multiple; //Multiple between min and max.
-
-        return random;
-    }
 
     handleNumberClick(index) {
         if (this.state.highlightedIndex == null) {
@@ -83,7 +66,7 @@ class NumbersGame extends React.Component {
             newNumbersArray.splice(secondIndex - 1, 1); //secondIndex has shifted by removal.
     
             newNumbersArray.splice(index, 0, createdNumber);
-            newNumbersArray.push(this.randomInteger(9, 1, 1));
+            newNumbersArray.push(randomInteger(9, 1, 1));
     
             this.setState({
                 numbers: newNumbersArray,
@@ -94,7 +77,7 @@ class NumbersGame extends React.Component {
             if (createdNumber == this.state.target) {
                 this.setState({
                     score: this.state.score + 1,
-                    target: this.randomInteger(50, 21, 1)
+                    target: randomInteger(50, 21, 1)
                 });
             }
         }
