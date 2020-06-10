@@ -7,11 +7,15 @@ class NumbersGame extends React.Component {
     constructor(props) {
         super(props);
 
+        // Set up the initial array for the numbers.
         var numbersArray = [];
+
+        // Pick 4 single digits.
         for (var i = 0; i < 4; i++) {
             numbersArray.push(randomInteger(9, 1, 1));
         }
 
+        // Also add a low multiple of 5 and 25.
         numbersArray.push(randomInteger(25, 10, 5));
         numbersArray.push(randomInteger(100, 25, 25));
 
@@ -21,7 +25,8 @@ class NumbersGame extends React.Component {
             score: 0,
             movesRemaining: 6,
             highlightedOperation: null,
-            highlightedIndex: null
+            highlightedIndex: null,
+            errorMessage: ""
         }
     }
 
@@ -29,14 +34,17 @@ class NumbersGame extends React.Component {
 
     handleNumberClick(index) {
         if (this.state.highlightedIndex == null) {
+            // First click should highlight something
             this.setState({highlightedIndex: index});
         } else if (index == this.state.highlightedIndex) {
+            // Clicking same number again cancels.
             this.setState({highlightedIndex: null});
         } else {
+            // Second number clicked- combine the two.
             var firstIndex = Math.min(index, this.state.highlightedIndex);
             var secondIndex = Math.max(index, this.state.highlightedIndex);
-            var firstNumber = Math.max(this.state.numbers[firstIndex], this.state.numbers[secondIndex]);
-            var secondNumber = Math.min(this.state.numbers[firstIndex], this.state.numbers[secondIndex]);
+            var firstNumber = this.state.numbers[this.state.highlightedIndex];
+            var secondNumber = this.state.numbers[index];
     
             var createdNumber;
     
@@ -45,6 +53,14 @@ class NumbersGame extends React.Component {
                     createdNumber = firstNumber + secondNumber;
                     break;
                 case "-":
+                    if (secondNumber > firstNumber) {
+                        this.setState({
+                            errorMessage: "Invalid combination- must be a positive number",
+                            highlightedIndex: null,
+                            highlightedOperation: null
+                        });
+                        return;
+                    }
                     createdNumber = firstNumber - secondNumber;
                     break;
                 case "X":
@@ -54,6 +70,11 @@ class NumbersGame extends React.Component {
                     if (firstNumber % secondNumber == 0) {
                         createdNumber = firstNumber / secondNumber;
                     } else {
+                        this.setState({
+                            errorMessage: "Invalid combination- not a whole number",
+                            highlightedIndex: null,
+                            highlightedOperation: null
+                        });
                         return;
                     }
                     break;
@@ -70,21 +91,31 @@ class NumbersGame extends React.Component {
     
             this.setState({
                 numbers: newNumbersArray,
+                movesRemaining: this.state.movesRemaining - 1,
                 highlightedIndex: null,
-                highlightedOperation: null
+                highlightedOperation: null,
+                errorMessage: ""
             });
     
             if (createdNumber == this.state.target) {
+                var bonusMoves = 3;
+
                 this.setState({
                     score: this.state.score + 1,
-                    target: randomInteger(50, 21, 1)
+                    target: randomInteger(50, 21, 1),
+                    movesRemaining: this.state.movesRemaining + bonusMoves
                 });
             }
         }
     }
 
     handleOperationClick(operation) {
-        this.setState({highlightedOperation: operation});
+        if (operation == this.state.highlightedOperation) {
+            this.setState({highlightedOperation: null});
+        } else {
+            this.setState({highlightedOperation: operation});
+        }
+        
     }
 
     render() {
@@ -106,7 +137,10 @@ class NumbersGame extends React.Component {
                         </div>
                     )}
                 </div>
-                <p>Target is: {this.state.target}</p>
+                <p>Target: {this.state.target}</p>
+                <p>Score: {this.state.score}</p>
+                <p>Moves Remaining: {this.state.movesRemaining}</p>
+                <p>Error: {this.state.errorMessage}</p>
             </div>
         );
     }
