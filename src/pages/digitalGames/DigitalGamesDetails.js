@@ -20,9 +20,7 @@ function DigitalGamesDetails() {
 
   return (
     <div className="page-content">
-      <div className="page-section">
         {content}
-      </div>
     </div>
   );
 }

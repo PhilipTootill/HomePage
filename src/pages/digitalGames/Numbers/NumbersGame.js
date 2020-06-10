@@ -40,28 +40,23 @@ class NumbersGame extends React.Component {
             // Clicking same number again cancels.
             this.setState({highlightedIndex: null});
         } else {
-            // Second number clicked- combine the two.
-            var firstIndex = Math.min(index, this.state.highlightedIndex);
-            var secondIndex = Math.max(index, this.state.highlightedIndex);
+            // Second number has been clicked- combine the two.
             var firstNumber = this.state.numbers[this.state.highlightedIndex];
             var secondNumber = this.state.numbers[index];
     
             var createdNumber;
+            var errorMessage;
     
             switch (this.state.highlightedOperation) {
                 case "+":
                     createdNumber = firstNumber + secondNumber;
                     break;
                 case "-":
-                    if (secondNumber > firstNumber) {
-                        this.setState({
-                            errorMessage: "Invalid combination- must be a positive number",
-                            highlightedIndex: null,
-                            highlightedOperation: null
-                        });
-                        return;
+                    if (firstNumber > secondNumber) {
+                        createdNumber = firstNumber - secondNumber;
+                    } else {
+                        errorMessage = "Invalid combination- must be a positive number";
                     }
-                    createdNumber = firstNumber - secondNumber;
                     break;
                 case "X":
                     createdNumber = firstNumber * secondNumber;
@@ -70,16 +65,21 @@ class NumbersGame extends React.Component {
                     if (firstNumber % secondNumber == 0) {
                         createdNumber = firstNumber / secondNumber;
                     } else {
-                        this.setState({
-                            errorMessage: "Invalid combination- not a whole number",
-                            highlightedIndex: null,
-                            highlightedOperation: null
-                        });
-                        return;
+                        errorMessage = "Invalid combination- not a whole number";
                     }
                     break;
                 default:
-                    return;
+                    break;
+            }
+
+            if (!createdNumber) {
+                this.setState({
+                    errorMessage: errorMessage,
+                    highlightedIndex: null,
+                    highlightedOperation: null
+                });
+
+                return;
             }
     
             var newNumbersArray = this.state.numbers.splice(0, 6);
@@ -117,7 +117,11 @@ class NumbersGame extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="numbers-game-container">
+                <div className="target-container">
+                    <p className="target-container-label">Target:</p>
+                    <p className="target-text">{this.state.target}</p>
+                </div>
                 <div className="number-box-container">
                     {this.state.numbers.map((number, index) =>
                         <div className="number-box" onClick={() => { this.handleNumberClick(index) }}
@@ -134,10 +138,13 @@ class NumbersGame extends React.Component {
                         </div>
                     )}
                 </div>
-                <p>Target: {this.state.target}</p>
-                <p>Score: {this.state.score}</p>
-                <p>Moves Remaining: {this.state.movesRemaining}</p>
-                <p>Error: {this.state.errorMessage}</p>
+                <div className="information-container"> 
+                    <p>Score: {this.state.score}</p>
+                    <p>Moves Remaining: {this.state.movesRemaining}</p>
+                </div>
+                <div className="error-container">
+                    <p>{this.state.errorMessage}</p>
+                </div>
             </div>
         );
     }

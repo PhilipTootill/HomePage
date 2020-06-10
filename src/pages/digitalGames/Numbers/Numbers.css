@@ -1,3 +1,28 @@
+.numbers-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  padding: 15px;
+  max-width: 485px;
+  margin: 20px auto;
+}
+
+.target-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.target-container-label {
+  font-size: 12px;
+  margin: 0;
+}
+
+.target-text {
+  font-size: 30px;
+}
+
 .number-box-container, .operation-box-container {
   display: flex;
 }
@@ -18,4 +43,18 @@
 
 .operation-box[highlighted] {
   border: 1px solid red;
+}
+
+.information-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.error-container {
+  color: red;
+  height: 40px;
 }
