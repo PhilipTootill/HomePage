@@ -99,11 +99,23 @@ class NumbersGame extends React.Component {
 
                 this.setState({
                     score: this.state.score + 1,
-                    target: randomInteger(50, 21, 1),
+                    target: this.setNewTarget(),
                     movesRemaining: this.state.movesRemaining + bonusMoves
                 });
             }
         }
+    }
+
+    setNewTarget() {
+        // Every time the player scores a point, the range of the target increases.
+        const minIncrease = 5;
+        const maxIncrease = 10;
+        const baseMin = 30;
+        const baseMax = 60;
+        const min = baseMin + this.state.score ** 2 * minIncrease;
+        const max = baseMax + this.state.score ** 2 * maxIncrease;
+
+        return randomInteger(max, min, 1);
     }
 
     handleOperationClick(operation) {
@@ -112,7 +124,6 @@ class NumbersGame extends React.Component {
         } else {
             this.setState({highlightedOperation: operation});
         }
-        
     }
 
     render() {
