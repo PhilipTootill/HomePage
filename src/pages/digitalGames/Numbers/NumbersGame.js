@@ -83,11 +83,8 @@ class NumbersGame extends React.Component {
             }
     
             var newNumbersArray = this.state.numbers.splice(0, 6);
-            newNumbersArray.splice(firstIndex, 1);
-            newNumbersArray.splice(secondIndex - 1, 1); //secondIndex has shifted by removal.
-    
-            newNumbersArray.splice(index, 0, createdNumber);
-            newNumbersArray.push(randomInteger(9, 1, 1));
+            newNumbersArray.splice(index, 1, createdNumber);
+            newNumbersArray.splice(this.state.highlightedIndex, 1, randomInteger(9, 1, 1));
     
             this.setState({
                 numbers: newNumbersArray,
