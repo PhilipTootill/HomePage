@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import ReactMarkdown from "react-markdown";
+import React from 'react';
 import Numbers from "./Numbers/Numbers";
 import {
   useParams

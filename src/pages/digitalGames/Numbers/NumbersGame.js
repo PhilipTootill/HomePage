@@ -19,8 +19,10 @@ class NumbersGame extends React.Component {
             scoreMessage: "",
             gameOver: false
         }
+    }
 
-        setTimeout(this.restartGame, 0);
+    componentDidMount() {
+        this.restartGame();
     }
 
     restartGame = () => {
@@ -226,7 +228,8 @@ class NumbersGame extends React.Component {
                 </div>
                 <div className="number-box-container">
                     {this.state.numbers.map((number, index) =>
-                        <div className="number-box" onClick={() => { this.handleNumberClick(index) }}
+                        <div key={"number-box-" + index} 
+                            className="number-box" onClick={() => { this.handleNumberClick(index) }}
                             highlighted={index === this.state.highlightedIndex ? "true" : null}
                             smalltext={number > 999 ? "true" : null}>
                             {number}
@@ -234,8 +237,9 @@ class NumbersGame extends React.Component {
                     )}
                 </div>
                 <div className="operation-box-container">
-                    {this.operations.map((operation) =>
-                        <div className="operation-box" onClick={() => { this.handleOperationClick(operation) }}
+                    {this.operations.map((operation, index) =>
+                        <div key={"operation-box-" + index} 
+                            className="operation-box" onClick={() => { this.handleOperationClick(operation) }}
                             highlighted={operation === this.state.highlightedOperation ? "true" : null}>
                             {operation}
                         </div>

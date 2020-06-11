@@ -7,7 +7,7 @@ function About() {
     <div className="page-content">
       <p className="page-title">About</p>
       <div className="page-section">
-        <img src={profilePhoto}/>
+        <img src={profilePhoto} alt="The author"/>
         <p>
           I'm an Oxford based software developer and amateur game designer. 
           I made this site using React to showcase my game designs. 
