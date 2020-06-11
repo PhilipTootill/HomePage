@@ -38,77 +38,88 @@ class NumbersGame extends React.Component {
 
     operations = ["+", "-", "X", "/"];
 
-    handleNumberClick(index) {
-        if (this.state.highlightedIndex == null) {
-            // First click should highlight something
-            this.setState({highlightedIndex: index});
-        } else if (index == this.state.highlightedIndex) {
+    handleNumberClick(clickedIndex) {
+        if (clickedIndex == this.state.highlightedIndex) {
             // Clicking same number again cancels.
             this.setState({highlightedIndex: null});
+        } else if (this.state.highlightedOperation != null && this.state.highlightedIndex != null) {
+            // We have a number and an operation, so make a move.
+            this.makeMove(clickedIndex);
         } else {
-            // Second number has been clicked- combine the two.
-            var firstNumber = this.state.numbers[this.state.highlightedIndex];
-            var secondNumber = this.state.numbers[index];
-    
-            var createdNumber;
-            var errorMessage;
-    
-            switch (this.state.highlightedOperation) {
-                case "+":
-                    createdNumber = firstNumber + secondNumber;
-                    break;
-                case "-":
-                    if (firstNumber > secondNumber) {
-                        createdNumber = firstNumber - secondNumber;
-                    } else {
-                        errorMessage = "Invalid combination- must be a positive number";
-                    }
-                    break;
-                case "X":
-                    createdNumber = firstNumber * secondNumber;
-                    break;
-                case "/":
-                    if (firstNumber % secondNumber == 0) {
-                        createdNumber = firstNumber / secondNumber;
-                    } else {
-                        errorMessage = "Invalid combination- not a whole number";
-                    }
-                    break;
-                default:
-                    break;
-            }
+            // Highlight the number.
+            this.setState({highlightedIndex: clickedIndex});
+        }
+    }
 
-            if (!createdNumber) {
-                this.setState({
-                    errorMessage: errorMessage,
-                    highlightedIndex: null,
-                    highlightedOperation: null
-                });
+    makeMove = (clickedIndex) => {
+        var firstNumber = this.state.numbers[this.state.highlightedIndex];
+        var secondNumber = this.state.numbers[clickedIndex];
 
-                return;
-            }
-    
-            var newNumbersArray = this.state.numbers.splice(0, 6);
-            newNumbersArray.splice(index, 1, createdNumber);
-            newNumbersArray.splice(this.state.highlightedIndex, 1, randomInteger(9, 1, 1));
+        var createdNumber;
+        var errorMessage;
 
+        switch (this.state.highlightedOperation) {
+            case "+":
+                createdNumber = firstNumber + secondNumber;
+                break;
+            case "-":
+                if (firstNumber > secondNumber) {
+                    createdNumber = firstNumber - secondNumber;
+                } else {
+                    errorMessage = "Invalid combination- must be a positive number";
+                }
+                break;
+            case "X":
+                createdNumber = firstNumber * secondNumber;
+                break;
+            case "/":
+                if (firstNumber % secondNumber == 0) {
+                    createdNumber = firstNumber / secondNumber;
+                } else {
+                    errorMessage = "Invalid combination- not a whole number";
+                }
+                break;
+            default:
+                errorMessage = "Invalid combination- need to select an operation";
+                break;
+        }
+
+        if (!createdNumber) {
             this.setState({
-                movesRemaining: this.state.movesRemaining - 1,
-                numbers: newNumbersArray,
-                errorMessage: "",
+                errorMessage: errorMessage,
                 highlightedIndex: null,
                 highlightedOperation: null
             });
 
-            if (createdNumber == this.state.target) {
-                setTimeout(this.updateTarget, 0);
-            }
+            return;
+        }
 
+        var newNumbersArray = [...this.state.numbers];
+
+        // Put the new number in where the user clicked.
+        newNumbersArray.splice(clickedIndex, 1, createdNumber);
+
+        // Add a new random number in the used up space.
+        newNumbersArray.splice(this.state.highlightedIndex, 1, this.pickNewRandomNumber());
+
+        this.setState({
+            movesRemaining: this.state.movesRemaining - 1,
+            numbers: newNumbersArray,
+            errorMessage: "",
+            highlightedIndex: null,
+            highlightedOperation: null
+        });
+
+        if (createdNumber == this.state.target) {
+            this.updateTarget();
         }
     }
 
+    pickNewRandomNumber = () => {
+        return randomInteger(9, 1, 1);
+    }
+
     updateTarget = () => {
-        // Every time the player scores a point, the range of the target increases.
         const minIncrease = 5;
         const maxIncrease = 10;
         const baseMin = 30;
@@ -137,7 +148,7 @@ class NumbersGame extends React.Component {
     handleOperationClick(operation) {
         if (operation == this.state.highlightedOperation) {
             this.setState({highlightedOperation: null});
-        } else {
+        } else if (this.state.highlightedIndex) {
             this.setState({highlightedOperation: operation});
         }
     }
