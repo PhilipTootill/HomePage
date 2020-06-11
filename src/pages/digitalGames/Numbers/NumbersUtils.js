@@ -14,3 +14,16 @@ export const randomInteger = function(max, min, multiple) {
 
     return random;
 }
+
+
+export const shuffleArray = function(array) {
+    var counter = array.length;
+
+    while(counter > 0) {
+        var index = Math.floor(Math.random() * counter);
+        counter--;
+
+        var element = array.splice(index, 1);
+        array.push(element);
+    }
+}
