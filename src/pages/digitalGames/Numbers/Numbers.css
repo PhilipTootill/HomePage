@@ -47,14 +47,29 @@
 
 .information-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
   padding: 10px;
+  height: 80px;
   box-sizing: border-box;
+}
+
+.play-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .error-container {
   color: red;
-  height: 40px;
+  text-align: center;
+  margin: 10px;
+}
+
+.error-container:not([show]) {
+  display: none;
+}
+
+.endgame-container:not([show]) {
+  display: none;
 }

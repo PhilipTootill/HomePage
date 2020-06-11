@@ -32,14 +32,17 @@ class NumbersGame extends React.Component {
             movesRemaining: 6,
             highlightedOperation: null,
             highlightedIndex: null,
-            errorMessage: ""
+            errorMessage: "",
+            gameOver: false
         }
     }
 
     operations = ["+", "-", "X", "/"];
 
     handleNumberClick(clickedIndex) {
-        if (clickedIndex == this.state.highlightedIndex) {
+        if (this.state.gameOver) {
+            return;
+        } else if (clickedIndex == this.state.highlightedIndex) {
             // Clicking same number again cancels.
             this.setState({highlightedIndex: null});
         } else if (this.state.highlightedOperation != null && this.state.highlightedIndex != null) {
@@ -55,42 +58,10 @@ class NumbersGame extends React.Component {
         var firstNumber = this.state.numbers[this.state.highlightedIndex];
         var secondNumber = this.state.numbers[clickedIndex];
 
-        var createdNumber;
-        var errorMessage;
-
-        switch (this.state.highlightedOperation) {
-            case "+":
-                createdNumber = firstNumber + secondNumber;
-                break;
-            case "-":
-                if (firstNumber > secondNumber) {
-                    createdNumber = firstNumber - secondNumber;
-                } else {
-                    errorMessage = "Invalid combination- must be a positive number";
-                }
-                break;
-            case "X":
-                createdNumber = firstNumber * secondNumber;
-                break;
-            case "/":
-                if (firstNumber % secondNumber == 0) {
-                    createdNumber = firstNumber / secondNumber;
-                } else {
-                    errorMessage = "Invalid combination- not a whole number";
-                }
-                break;
-            default:
-                errorMessage = "Invalid combination- need to select an operation";
-                break;
-        }
+        var createdNumber = this.performOperation(firstNumber, secondNumber);
 
         if (!createdNumber) {
-            this.setState({
-                errorMessage: errorMessage,
-                highlightedIndex: null,
-                highlightedOperation: null
-            });
-
+            // Error message state set in performOperation
             return;
         }
 
@@ -102,8 +73,9 @@ class NumbersGame extends React.Component {
         // Add a new random number in the used up space.
         newNumbersArray.splice(this.state.highlightedIndex, 1, this.pickNewRandomNumber());
 
+        var movesRemaining = this.state.movesRemaining - 1
         this.setState({
-            movesRemaining: this.state.movesRemaining - 1,
+            movesRemaining: movesRemaining,
             numbers: newNumbersArray,
             errorMessage: "",
             highlightedIndex: null,
@@ -112,7 +84,50 @@ class NumbersGame extends React.Component {
 
         if (createdNumber == this.state.target) {
             this.updateTarget();
+        } else if (movesRemaining === 0) {
+            this.endGame();
         }
+    }
+
+    performOperation = (firstNumber, secondNumber) => {
+        var createdNumber;
+        var errorMessage;
+
+        switch (this.state.highlightedOperation) {
+            case "+":
+                createdNumber = firstNumber + secondNumber;
+                break;
+            case "-":
+                if (firstNumber > secondNumber) {
+                    createdNumber = firstNumber - secondNumber;
+                } else {
+                    errorMessage = "Must be a positive number!";
+                }
+                break;
+            case "X":
+                createdNumber = firstNumber * secondNumber;
+                break;
+            case "/":
+                if (firstNumber % secondNumber == 0) {
+                    createdNumber = firstNumber / secondNumber;
+                } else {
+                    errorMessage = "Must be a whole number!";
+                }
+                break;
+            default:
+                errorMessage = "Must select an operation!";
+                break;
+        }
+     
+        if (errorMessage) {
+            this.setState({
+                errorMessage: errorMessage,
+                highlightedIndex: null,
+                highlightedOperation: null
+            });
+        }
+
+        return createdNumber;
     }
 
     pickNewRandomNumber = () => {
@@ -145,7 +160,15 @@ class NumbersGame extends React.Component {
         });
     }
 
+    endGame = () => {
+        this.setState({gameOver: true});
+    }
+
     handleOperationClick(operation) {
+        if (this.state.gameOver) {
+            return;
+        }
+
         if (operation == this.state.highlightedOperation) {
             this.setState({highlightedOperation: null});
         } else if (this.state.highlightedIndex) {
@@ -177,12 +200,19 @@ class NumbersGame extends React.Component {
                     )}
                 </div>
                 <div className="information-container"> 
-                    <p>Score: {this.state.score}</p>
-                    <p>Moves Remaining: {this.state.movesRemaining}</p>
+                    <div className="play-stats">
+                        <p>Score: {this.state.score}</p>
+                        <p>Moves Remaining: {this.state.movesRemaining}</p>
+                    </div>
+                    <div show={this.state.errorMessage != "" ? "true" : null} className="error-container">
+                        <p>{this.state.errorMessage}</p>
+                    </div>
+                    <div show={this.state.gameOver ? "true" : null} className="endgame-container">
+                        <p>Game over!</p>
+                        <button>Play again?</button>
+                    </div>
                 </div>
-                <div className="error-container">
-                    <p>{this.state.errorMessage}</p>
-                </div>
+
             </div>
         );
     }
