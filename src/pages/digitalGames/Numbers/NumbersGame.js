@@ -173,7 +173,15 @@ class NumbersGame extends React.Component {
     }
 
     refillUpcomingArray = () => {
-        var upcomingNumbers = [1,2,3,4,5,10];
+        var upcomingNumbers;
+        
+        if (this.state.score < 5) {
+            upcomingNumbers = [1,2,3,4,5,10];
+        } else if (6 < this.state.score < 10) {
+            upcomingNumbers = [1,2,3,5,8,10,25];
+        } else {
+            upcomingNumbers = [1,2,3,5,8,10,25,100]
+        }
         shuffleArray(upcomingNumbers);
 
         this.setState({upcomingNumbers: upcomingNumbers});
