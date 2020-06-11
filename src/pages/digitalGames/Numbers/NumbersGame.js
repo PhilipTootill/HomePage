@@ -192,8 +192,17 @@ class NumbersGame extends React.Component {
         const maxIncrease = 10;
         const baseMin = 30;
         const baseMax = 60;
-        const min = baseMin + this.state.score ** 2 * minIncrease;
-        const max = baseMax + this.state.score ** 2 * maxIncrease;
+        var min;
+        var max;
+
+        if (this.state.score % 3 == 0) {
+            // Every third target is much larger.
+            min = baseMin + this.state.score ** 2 * minIncrease;
+            max = baseMax + this.state.score ** 2 * maxIncrease;
+        } else {
+            min = baseMin + this.state.score * minIncrease;
+            max = baseMax + this.state.score * maxIncrease;
+        }
 
         var newTarget;
 
