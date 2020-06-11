@@ -19,9 +19,15 @@ class NumbersGame extends React.Component {
         numbersArray.push(randomInteger(25, 10, 5));
         numbersArray.push(randomInteger(100, 25, 25));
 
+        var target;
+
+        do {
+            target = randomInteger(50, 21, 1);
+        } while (numbersArray.includes(target));
+
         this.state = {
             numbers: numbersArray,
-            target: randomInteger(50, 21, 1),
+            target: target,
             score: 0,
             movesRemaining: 6,
             highlightedOperation: null,
@@ -85,28 +91,23 @@ class NumbersGame extends React.Component {
             var newNumbersArray = this.state.numbers.splice(0, 6);
             newNumbersArray.splice(index, 1, createdNumber);
             newNumbersArray.splice(this.state.highlightedIndex, 1, randomInteger(9, 1, 1));
-    
-            this.setState({
-                numbers: newNumbersArray,
-                movesRemaining: this.state.movesRemaining - 1,
-                highlightedIndex: null,
-                highlightedOperation: null,
-                errorMessage: ""
-            });
-    
-            if (createdNumber == this.state.target) {
-                var bonusMoves = 3;
 
-                this.setState({
-                    score: this.state.score + 1,
-                    target: this.setNewTarget(),
-                    movesRemaining: this.state.movesRemaining + bonusMoves
-                });
+            this.setState({
+                movesRemaining: this.state.movesRemaining - 1,
+                numbers: newNumbersArray,
+                errorMessage: "",
+                highlightedIndex: null,
+                highlightedOperation: null
+            });
+
+            if (createdNumber == this.state.target) {
+                setTimeout(this.updateTarget, 0);
             }
+
         }
     }
 
-    setNewTarget() {
+    updateTarget = () => {
         // Every time the player scores a point, the range of the target increases.
         const minIncrease = 5;
         const maxIncrease = 10;
@@ -115,7 +116,22 @@ class NumbersGame extends React.Component {
         const min = baseMin + this.state.score ** 2 * minIncrease;
         const max = baseMax + this.state.score ** 2 * maxIncrease;
 
-        return randomInteger(max, min, 1);
+        var newTarget;
+
+        do {
+            newTarget = randomInteger(max, min, 1);
+            if (this.state.numbers.includes(newTarget)) {
+                console.log("REPEAT- tried to set " + newTarget);
+            }
+        } while (this.state.numbers.includes(newTarget));
+
+        var bonusMoves = 3;
+
+        this.setState({
+            score: this.state.score + 1,
+            target: newTarget,
+            movesRemaining: this.state.movesRemaining + bonusMoves,
+        });
     }
 
     handleOperationClick(operation) {
