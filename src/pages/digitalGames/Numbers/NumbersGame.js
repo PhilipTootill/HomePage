@@ -7,6 +7,21 @@ class NumbersGame extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            numbers: [],
+            target: 0,
+            score: 0,
+            movesRemaining: 0,
+            highlightedOperation: null,
+            highlightedIndex: null,
+            errorMessage: "",
+            gameOver: false
+        }
+
+        setTimeout(this.restartGame, 0);
+    }
+
+    restartGame = () => {
         // Set up the initial array for the numbers.
         var numbersArray = [];
 
@@ -25,7 +40,7 @@ class NumbersGame extends React.Component {
             target = randomInteger(50, 21, 1);
         } while (numbersArray.includes(target));
 
-        this.state = {
+        this.setState({
             numbers: numbersArray,
             target: target,
             score: 0,
@@ -34,7 +49,7 @@ class NumbersGame extends React.Component {
             highlightedIndex: null,
             errorMessage: "",
             gameOver: false
-        }
+        });
     }
 
     operations = ["+", "-", "X", "/"];
@@ -118,6 +133,11 @@ class NumbersGame extends React.Component {
                 errorMessage = "Must select an operation!";
                 break;
         }
+
+        if (createdNumber > 999999) {
+            errorMessage = "Number is too big!"
+            createdNumber = null;
+        }
      
         if (errorMessage) {
             this.setState({
@@ -169,9 +189,9 @@ class NumbersGame extends React.Component {
             return;
         }
 
-        if (operation == this.state.highlightedOperation) {
+        if (operation === this.state.highlightedOperation) {
             this.setState({highlightedOperation: null});
-        } else if (this.state.highlightedIndex) {
+        } else if (this.state.highlightedIndex !== null) {
             this.setState({highlightedOperation: operation});
         }
     }
@@ -186,7 +206,8 @@ class NumbersGame extends React.Component {
                 <div className="number-box-container">
                     {this.state.numbers.map((number, index) =>
                         <div className="number-box" onClick={() => { this.handleNumberClick(index) }}
-                            highlighted={index == this.state.highlightedIndex ? "true" : null}>
+                            highlighted={index == this.state.highlightedIndex ? "true" : null}
+                            smallText={number > 999 ? "true" : null}>
                             {number}
                         </div>
                     )}
@@ -208,11 +229,10 @@ class NumbersGame extends React.Component {
                         <p>{this.state.errorMessage}</p>
                     </div>
                     <div show={this.state.gameOver ? "true" : null} className="endgame-container">
-                        <p>Game over!</p>
-                        <button>Play again?</button>
+                        <p>No more moves!</p>
+                        <button class="play-again-button" onClick={this.restartGame}>Play again?</button>
                     </div>
                 </div>
-
             </div>
         );
     }
