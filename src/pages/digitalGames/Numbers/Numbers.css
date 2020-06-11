@@ -70,7 +70,15 @@
   margin: 10px;
 }
 
-.error-container:not([show]) {
+.message-container {
+  color: green;
+  text-align: center;
+  margin: 10px;
+}
+
+.error-container:not([show]),
+.message-container:not([show]), 
+.endgame-container:not([show]) {
   display: none;
 }
 
@@ -79,10 +87,6 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
-
-.endgame-container:not([show]) {
-  display: none;
 }
 
 .play-again-button {

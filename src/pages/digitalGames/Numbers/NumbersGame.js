@@ -15,6 +15,7 @@ class NumbersGame extends React.Component {
             highlightedOperation: null,
             highlightedIndex: null,
             errorMessage: "",
+            scoreMessage: "",
             gameOver: false
         }
 
@@ -48,6 +49,7 @@ class NumbersGame extends React.Component {
             highlightedOperation: null,
             highlightedIndex: null,
             errorMessage: "",
+            scoreMessage: "",
             gameOver: false
         });
     }
@@ -93,6 +95,7 @@ class NumbersGame extends React.Component {
             movesRemaining: movesRemaining,
             numbers: newNumbersArray,
             errorMessage: "",
+            scoreMessage: "",
             highlightedIndex: null,
             highlightedOperation: null
         });
@@ -142,6 +145,7 @@ class NumbersGame extends React.Component {
         if (errorMessage) {
             this.setState({
                 errorMessage: errorMessage,
+                scoreMessage: "",
                 highlightedIndex: null,
                 highlightedOperation: null
             });
@@ -166,9 +170,6 @@ class NumbersGame extends React.Component {
 
         do {
             newTarget = randomInteger(max, min, 1);
-            if (this.state.numbers.includes(newTarget)) {
-                console.log("REPEAT- tried to set " + newTarget);
-            }
         } while (this.state.numbers.includes(newTarget));
 
         var bonusMoves = 3;
@@ -176,6 +177,7 @@ class NumbersGame extends React.Component {
         this.setState({
             score: this.state.score + 1,
             target: newTarget,
+            scoreMessage: "Target Reached!",
             movesRemaining: this.state.movesRemaining + bonusMoves,
         });
     }
@@ -227,6 +229,9 @@ class NumbersGame extends React.Component {
                     </div>
                     <div show={this.state.errorMessage != "" ? "true" : null} className="error-container">
                         <p>{this.state.errorMessage}</p>
+                    </div>
+                    <div show={this.state.scoreMessage != "" ? "true" : null} className="message-container">
+                        <p>{this.state.scoreMessage}</p>
                     </div>
                     <div show={this.state.gameOver ? "true" : null} className="endgame-container">
                         <p>No more moves!</p>
