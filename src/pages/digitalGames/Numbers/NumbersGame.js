@@ -177,7 +177,7 @@ class NumbersGame extends React.Component {
         
         if (this.state.score < 5) {
             upcomingNumbers = [1,2,3,4,5,10];
-        } else if (5 <= this.state.score < 10) {
+        } else if (5 <= this.state.score && this.state.score < 10) {
             upcomingNumbers = [1,2,3,5,8,10,25];
         } else {
             upcomingNumbers = [1,2,3,5,8,10,25,100]
@@ -195,7 +195,7 @@ class NumbersGame extends React.Component {
         var min;
         var max;
 
-        if (this.state.score % 3 == 0) {
+        if (this.state.score % 3 === 0) {
             // Every third target is much larger.
             min = baseMin + this.state.score ** 2 * minIncrease;
             max = baseMax + this.state.score ** 2 * maxIncrease;
