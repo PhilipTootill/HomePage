@@ -19,6 +19,22 @@
   max-height: 20vh;
 }
 
+.page-section h1 {
+  margin: 15px 0;
+}
+
+.page-section h2 {
+  margin: 20px 0 5px 0;
+}
+
+.page-section ul {
+  margin-left: 30px;
+}
+
+.page-section ul li {
+  margin: 10px 0;
+}
+
 .page-section p {
   margin-bottom: 10px;
 }

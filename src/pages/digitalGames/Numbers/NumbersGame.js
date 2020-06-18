@@ -236,6 +236,10 @@ class NumbersGame extends React.Component {
         }
     }
 
+    handleCancelClick() {
+        this.setState({highlightedOperation: null, highlightedIndex: null});
+    }
+
     render() {
         return (
             <div className="numbers-game-container">
@@ -254,6 +258,7 @@ class NumbersGame extends React.Component {
                     )}
                 </div>
                 <div className="operation-box-container">
+                    <div className="flex-spacer"></div>
                     {this.operations.map((operation, index) =>
                         <div key={"operation-box-" + index} 
                             className="operation-box" onClick={() => { this.handleOperationClick(operation) }}
@@ -261,6 +266,9 @@ class NumbersGame extends React.Component {
                             {operation}
                         </div>
                     )}
+                    <div className="cancel-box" onClick={() => {this.handleCancelClick()}}>    
+                        Cancel
+                    </div>
                 </div>
                 <div className="information-container"> 
                     <div className="play-stats">
