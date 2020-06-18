@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3d6d63057f782b0619a92ef1a39cd949",
+    "revision": "23b68ac75e4564cf90192c7d2cf66848",
     "url": "/HomePage/index.html"
   },
   {
-    "revision": "465fba9c9231759775f1",
-    "url": "/HomePage/static/css/main.a16cac3b.chunk.css"
+    "revision": "cefbd5295ed85657ed27",
+    "url": "/HomePage/static/css/main.e1f98d57.chunk.css"
   },
   {
     "revision": "f4dda9c0f56ee83ba18a",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HomePage/static/js/2.08bd006c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "465fba9c9231759775f1",
-    "url": "/HomePage/static/js/main.d7c0b072.chunk.js"
+    "revision": "cefbd5295ed85657ed27",
+    "url": "/HomePage/static/js/main.877116c2.chunk.js"
   },
   {
     "revision": "8c01759f71bcd902041e",
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HomePage/static/media/InternsOfHades.a7fc08c1.md"
   },
   {
-    "revision": "ac01ec6007094c68ff2acd2caf9a9c6a",
-    "url": "/HomePage/static/media/Numbers.ac01ec60.md"
+    "revision": "e820be7aed82a65f6ed48f827fe8339a",
+    "url": "/HomePage/static/media/Numbers.e820be7a.md"
   },
   {
     "revision": "64fd2218536487c0782b345445c34d2a",
