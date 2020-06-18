@@ -7,7 +7,6 @@ function PocketHexes() {
   const [markdown, setMarkdown] = useState("");
   fetch(PocketHexesMarkdown).then(res => res.text()).then(text => setMarkdown(text));
 
-
   return (
     <div>
       <p className="page-title">Pocket Hexes</p>
