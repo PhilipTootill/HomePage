@@ -7,6 +7,11 @@ const games = [
     "name": "Numbers",
     "image": PyxisImage,
     "url": "/digital-games/numbers"
+  },
+  {
+    "name": "Pocket Hexes",
+    "image": PyxisImage,
+    "url": "/digital-games/pocket-hexes"
   }
 ]
 

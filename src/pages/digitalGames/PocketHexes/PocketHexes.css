@@ -1,0 +1,104 @@
+.numbers-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  padding: 15px;
+  max-width: 485px;
+  margin: 20px auto;
+}
+
+.target-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.target-container-label {
+  font-size: 12px;
+  margin: 0;
+}
+
+.target-text {
+  font-size: 30px;
+}
+
+.number-box-container, .operation-box-container {
+  display: flex;
+}
+
+.number-box, .operation-box, .cancel-box {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancel-box {
+  font-size: 10px;
+  color: #666666;
+}
+
+.number-box[smallText] {
+  font-size: 10px;
+}
+
+.number-box[highlighted] {
+  border: 1px solid orange;
+}
+
+.operation-box[highlighted] {
+  border: 1px solid orange;
+}
+
+.information-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.play-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.error-container {
+  color: red;
+  text-align: center;
+  margin: 10px;
+}
+
+.message-container {
+  color: green;
+  text-align: center;
+  margin: 10px;
+}
+
+.error-container:not([show]),
+.message-container:not([show]), 
+.endgame-container:not([show]) {
+  display: none;
+}
+
+.endgame-container {
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.play-again-button {
+  background: black;
+  color: white;
+  font-weight: bold;
+  margin: 5px; 
+  padding: 7px;
+  border-radius: 5px;
+}
