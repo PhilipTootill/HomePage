@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "faf3f403ba6d4b31308600a49394fb5c",
+    "revision": "3d6d63057f782b0619a92ef1a39cd949",
     "url": "/HomePage/index.html"
   },
   {
-    "revision": "e9f9fcece1fe3ef0f570",
-    "url": "/HomePage/static/css/main.26023b5c.chunk.css"
+    "revision": "465fba9c9231759775f1",
+    "url": "/HomePage/static/css/main.a16cac3b.chunk.css"
   },
   {
-    "revision": "f8f09ac3e71743c9ecd5",
-    "url": "/HomePage/static/js/2.21414829.chunk.js"
+    "revision": "f4dda9c0f56ee83ba18a",
+    "url": "/HomePage/static/js/2.08bd006c.chunk.js"
   },
   {
     "revision": "301056a7ca16ead6156b38e6917dbb28",
-    "url": "/HomePage/static/js/2.21414829.chunk.js.LICENSE.txt"
+    "url": "/HomePage/static/js/2.08bd006c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e9f9fcece1fe3ef0f570",
-    "url": "/HomePage/static/js/main.c03b54f6.chunk.js"
+    "revision": "465fba9c9231759775f1",
+    "url": "/HomePage/static/js/main.d7c0b072.chunk.js"
   },
   {
     "revision": "8c01759f71bcd902041e",
@@ -44,6 +44,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HomePage/static/media/InternsOfHades.a7fc08c1.md"
   },
   {
+    "revision": "ac01ec6007094c68ff2acd2caf9a9c6a",
+    "url": "/HomePage/static/media/Numbers.ac01ec60.md"
+  },
+  {
     "revision": "64fd2218536487c0782b345445c34d2a",
     "url": "/HomePage/static/media/Pyxis.64fd2218.md"
   },
@@ -56,12 +60,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HomePage/static/media/RulesInc.2fe16e90.jpg"
   },
   {
-    "revision": "ed1bec8d31cf5334c9ecbbe46f14e5c5",
-    "url": "/HomePage/static/media/RulesInc.ed1bec8d.md"
+    "revision": "f7f02f9ace3c84bb2459fc78cca710f6",
+    "url": "/HomePage/static/media/RulesInc.f7f02f9a.md"
   },
   {
-    "revision": "4efd3d1503f95f495897d3061da791c2",
-    "url": "/HomePage/static/media/TheVinylAge.4efd3d15.md"
+    "revision": "194b6615e3720141521eed2f84948016",
+    "url": "/HomePage/static/media/TheVinylAge.194b6615.md"
   },
   {
     "revision": "6a5d93d9f5d8934e4397ad9576a3510b",

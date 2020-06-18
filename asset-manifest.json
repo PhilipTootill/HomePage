@@ -1,34 +1,35 @@
 {
   "files": {
-    "main.css": "/HomePage/static/css/main.26023b5c.chunk.css",
-    "main.js": "/HomePage/static/js/main.c03b54f6.chunk.js",
-    "main.js.map": "/HomePage/static/js/main.c03b54f6.chunk.js.map",
+    "main.css": "/HomePage/static/css/main.a16cac3b.chunk.css",
+    "main.js": "/HomePage/static/js/main.d7c0b072.chunk.js",
+    "main.js.map": "/HomePage/static/js/main.d7c0b072.chunk.js.map",
     "runtime-main.js": "/HomePage/static/js/runtime-main.6df39322.js",
     "runtime-main.js.map": "/HomePage/static/js/runtime-main.6df39322.js.map",
-    "static/js/2.21414829.chunk.js": "/HomePage/static/js/2.21414829.chunk.js",
-    "static/js/2.21414829.chunk.js.map": "/HomePage/static/js/2.21414829.chunk.js.map",
+    "static/js/2.08bd006c.chunk.js": "/HomePage/static/js/2.08bd006c.chunk.js",
+    "static/js/2.08bd006c.chunk.js.map": "/HomePage/static/js/2.08bd006c.chunk.js.map",
     "index.html": "/HomePage/index.html",
-    "precache-manifest.bc694f3282d5c4c4da9dd783626e88ed.js": "/HomePage/precache-manifest.bc694f3282d5c4c4da9dd783626e88ed.js",
+    "precache-manifest.d7900a9233fc13489a2e0d35c7f4afaa.js": "/HomePage/precache-manifest.d7900a9233fc13489a2e0d35c7f4afaa.js",
     "service-worker.js": "/HomePage/service-worker.js",
-    "static/css/main.26023b5c.chunk.css.map": "/HomePage/static/css/main.26023b5c.chunk.css.map",
-    "static/js/2.21414829.chunk.js.LICENSE.txt": "/HomePage/static/js/2.21414829.chunk.js.LICENSE.txt",
+    "static/css/main.a16cac3b.chunk.css.map": "/HomePage/static/css/main.a16cac3b.chunk.css.map",
+    "static/js/2.08bd006c.chunk.js.LICENSE.txt": "/HomePage/static/js/2.08bd006c.chunk.js.LICENSE.txt",
     "static/media/Background.jpeg": "/HomePage/static/media/Background.be79be34.jpeg",
     "static/media/Herakles.md": "/HomePage/static/media/Herakles.a9476b69.md",
     "static/media/Herakles.jpg": "/HomePage/static/media/Herakles.d5add04a.jpg",
     "static/media/InternsOfHades.jpeg": "/HomePage/static/media/InternsOfHades.2f156d4f.jpeg",
     "static/media/InternsOfHades.md": "/HomePage/static/media/InternsOfHades.a7fc08c1.md",
+    "static/media/Numbers.md": "/HomePage/static/media/Numbers.ac01ec60.md",
     "static/media/Pyxis.md": "/HomePage/static/media/Pyxis.64fd2218.md",
     "static/media/Pyxis.jpg": "/HomePage/static/media/Pyxis.c67cadf1.jpg",
     "static/media/RulesInc.jpg": "/HomePage/static/media/RulesInc.2fe16e90.jpg",
-    "static/media/RulesInc.md": "/HomePage/static/media/RulesInc.ed1bec8d.md",
-    "static/media/TheVinylAge.md": "/HomePage/static/media/TheVinylAge.4efd3d15.md",
+    "static/media/RulesInc.md": "/HomePage/static/media/RulesInc.f7f02f9a.md",
+    "static/media/TheVinylAge.md": "/HomePage/static/media/TheVinylAge.194b6615.md",
     "static/media/TheVinylAge.jpg": "/HomePage/static/media/TheVinylAge.6a5d93d9.jpg",
     "static/media/profilePhoto.jpg": "/HomePage/static/media/profilePhoto.c6179942.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.6df39322.js",
-    "static/js/2.21414829.chunk.js",
-    "static/css/main.26023b5c.chunk.css",
-    "static/js/main.c03b54f6.chunk.js"
+    "static/js/2.08bd006c.chunk.js",
+    "static/css/main.a16cac3b.chunk.css",
+    "static/js/main.d7c0b072.chunk.js"
   ]
 }
