@@ -20,15 +20,10 @@ class PocketHexesGame extends React.Component {
             score: 0,
             scoredThisRound: false,
             diceToPick: 3,
-            diceRolls: [1, 2, 3, 4, 5, 1],
+            diceRolls: this.generateDiceRolls(),
             selectedDice: null,
             grid: this.createGrid()
         }
-
-
-    }
-
-    componentDidMount() {
     }
 
     createGrid() {
@@ -76,20 +71,20 @@ class PocketHexesGame extends React.Component {
         if (!this.state.scoredThisRound && hex.state === hexStates.SCORABLE) {
             hex.state = hexStates.SCORED;
             this.setState({
-                score: this.score + parseInt(hex.value),
+                score: this.state.score + hex.value,
                 scoredThisRound: true
             });
-            this.clearHexes();
+            this.updateHexes();
         } else if (hex.state === hexStates.PLACABLE) {
             hex.value = this.state.diceRolls[this.state.selectedDice];
+            hex.state = hexStates.PLACED;
             this.useDice();
-            this.checkForScoring(hex);
-            this.clearHexes();
+            this.updateHexes();
         }
     }
 
-    highlightHexes(valueToPlace) {
-        this.clearHexes();
+    highlightPlacableHexes(valueToPlace) {
+        this.updateHexes();
 
         // Walk through the hex array, looking for hexes where the value could be placed.
         for (var rowIndex = 0; rowIndex < this.state.grid.length; rowIndex++) {
@@ -108,12 +103,16 @@ class PocketHexesGame extends React.Component {
                 }
 
                 var highestAdjValue = this.getHighestAdjValue(hex);
-                if (highestAdjValue === null && valueToPlace === 1) {
+                if (valueToPlace === 1) {
                     //1 can go anywhere not next to another value
-                    hex.state = hexStates.PLACABLE;
+                    if (highestAdjValue === null) {
+                        hex.state = hexStates.PLACABLE;
+                    }
+                    
+                    continue;
                 }
 
-                if (highestAdjValue !== null && valueToPlace > highestAdjValue) {
+                if (highestAdjValue !== null && valueToPlace >= highestAdjValue) {
                     //Other numbers can only go next to lower values.
                     hex.state = hexStates.PLACABLE;
                 }
@@ -196,7 +195,7 @@ class PocketHexesGame extends React.Component {
         return adjHexes;
     }
 
-    clearHexes() {
+    updateHexes() {
         for (var rowIndex = 0; rowIndex < this.state.grid.length; rowIndex++) {
             for (var hexIndex = 0; hexIndex < this.state.grid[rowIndex].length; hexIndex++) {
                 var hex = this.state.grid[rowIndex][hexIndex];
@@ -206,6 +205,8 @@ class PocketHexesGame extends React.Component {
                 } else if (hex.state === hexStates.SCORABLE) {
                     hex.state = hexStates.UNSCORABLE;
                 }
+
+                this.checkForScoring(hex);
             }
         }
     }
@@ -224,12 +225,12 @@ class PocketHexesGame extends React.Component {
         }
        
         for (var i = 0; i < adjList.length; i++) {
-            if (adjList[i].state === hexStates.EMPTY) {
+            if (adjList[i].state === hexStates.EMPTY || adjList[i].state === hexStates.PLACABLE) {
                 // Found an adjacent empty hex, can't be scored yet.
                 return;
             }
         }
-        
+
         if (this.state.scoredThisRound) {
             hex.state = hexStates.UNSCORABLE;
         } else {
@@ -242,7 +243,7 @@ class PocketHexesGame extends React.Component {
             return;
         }
 
-        this.highlightHexes(this.state.diceRolls[index]);
+        this.highlightPlacableHexes(this.state.diceRolls[index]);
         this.setState({selectedDice: index});
     }
 
@@ -254,12 +255,36 @@ class PocketHexesGame extends React.Component {
         });
     }
 
-    roll() {
-        console.log("Rolling!");
+    generateDiceRolls() {
+        var diceList = [4, 6, 8, 10, 12, 20];
+        var newDiceRolls = [];
+        
+        for (var i = 0; i < diceList.length; i++) {
+            var diceMax = diceList[i];
+            var diceResult = Math.ceil(Math.random() * diceMax);
+            if (diceMax == 10) {
+                diceResult--;
+            }
+            newDiceRolls.push(diceResult);
+        }
+
+        return newDiceRolls;
     }
 
-    getRandomInt(max) {
-        return Math.ceil(Math.random() * max);
+    rollDice() {
+        if (this.state.diceToPick > 0) {
+            return;
+        }
+
+        this.updateHexes();
+        
+        var newDiceRolls = this.generateDiceRolls();
+        
+        this.setState({
+            diceRolls: newDiceRolls,
+            diceToPick: 3,
+            scoredThisRound: false
+        });
     }
 
     render() {
@@ -291,8 +316,8 @@ class PocketHexesGame extends React.Component {
                             {roll}
                         </div>
                     )}
-                    <button className='rollButton' onClick={() => { this.roll()}}>
-                        Dice: {this.state.diceToPick}
+                    <button className='rollButton' onClick={() => {this.rollDice()}}>
+                        {this.state.diceToPick > 0 ? "Dice: " + this.state.diceToPick : "Roll!"}
                     </button>
                 </div>
             </div>

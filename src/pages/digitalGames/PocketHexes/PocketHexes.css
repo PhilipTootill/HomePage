@@ -103,11 +103,11 @@
   border: 1px solid orange;
 }
 
-.canBeScored path {
-  fill: yellow;
+.hexagon[hexstate="scorable"] {
+  border: 1px solid yellow;
 }
 
 
-.hasBeenScored path {
-  fill: green;
+.hexagon[hexstate="scored"] {
+  border: 1px solid green;
 }
