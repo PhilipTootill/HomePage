@@ -3,7 +3,6 @@ import './PocketHexes.css';
 import HexSvg from './hexagon.svg';
 
 const hexStates = {
-    NOT: "not",
     EMPTY: "empty",
     PLACABLE: "placable",
     PLACED: "placed",
@@ -69,6 +68,7 @@ class PocketHexesGame extends React.Component {
 
     handleSelectHex(hex) {
         if (!this.state.scoredThisRound && hex.state === hexStates.SCORABLE) {
+            // Score this hex.
             hex.state = hexStates.SCORED;
             this.setState({
                 score: this.state.score + hex.value,
@@ -76,47 +76,87 @@ class PocketHexesGame extends React.Component {
             });
             this.updateHexes();
         } else if (hex.state === hexStates.PLACABLE) {
+            // Place a value in this hex.
             hex.value = this.state.diceRolls[this.state.selectedDice];
             hex.state = hexStates.PLACED;
-            this.useDice();
+            this.spendDice();
             this.updateHexes();
         }
     }
 
-    highlightPlacableHexes(valueToPlace) {
-        this.updateHexes();
-
-        // Walk through the hex array, looking for hexes where the value could be placed.
+    updateHexes(valueToPlace) {
         for (var rowIndex = 0; rowIndex < this.state.grid.length; rowIndex++) {
             for (var hexIndex = 0; hexIndex < this.state.grid[rowIndex].length; hexIndex++) {
                 var hex = this.state.grid[rowIndex][hexIndex];
                 
-                if (hex.value !== null) {
-                    //Hex is full- definitely can't place.
-                    continue;
-                }
-
-                if (valueToPlace === 0) {
-                    //0 can go anywhere.
-                    hex.state = hexStates.PLACABLE;
-                    continue;
-                }
-
-                var highestAdjValue = this.getHighestAdjValue(hex);
-                if (valueToPlace === 1) {
-                    //1 can go anywhere not next to another value
-                    if (highestAdjValue === null) {
-                        hex.state = hexStates.PLACABLE;
-                    }
-                    
-                    continue;
-                }
-
-                if (highestAdjValue !== null && valueToPlace >= highestAdjValue) {
-                    //Other numbers can only go next to lower values.
-                    hex.state = hexStates.PLACABLE;
+                switch (hex.state) {
+                    case hexStates.EMPTY:
+                        // May be placeable
+                        if (valueToPlace !== null) {
+                            this.updateHexForPlacable(hex, valueToPlace);
+                        }
+                        break;
+                    case hexStates.PLACABLE:
+                        // Chose not to place- clear old data.
+                        hex.state = hexStates.EMPTY;
+                        break;
+                    case hexStates.PLACED:
+                        // Check if the hex can be scored.
+                        this.updateHexForScorable(hex);
+                        break;
+                    case hexStates.SCORABLE:
+                        // Missed opportunity for scoring.
+                        hex.state = hexStates.UNSCORABLE;
+                        break;
+                    default:
+                        break;
                 }
             }
+        }
+    }
+
+    updateHexForScorable(hex) {
+        var adjList = this.getAdjacentHexes(hex);
+    
+        if (adjList.length < 6) {
+            // Edge hexes can never be scored.
+            hex.state = hexStates.UNSCORABLE;
+            return;
+        }
+       
+        for (var i = 0; i < adjList.length; i++) {
+            if (adjList[i].state === hexStates.EMPTY || adjList[i].state === hexStates.PLACABLE) {
+                // Found an adjacent empty hex, can't be scored yet.
+                return;
+            }
+        }
+
+        if (this.state.scoredThisRound) {
+            hex.state = hexStates.UNSCORABLE;
+        } else {
+            hex.state = hexStates.SCORABLE;
+        }
+    }
+
+    updateHexForPlacable(hex, valueToPlace) {
+        if (valueToPlace === 0) {
+            //0 can go anywhere.
+            hex.state = hexStates.PLACABLE;
+            return;
+        }
+
+        var highestAdjValue = this.getHighestAdjValue(hex);
+        if (valueToPlace === 1) {
+            //1 can go anywhere not next to another value
+            if (highestAdjValue === null) {
+                hex.state = hexStates.PLACABLE;
+            }       
+            return;
+        }
+
+        if (highestAdjValue !== null && valueToPlace >= highestAdjValue) {
+            //Other numbers can only go next to lower values.
+            hex.state = hexStates.PLACABLE;
         }
     }
 
@@ -195,59 +235,16 @@ class PocketHexesGame extends React.Component {
         return adjHexes;
     }
 
-    updateHexes() {
-        for (var rowIndex = 0; rowIndex < this.state.grid.length; rowIndex++) {
-            for (var hexIndex = 0; hexIndex < this.state.grid[rowIndex].length; hexIndex++) {
-                var hex = this.state.grid[rowIndex][hexIndex];
-                
-                if (hex.state === hexStates.PLACABLE) {
-                    hex.state = hexStates.EMPTY
-                } else if (hex.state === hexStates.SCORABLE) {
-                    hex.state = hexStates.UNSCORABLE;
-                }
-
-                this.checkForScoring(hex);
-            }
-        }
-    }
-
-    checkForScoring(hex) {
-        if (hex.state !== hexStates.PLACED) {
-            return;
-        }
-
-        var adjList = this.getAdjacentHexes(hex);
-    
-        if (adjList.length < 6) {
-            // Edge hexes can never be scored.
-            hex.state = hexStates.UNSCORABLE;
-            return;
-        }
-       
-        for (var i = 0; i < adjList.length; i++) {
-            if (adjList[i].state === hexStates.EMPTY || adjList[i].state === hexStates.PLACABLE) {
-                // Found an adjacent empty hex, can't be scored yet.
-                return;
-            }
-        }
-
-        if (this.state.scoredThisRound) {
-            hex.state = hexStates.UNSCORABLE;
-        } else {
-            hex.state = hexStates.SCORABLE;
-        }
-    }
-
     handleSelectDice(index) {
         if (this.state.diceToPick === 0) {
             return;
         }
 
-        this.highlightPlacableHexes(this.state.diceRolls[index]);
+        this.updateHexes(this.state.diceRolls[index]);
         this.setState({selectedDice: index});
     }
 
-    useDice() {
+    spendDice() {
         this.state.diceRolls[this.state.selectedDice] = null;
         this.setState({
             selectedDice: null,
