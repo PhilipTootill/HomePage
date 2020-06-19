@@ -97,8 +97,10 @@ class PocketHexesGame extends React.Component {
                         }
                         break;
                     case hexStates.PLACABLE:
-                        // Chose not to place- clear old data.
-                        hex.state = hexStates.EMPTY;
+                        if (valueToPlace === undefined) {
+                            // Chose not to place- clear old data.
+                            hex.state = hexStates.EMPTY;
+                        } 
                         break;
                     case hexStates.PLACED:
                         // Check if the hex can be scored.
