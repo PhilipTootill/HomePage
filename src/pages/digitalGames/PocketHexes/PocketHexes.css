@@ -4,6 +4,7 @@
 
 .grid {
   padding: 2% 0;
+  margin: 10px 0;
 }
 
 .hexagon {
@@ -98,8 +99,8 @@
   border: 5px solid black;
 }
 
-.canBeUsed path{
-  fill: orange;
+.hexagon[hexstate="placable"]{
+  border: 1px solid orange;
 }
 
 .canBeScored path {
