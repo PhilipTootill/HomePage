@@ -1,6 +1,6 @@
 import React from 'react';
 import './PocketHexes.css';
-import HexSvg from './hexagon.svg';
+import Hexagon from './Hexagon';
 
 const hexStates = {
     EMPTY: "empty",
@@ -293,15 +293,9 @@ class PocketHexesGame extends React.Component {
                 <div id='grid' className='grid'>
                     {this.state.grid.map((row, index) =>
                         <div key={"row-" + index} className="row">
-                            {row.map((hex, jndex) => <div
-                                    key={"hex-" + hex.row + "-" + hex.index} 
-                                    id={"hex-" + hex.row + "-" + hex.index} 
-                                    className="hexagon" onClick={() => { this.handleSelectHex(hex) }}
-                                    hexstate={hex.state}>
-                                    <span>{hex.value}</span>
-                                    <img className="hexagonSvg" src={HexSvg}></img>
-                                </div>
-                            )}
+                            {row.map((hex, jndex) => <div onClick={() => { this.handleSelectHex(hex) }}>
+                                <Hexagon hex={hex}/>
+                            </div>)}
                         </div>
 
                     )}

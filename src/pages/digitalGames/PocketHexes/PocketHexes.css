@@ -16,12 +16,6 @@
   position: relative;
 }
 
-.hexagonSvg {
-  width: 8vw;
-  max-height: 100%;
-  max-width: 100%;
-}
-
 .hexagon span {
   position: absolute;
   vertical-align: middle;
@@ -37,6 +31,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.hexagonSvg {
+  height: 100%;
+  width: 100%;
 }
 
 .row {
@@ -99,15 +98,19 @@
   border: 5px solid black;
 }
 
+.hexagon {
+  fill: #aaaaaa;
+}
+
 .hexagon[hexstate="placable"]{
-  border: 1px solid orange;
+  fill:orange;
 }
 
 .hexagon[hexstate="scorable"] {
-  border: 1px solid yellow;
+  fill: lightgreen;
 }
 
 
 .hexagon[hexstate="scored"] {
-  border: 1px solid green;
+  fill: green;
 }
