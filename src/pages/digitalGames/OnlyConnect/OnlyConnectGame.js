@@ -1,6 +1,6 @@
 import React from 'react';
 import './OnlyConnect.css';
-import { shuffleArray } from '../DigitalGamesUtils';
+import { shuffleArray, arraysMatch } from '../DigitalGamesUtils';
 import OnlyConnectTimer from './OnlyConnectTimer';
 import OnlyConnectGrid from './OnlyConnectGrid';
 
@@ -8,26 +8,17 @@ class OnlyConnectGame extends React.Component {
     constructor(props) {
         super(props);
 
-        // If you say 'good names for rhinoceroses' as a link, you get 5 bonus points!
-        const answers = [
-            ["Apple", "Adam", "Ants", "Anorak"],
-            ["Banana", "Badger", "Bert", "Basic"],
-            ["Cave", "Coast", "Cliff", "Container"],
-            ["Day", "Dessert", "Dave", "Depot"]
-        ]
-
-        var unsolvedAnswers = answers.flat(1);
+        var unsolvedAnswers = props.answers.flat(1);
         shuffleArray(unsolvedAnswers);
 
         this.state = {
             unsolvedAnswers: unsolvedAnswers,
             solvedAnswers: [],
             highlightedAnswers: [],
-            answerList: answers,
-            timerExpired: false,
+            answerList: props.answers,
             message: false,
             gameOver: false,
-            correctAnswers: 0
+            score: 0
         }
     }
 
@@ -37,9 +28,9 @@ class OnlyConnectGame extends React.Component {
             return;
         }
 
-        var answerIndex = this.state.highlightedAnswers.indexOf(answer);
-        if (answerIndex >= 0) {
-            this.state.highlightedAnswers.splice(answerIndex, 1);
+        var highlightedAnswerIndex = this.state.highlightedAnswers.indexOf(answer);
+        if (highlightedAnswerIndex >= 0) {
+            this.state.highlightedAnswers.splice(highlightedAnswerIndex, 1);
         } else {
             this.state.highlightedAnswers.push(answer);
         }
@@ -56,16 +47,16 @@ class OnlyConnectGame extends React.Component {
 
     checkAnswers() {
         var message;
-        var rowsCorrect = this.state.correctAnswers;
+        var score = this.state.score;
 
         var answer = this.findAndPopMatchingAnswer();
         if (answer) {
-            this.markHighlightedBoxesAsCorrect();
+            this.moveHighlightedBoxesToSolved();
             message = "Correct!";
-            rowsCorrect++;
-            if (rowsCorrect === 3) {
+            score++;
+            if (score === 3) {
                 this.revealAnswers();
-                rowsCorrect++;
+                score++;
                 message = "Well done! You got all 4 points for the groups. There's another point for getting each connection."
             }
         } else {
@@ -75,13 +66,13 @@ class OnlyConnectGame extends React.Component {
         this.setState({
             highlightedAnswers: [],
             message: message,
-            correctAnswers: rowsCorrect
+            score: score
         })
     }
 
     findAndPopMatchingAnswer() {
         for (var i = 0; i < this.state.answerList.length; i++) {
-            if (this.arraysMatch(this.state.highlightedAnswers, this.state.answerList[i])) {
+            if (arraysMatch(this.state.highlightedAnswers, this.state.answerList[i])) {
                 return this.state.answerList.splice(i, 1);
             }
         }
@@ -89,7 +80,7 @@ class OnlyConnectGame extends React.Component {
         return null;
     }
 
-    markHighlightedBoxesAsCorrect() {
+    moveHighlightedBoxesToSolved() {
         for (var i = 0; i < this.state.highlightedAnswers.length; i++) {
             var answer = this.state.highlightedAnswers[i];
             this.state.solvedAnswers.push(answer);
@@ -100,30 +91,17 @@ class OnlyConnectGame extends React.Component {
     }
 
     revealAnswers() {
-        setTimeout(()=> {this.setState({
-            solvedAnswers: this.state.solvedAnswers.concat(this.state.answerList.flat()),
-            unsolvedAnswers: [],
-            gameOver: true
-        })}, 500);
+        setTimeout(()=> {
+            this.setState({
+                solvedAnswers: this.state.solvedAnswers.concat(this.state.answerList.flat()),
+                unsolvedAnswers: [],
+                gameOver: true
+            })
+        }, 500);
     }
 
-    arraysMatch(arr1, arr2) {
-        arr1.sort();
-        arr2.sort();
-
-        // Check if the arrays are the same length
-        if (arr1.length !== arr2.length) return false;
-    
-        // Check if all items exist and are in the same order
-        for (var i = 0; i < arr1.length; i++) {
-            if (arr1[i] !== arr2[i]) return false;
-        }
-
-        return true;
-    }
-
-    timerExpires() {
-        var pointsString = this.state.correctAnswers + (this.state.correctAnswers === 1 ? " point" : " points");
+    timerExpires = () => {
+        var pointsString = this.state.score + (this.state.score === 1 ? " point" : " points");
 
         this.setState({
             highlightedAnswers: [],
@@ -140,7 +118,7 @@ class OnlyConnectGame extends React.Component {
                 <OnlyConnectGrid 
                     correctAnswers={this.state.solvedAnswers} remainingAnswers={this.state.unsolvedAnswers}
                     highlightedAnswers={this.state.highlightedAnswers} boxClickHandler={this.boxClickHandler}/>
-                <OnlyConnectTimer forceend={this.state.gameOver} callback={() => {this.timerExpires()}}/>
+                <OnlyConnectTimer forceend={this.state.gameOver} callback={this.timerExpires}/>
                 <div className="only-connect-message-box">
                     {this.state.message}
                 </div>

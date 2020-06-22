@@ -27,3 +27,18 @@ export const shuffleArray = function(array) {
         array.push(element[0]);
     }
 }
+
+export const arraysMatch = function(arr1, arr2) {
+    arr1.sort();
+    arr2.sort();
+
+    // Check if the arrays are the same length
+    if (arr1.length !== arr2.length) return false;
+
+    // Check if all items exist and are in the same order
+    for (var i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) return false;
+    }
+
+    return true;
+}
