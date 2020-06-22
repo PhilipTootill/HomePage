@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
-function OnlyConnectTimer({callback}) {
+function OnlyConnectTimer({callback, forceend}) {
   const maxTime = 180;
   const [timeTaken, setTimeTaken] = useState(0);
+  const [callbackCalled, setCallbackCalled] = useState(false);
 
   const timerStyle = {
     backgroundColor: "#BBBBBB",
@@ -11,6 +12,11 @@ function OnlyConnectTimer({callback}) {
 
   var timeUsed = 100 * timeTaken / maxTime;
   var timeUsedPercentage = timeUsed.toString() + "%";
+
+  if (forceend) {
+    timeUsedPercentage = "100%";
+  }
+
   var timerBarStyle = {
     backgroundColor: "#0088B3",
     width: timeUsedPercentage,
@@ -21,7 +27,8 @@ function OnlyConnectTimer({callback}) {
     setTimeout(() => {
       if (timeTaken < maxTime) {
         setTimeTaken(timeTaken + 0.5);
-      } else {
+      } else if (!callbackCalled) {
+        setCallbackCalled(true);
         callback();
       }
     }, 500);
