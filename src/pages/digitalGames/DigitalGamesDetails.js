@@ -1,5 +1,6 @@
 import React from 'react';
 import Numbers from "./Numbers/Numbers";
+import OnlyConnect from "./OnlyConnect/OnlyConnect";
 import {
   useParams
 } from "react-router-dom";
@@ -10,7 +11,8 @@ function DigitalGamesDetails() {
 
   const pages = {
     "numbers": <Numbers/>,
-    "pocket-hexes": <PocketHexes/>
+    "pocket-hexes": <PocketHexes/>,
+    "only-connect": <OnlyConnect/>
   } 
 
   var content = <div>Invalid URL: The page for {name} doesn't exist.</div>;
