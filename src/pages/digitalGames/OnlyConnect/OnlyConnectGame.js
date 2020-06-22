@@ -3,6 +3,7 @@ import './OnlyConnect.css';
 import { shuffleArray, arraysMatch } from '../DigitalGamesUtils';
 import OnlyConnectTimer from './OnlyConnectTimer';
 import OnlyConnectGrid from './OnlyConnectGrid';
+import OnlyConnectLives from './OnlyConnectLives';
 
 class OnlyConnectGame extends React.Component {
     constructor(props) {
@@ -18,7 +19,8 @@ class OnlyConnectGame extends React.Component {
             answerList: props.answers,
             message: false,
             gameOver: false,
-            score: 0
+            score: 0,
+            livesRemaining: 0
         }
     }
 
@@ -48,25 +50,44 @@ class OnlyConnectGame extends React.Component {
     checkAnswers() {
         var message;
         var score = this.state.score;
+        var lives = this.state.livesRemaining;
 
         var answer = this.findAndPopMatchingAnswer();
         if (answer) {
             this.moveHighlightedBoxesToSolved();
             message = "Correct!";
             score++;
-            if (score === 3) {
+            if (score === 2) {
+                lives = 3;
+                message = "Correct! Remember, you only get 3 chances to guess the last groups."
+            } else if (score === 3) {
                 this.revealAnswers();
                 score++;
                 message = "Well done! You got all 4 points for the groups. There's another point for getting each connection."
             }
         } else {
             message = "Incorrect! That's not a group.";
+
+            if (lives > 0) {
+                lives--;
+                
+                if (lives === 2) {
+                    message = "Incorrect! Two lives remain.";
+                } else if (lives === 1) {
+                    message = "Incorrect! Only one life left."
+                } else if (lives === 0) {
+                    message = "Game over! You get 2 points from the groups. You can still get a bonus point for each connection you get."
+                    this.revealAnswers();
+                }
+                
+            }
         }
 
         this.setState({
             highlightedAnswers: [],
             message: message,
-            score: score
+            score: score,
+            livesRemaining: lives
         })
     }
 
@@ -118,7 +139,10 @@ class OnlyConnectGame extends React.Component {
                 <OnlyConnectGrid 
                     correctAnswers={this.state.solvedAnswers} remainingAnswers={this.state.unsolvedAnswers}
                     highlightedAnswers={this.state.highlightedAnswers} boxClickHandler={this.boxClickHandler}/>
-                <OnlyConnectTimer forceEnd={this.state.gameOver} expiredCallback={this.timerExpires}/>
+                <div className="only-connect-info-box">
+                    <OnlyConnectLives count={this.state.livesRemaining}/>
+                    <OnlyConnectTimer forceEnd={this.state.gameOver} expiredCallback={this.timerExpires}/>
+                </div>
                 <div className="only-connect-message-box">
                     {this.state.message}
                 </div>

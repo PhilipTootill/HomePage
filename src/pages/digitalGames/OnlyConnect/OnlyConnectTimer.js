@@ -35,7 +35,7 @@ function OnlyConnectTimer({expiredCallback, forceEnd}) {
   });
 
   return (
-    <div style={timerStyle}>
+    <div  className="only-connect-timer" style={timerStyle}>
       <div style={timerBarStyle}> </div>
     </div>
   );
