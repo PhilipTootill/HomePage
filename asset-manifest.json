@@ -1,23 +1,25 @@
 {
   "files": {
-    "main.css": "/HomePage/static/css/main.e1f98d57.chunk.css",
-    "main.js": "/HomePage/static/js/main.877116c2.chunk.js",
-    "main.js.map": "/HomePage/static/js/main.877116c2.chunk.js.map",
+    "main.css": "/HomePage/static/css/main.8cf5ff24.chunk.css",
+    "main.js": "/HomePage/static/js/main.8fe4da20.chunk.js",
+    "main.js.map": "/HomePage/static/js/main.8fe4da20.chunk.js.map",
     "runtime-main.js": "/HomePage/static/js/runtime-main.6df39322.js",
     "runtime-main.js.map": "/HomePage/static/js/runtime-main.6df39322.js.map",
-    "static/js/2.08bd006c.chunk.js": "/HomePage/static/js/2.08bd006c.chunk.js",
-    "static/js/2.08bd006c.chunk.js.map": "/HomePage/static/js/2.08bd006c.chunk.js.map",
+    "static/js/2.06f429bf.chunk.js": "/HomePage/static/js/2.06f429bf.chunk.js",
+    "static/js/2.06f429bf.chunk.js.map": "/HomePage/static/js/2.06f429bf.chunk.js.map",
     "index.html": "/HomePage/index.html",
-    "precache-manifest.59e1fe945f2bd54b164522be611306aa.js": "/HomePage/precache-manifest.59e1fe945f2bd54b164522be611306aa.js",
+    "precache-manifest.109d59bad14e04d0298df7e0ccb1aefd.js": "/HomePage/precache-manifest.109d59bad14e04d0298df7e0ccb1aefd.js",
     "service-worker.js": "/HomePage/service-worker.js",
-    "static/css/main.e1f98d57.chunk.css.map": "/HomePage/static/css/main.e1f98d57.chunk.css.map",
-    "static/js/2.08bd006c.chunk.js.LICENSE.txt": "/HomePage/static/js/2.08bd006c.chunk.js.LICENSE.txt",
+    "static/css/main.8cf5ff24.chunk.css.map": "/HomePage/static/css/main.8cf5ff24.chunk.css.map",
+    "static/js/2.06f429bf.chunk.js.LICENSE.txt": "/HomePage/static/js/2.06f429bf.chunk.js.LICENSE.txt",
     "static/media/Background.jpeg": "/HomePage/static/media/Background.be79be34.jpeg",
     "static/media/Herakles.md": "/HomePage/static/media/Herakles.a9476b69.md",
     "static/media/Herakles.jpg": "/HomePage/static/media/Herakles.d5add04a.jpg",
     "static/media/InternsOfHades.jpeg": "/HomePage/static/media/InternsOfHades.2f156d4f.jpeg",
     "static/media/InternsOfHades.md": "/HomePage/static/media/InternsOfHades.a7fc08c1.md",
     "static/media/Numbers.md": "/HomePage/static/media/Numbers.e820be7a.md",
+    "static/media/OnlyConnect.md": "/HomePage/static/media/OnlyConnect.09b6ca99.md",
+    "static/media/PocketHexes.md": "/HomePage/static/media/PocketHexes.09b6ca99.md",
     "static/media/Pyxis.md": "/HomePage/static/media/Pyxis.64fd2218.md",
     "static/media/Pyxis.jpg": "/HomePage/static/media/Pyxis.c67cadf1.jpg",
     "static/media/RulesInc.jpg": "/HomePage/static/media/RulesInc.2fe16e90.jpg",
@@ -28,8 +30,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.6df39322.js",
-    "static/js/2.08bd006c.chunk.js",
-    "static/css/main.e1f98d57.chunk.css",
-    "static/js/main.877116c2.chunk.js"
+    "static/js/2.06f429bf.chunk.js",
+    "static/css/main.8cf5ff24.chunk.css",
+    "static/js/main.8fe4da20.chunk.js"
   ]
 }
