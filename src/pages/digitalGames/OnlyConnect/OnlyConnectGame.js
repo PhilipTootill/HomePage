@@ -1,37 +1,41 @@
 import React from 'react';
 import './OnlyConnect.css';
+import { shuffleArray } from '../DigitalGamesUtils';
 
 class OnlyConnectGame extends React.Component {
     constructor(props) {
         super(props);
 
-        var answerGrid = [
-            ["1", "2", "3", "4"],
-            ["5", "6", "7", "8"],
-            ["10", "11", "12", "13"],
-            ["9", "14", "15", "16"]
-        ];
+        const answers = [
+            ["Apple", "Adam", "Ants", "Anorak"],
+            ["Banana", "Badger", "Bert", "Basic"],
+            ["Cave", "Coast", "Cliff", "Container"],
+            ["Day", "Dessert", "Dave", "Depot"]
+        ]
+
+        var unsolvedAnswers = answers.flat(1);
+        shuffleArray(unsolvedAnswers);
 
         this.state = {
-            answerGrid: answerGrid,
-            highlightedAnswers: []
+            unsolvedAnswers: unsolvedAnswers,
+            solvedAnswers: [],
+            highlightedAnswers: [],
+            answerList: answers
         }
     }
 
-    boxClickHandler(rowIndex, columnIndex) {
-        var answer = this.state.answerGrid[rowIndex][columnIndex];
+    boxClickHandler(answer) {
         var answerIndex = this.state.highlightedAnswers.indexOf(answer);
 
         if (answerIndex >= 0) {
             this.state.highlightedAnswers.splice(answerIndex, 1);
         } else {
             this.state.highlightedAnswers.push(answer);
-            this.state.highlightedAnswers.sort();
         }
 
         if (this.state.highlightedAnswers.length === 4) {
             if (this.checkAnswers()) {
-                console.log("correct");
+                this.markAnswersAsCorrect();
             } else {
                 console.log("Wrong!");
             }
@@ -45,45 +49,75 @@ class OnlyConnectGame extends React.Component {
     }
 
     checkAnswers() {
-        const answers1 = ["1", "4", "9", "16"];
-        const answers2 = ["2", "3", "5", "7"];
-        const answers3 = ["6", "8", "10", "12"];
-        const answers4 = ["11", "13", "14", "15"];
-
-        if (this.arraysMatch(this.state.highlightedAnswers, answers1) ||
-            this.arraysMatch(this.state.highlightedAnswers, answers2) ||
-            this.arraysMatch(this.state.highlightedAnswers, answers3) ||
-            this.arraysMatch(this.state.highlightedAnswers, answers4)) {
-            return true;
+        debugger;
+        for (var i = 0; i < this.state.answerList.length; i++) {
+            if (this.arraysMatch(this.state.highlightedAnswers, this.state.answerList[i])) {
+                return true;
+            }
         }
 
         return false;
     }
 
+    markAnswersAsCorrect() {
+        for (var i = 0; i < this.state.highlightedAnswers.length; i++) {
+            var answer = this.state.highlightedAnswers[i];
+            this.state.solvedAnswers.push(answer);
+
+            var answerIndex = this.state.unsolvedAnswers.indexOf(answer);
+            this.state.unsolvedAnswers.splice(answerIndex, 1);
+        }
+    }
+
     arraysMatch(arr1, arr2) {
+        arr1.sort();
+        arr2.sort();
+
         // Check if the arrays are the same length
         if (arr1.length !== arr2.length) return false;
     
         // Check if all items exist and are in the same order
-        for (var i = 0; arr1.length < i; i++) {
+        for (var i = 0; i < arr1.length; i++) {
             if (arr1[i] !== arr2[i]) return false;
         }
 
         return true;
     }
 
+    splitAnswersIntoGrid() {
+        var correctAnswers = this.state.solvedAnswers.slice();
+        var remainingAnswers = this.state.unsolvedAnswers.slice();
+        var allAnswers = correctAnswers.concat(remainingAnswers);
+
+        var answerGrid = [
+            allAnswers.slice(0, 4),
+            allAnswers.slice(4, 8),
+            allAnswers.slice(8, 12),
+            allAnswers.slice(12),
+        ];
+
+        return answerGrid;
+    }
+
     render() {
+        var answerGrid = this.splitAnswersIntoGrid();
+        var rowsCorrect = this.state.solvedAnswers.length / 4;
+
         return (
             <div className="only-connect-game-container">
                 <div id='grid' className='grid'>
-                    {this.state.answerGrid.map((row, rowIndex) =>
-                        <div key={"grid-row-" + rowIndex} id={"grid-row-" + rowIndex} className="grid-row">
+                    {answerGrid.map((row, rowIndex) =>
+                        <div
+                            key={"grid-row-" + rowIndex} 
+                            id={"grid-row-" + rowIndex} 
+                            className="grid-row"
+                            solved={rowIndex < rowsCorrect ? "true": null}>
                             {row.map((boxText, columnIndex) =>
                                 <div
                                     key={"box-" + rowIndex + "-" + columnIndex} 
                                     id={"box-" + rowIndex + "-" + columnIndex} 
                                     className="grid-box"
-                                    onClick={()=>{this.boxClickHandler(rowIndex, columnIndex)}}
+                                    onClick={()=>{this.boxClickHandler(boxText)}}
                                     highlighted={this.state.highlightedAnswers.includes(boxText) ? "true" : null}>
                                     {boxText}
                                 </div>

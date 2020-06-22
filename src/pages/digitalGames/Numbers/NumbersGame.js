@@ -1,6 +1,6 @@
 import React from 'react';
 import './Numbers.css';
-import { randomInteger, shuffleArray } from './NumbersUtils';
+import { randomInteger, shuffleArray } from '../DigitalGamesUtils';
 
 
 class NumbersGame extends React.Component {

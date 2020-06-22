@@ -24,6 +24,6 @@ export const shuffleArray = function(array) {
         counter--;
 
         var element = array.splice(index, 1);
-        array.push(element);
+        array.push(element[0]);
     }
 }
