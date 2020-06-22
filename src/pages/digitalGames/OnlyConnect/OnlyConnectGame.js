@@ -2,6 +2,7 @@ import React from 'react';
 import './OnlyConnect.css';
 import { shuffleArray } from '../DigitalGamesUtils';
 import OnlyConnectTimer from './OnlyConnectTimer';
+import OnlyConnectGrid from './OnlyConnectGrid';
 
 class OnlyConnectGame extends React.Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class OnlyConnectGame extends React.Component {
         }
     }
 
-    boxClickHandler(answer) {
+    boxClickHandler = (answer) => {
         if (this.state.gameOver ||
             this.state.solvedAnswers.indexOf(answer)>= 0) {
             return;
@@ -121,21 +122,6 @@ class OnlyConnectGame extends React.Component {
         return true;
     }
 
-    splitAnswersIntoGrid() {
-        var correctAnswers = this.state.solvedAnswers.slice();
-        var remainingAnswers = this.state.unsolvedAnswers.slice();
-        var allAnswers = correctAnswers.concat(remainingAnswers);
-
-        var answerGrid = [
-            allAnswers.slice(0, 4),
-            allAnswers.slice(4, 8),
-            allAnswers.slice(8, 12),
-            allAnswers.slice(12),
-        ];
-
-        return answerGrid;
-    }
-
     timerExpires() {
         var pointsString = this.state.correctAnswers + (this.state.correctAnswers === 1 ? " point" : " points");
 
@@ -149,38 +135,11 @@ class OnlyConnectGame extends React.Component {
     }
 
     render() {
-        var answerGrid = this.splitAnswersIntoGrid();
-        var rowsCorrect = this.state.solvedAnswers.length / 4;
-
-        const answers = [
-            ["Apple", "Adam", "Ants", "Anorak"],
-            ["Banana", "Badger", "Bert", "Basic"],
-            ["Cave", "Coast", "Cliff", "Container"],
-            ["Day", "Dessert", "Dave", "Depot"]
-        ]
-
         return (
             <div className="only-connect-game-container">
-                <div id='grid' className='only-connect-grid' rowscorrect={rowsCorrect}>
-                    {answerGrid.map((row, rowIndex) =>
-                        <div
-                            key={"grid-row-" + rowIndex} 
-                            id={"grid-row-" + rowIndex} 
-                            className="only-connect-grid-row"
-                            solved={rowIndex < rowsCorrect ? "true": null}>
-                            {row.map((boxText, columnIndex) =>
-                                <div
-                                    key={"box-" + rowIndex + "-" + columnIndex} 
-                                    id={"box-" + rowIndex + "-" + columnIndex} 
-                                    className="only-connect-grid-box"
-                                    onClick={()=>{this.boxClickHandler(boxText)}}
-                                    highlighted={this.state.highlightedAnswers.includes(boxText) ? "true" : null}>
-                                    {boxText}
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </div>
+                <OnlyConnectGrid 
+                    correctAnswers={this.state.solvedAnswers} remainingAnswers={this.state.unsolvedAnswers}
+                    highlightedAnswers={this.state.highlightedAnswers} boxClickHandler={this.boxClickHandler}/>
                 <OnlyConnectTimer forceend={this.state.gameOver} callback={() => {this.timerExpires()}}/>
                 <div className="only-connect-message-box">
                     {this.state.message}
