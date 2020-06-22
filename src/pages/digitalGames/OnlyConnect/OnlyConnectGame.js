@@ -25,12 +25,13 @@ class OnlyConnectGame extends React.Component {
             answerList: answers,
             timerExpired: false,
             message: false,
-            gameWon: false
+            gameOver: false,
+            correctAnswers: 0
         }
     }
 
     boxClickHandler(answer) {
-        if (this.state.timerExpired ||
+        if (this.state.gameOver ||
             this.state.solvedAnswers.indexOf(answer)>= 0) {
             return;
         }
@@ -54,13 +55,16 @@ class OnlyConnectGame extends React.Component {
 
     checkAnswers() {
         var message;
-        var rowsCorrect = this.state.solvedAnswers.length / 4;
+        var rowsCorrect = this.state.correctAnswers;
 
-        if (this.isAnswerCorrect()) {
-            this.markAnswersAsCorrect();
+        var answer = this.findAndPopMatchingAnswer();
+        if (answer) {
+            this.markHighlightedBoxesAsCorrect();
             message = "Correct!";
-            if (rowsCorrect === 2) {
-                setTimeout(() => {this.revealAnswers()}, 500);
+            rowsCorrect++;
+            if (rowsCorrect === 3) {
+                this.revealAnswers();
+                rowsCorrect++;
                 message = "Well done! You got all 4 points for the groups. There's another point for getting each connection."
             }
         } else {
@@ -69,23 +73,22 @@ class OnlyConnectGame extends React.Component {
 
         this.setState({
             highlightedAnswers: [],
-            message: message
+            message: message,
+            correctAnswers: rowsCorrect
         })
     }
 
-    isAnswerCorrect() {
-        var answerIsCorrect = false;
-
+    findAndPopMatchingAnswer() {
         for (var i = 0; i < this.state.answerList.length; i++) {
             if (this.arraysMatch(this.state.highlightedAnswers, this.state.answerList[i])) {
-                answerIsCorrect = true;
+                return this.state.answerList.splice(i, 1);
             }
         }
 
-        return answerIsCorrect;
+        return null;
     }
 
-    markAnswersAsCorrect() {
+    markHighlightedBoxesAsCorrect() {
         for (var i = 0; i < this.state.highlightedAnswers.length; i++) {
             var answer = this.state.highlightedAnswers[i];
             this.state.solvedAnswers.push(answer);
@@ -96,10 +99,11 @@ class OnlyConnectGame extends React.Component {
     }
 
     revealAnswers() {
-        this.setState({
-            solvedAnswers: this.state.solvedAnswers.concat(this.state.unsolvedAnswers),
-            unsolvedAnswers: []
-        })
+        setTimeout(()=> {this.setState({
+            solvedAnswers: this.state.solvedAnswers.concat(this.state.answerList.flat()),
+            unsolvedAnswers: [],
+            gameOver: true
+        })}, 500);
     }
 
     arraysMatch(arr1, arr2) {
@@ -133,18 +137,27 @@ class OnlyConnectGame extends React.Component {
     }
 
     timerExpires() {
-        var rowsCorrect = this.state.solvedAnswers.length / 4;
+        var pointsString = this.state.correctAnswers + (this.state.correctAnswers === 1 ? " point" : " points");
 
         this.setState({
             highlightedAnswers: [],
-            timerExpired: true,
-            message: "You're out of time! That's " + rowsCorrect + " points for the groups. Remember, there's a bonus point for getting the connections."
+            gameOver: true,
+            message: "You're out of time! That's " + pointsString + " for the groups. Remember, there's a bonus point for getting the connections."
         })
+
+        this.revealAnswers();
     }
 
     render() {
         var answerGrid = this.splitAnswersIntoGrid();
         var rowsCorrect = this.state.solvedAnswers.length / 4;
+
+        const answers = [
+            ["Apple", "Adam", "Ants", "Anorak"],
+            ["Banana", "Badger", "Bert", "Basic"],
+            ["Cave", "Coast", "Cliff", "Container"],
+            ["Day", "Dessert", "Dave", "Depot"]
+        ]
 
         return (
             <div className="only-connect-game-container">
@@ -168,7 +181,7 @@ class OnlyConnectGame extends React.Component {
                         </div>
                     )}
                 </div>
-                <OnlyConnectTimer callback={() => {this.timerExpires()}}/>
+                <OnlyConnectTimer forceend={this.state.gameOver} callback={() => {this.timerExpires()}}/>
                 <div className="only-connect-message-box">
                     {this.state.message}
                 </div>
