@@ -24,32 +24,26 @@ class OnlyConnectGame extends React.Component {
             highlightedAnswers: [],
             answerList: answers,
             timerExpired: false,
-            message: false
+            message: false,
+            gameWon: false
         }
     }
 
     boxClickHandler(answer) {
-        if (this.state.timerExpired) {
-            return;
-        }
-
-        var alreadyAnsweredIndex = this.state.solvedAnswers.indexOf(answer);
-
-        if (alreadyAnsweredIndex >= 0) {
+        if (this.state.timerExpired ||
+            this.state.solvedAnswers.indexOf(answer)>= 0) {
             return;
         }
 
         var answerIndex = this.state.highlightedAnswers.indexOf(answer);
-
         if (answerIndex >= 0) {
             this.state.highlightedAnswers.splice(answerIndex, 1);
         } else {
             this.state.highlightedAnswers.push(answer);
         }
 
-        var message;
         if (this.state.highlightedAnswers.length === 4) {
-            setTimeout(()=> {this.checkAnswers()}, 700);
+            setTimeout(()=> {this.checkAnswers()}, 500);
         }
 
         this.setState({
@@ -59,18 +53,16 @@ class OnlyConnectGame extends React.Component {
     }
 
     checkAnswers() {
-        var answerIsCorrect = false;
-
-        for (var i = 0; i < this.state.answerList.length; i++) {
-            if (this.arraysMatch(this.state.highlightedAnswers, this.state.answerList[i])) {
-                answerIsCorrect = true;
-            }
-        }
-
         var message;
-        if (answerIsCorrect) {
+        var rowsCorrect = this.state.solvedAnswers.length / 4;
+
+        if (this.isAnswerCorrect()) {
             this.markAnswersAsCorrect();
             message = "Correct!";
+            if (rowsCorrect === 2) {
+                setTimeout(() => {this.revealAnswers()}, 500);
+                message = "Well done! You got all 4 points for the groups. There's another point for getting each connection."
+            }
         } else {
             message = "Incorrect! That's not a group.";
         }
@@ -81,6 +73,18 @@ class OnlyConnectGame extends React.Component {
         })
     }
 
+    isAnswerCorrect() {
+        var answerIsCorrect = false;
+
+        for (var i = 0; i < this.state.answerList.length; i++) {
+            if (this.arraysMatch(this.state.highlightedAnswers, this.state.answerList[i])) {
+                answerIsCorrect = true;
+            }
+        }
+
+        return answerIsCorrect;
+    }
+
     markAnswersAsCorrect() {
         for (var i = 0; i < this.state.highlightedAnswers.length; i++) {
             var answer = this.state.highlightedAnswers[i];
@@ -89,6 +93,13 @@ class OnlyConnectGame extends React.Component {
             var answerIndex = this.state.unsolvedAnswers.indexOf(answer);
             this.state.unsolvedAnswers.splice(answerIndex, 1);
         }
+    }
+
+    revealAnswers() {
+        this.setState({
+            solvedAnswers: this.state.solvedAnswers.concat(this.state.unsolvedAnswers),
+            unsolvedAnswers: []
+        })
     }
 
     arraysMatch(arr1, arr2) {
@@ -127,7 +138,7 @@ class OnlyConnectGame extends React.Component {
         this.setState({
             highlightedAnswers: [],
             timerExpired: true,
-            message: "You're out of time! That's " + rowsCorrect + " points for the groups. There's a bonus point for getting the connections."
+            message: "You're out of time! That's " + rowsCorrect + " points for the groups. Remember, there's a bonus point for getting the connections."
         })
     }
 
