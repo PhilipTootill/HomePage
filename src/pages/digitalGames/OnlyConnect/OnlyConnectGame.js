@@ -118,7 +118,7 @@ class OnlyConnectGame extends React.Component {
                 <OnlyConnectGrid 
                     correctAnswers={this.state.solvedAnswers} remainingAnswers={this.state.unsolvedAnswers}
                     highlightedAnswers={this.state.highlightedAnswers} boxClickHandler={this.boxClickHandler}/>
-                <OnlyConnectTimer forceend={this.state.gameOver} callback={this.timerExpires}/>
+                <OnlyConnectTimer forceend={this.state.gameOver} expiredCallback={this.timerExpires}/>
                 <div className="only-connect-message-box">
                     {this.state.message}
                 </div>
