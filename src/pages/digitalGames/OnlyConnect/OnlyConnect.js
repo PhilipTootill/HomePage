@@ -9,7 +9,7 @@ function OnlyConnect() {
 
   return (
     <div>
-      <p className="page-title">Pocket Hexes</p>
+      <p className="page-title">Only Connect Wall</p>
       <div>
         <OnlyConnectGame/>
       </div>

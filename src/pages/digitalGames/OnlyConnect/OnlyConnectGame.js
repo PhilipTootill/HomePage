@@ -6,6 +6,7 @@ class OnlyConnectGame extends React.Component {
     constructor(props) {
         super(props);
 
+        // If you say 'good names for rhinoceroses' as a link, you get 5 bonus points!
         const answers = [
             ["Apple", "Adam", "Ants", "Anorak"],
             ["Banana", "Badger", "Bert", "Basic"],
@@ -49,7 +50,6 @@ class OnlyConnectGame extends React.Component {
     }
 
     checkAnswers() {
-        debugger;
         for (var i = 0; i < this.state.answerList.length; i++) {
             if (this.arraysMatch(this.state.highlightedAnswers, this.state.answerList[i])) {
                 return true;
@@ -105,7 +105,7 @@ class OnlyConnectGame extends React.Component {
 
         return (
             <div className="only-connect-game-container">
-                <div id='grid' className='grid'>
+                <div id='grid' className='grid' rowscorrect={rowsCorrect}>
                     {answerGrid.map((row, rowIndex) =>
                         <div
                             key={"grid-row-" + rowIndex} 

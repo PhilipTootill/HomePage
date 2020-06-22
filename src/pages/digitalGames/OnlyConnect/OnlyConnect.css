@@ -22,6 +22,7 @@
   justify-content: space-evenly;
   width: 100%;
   height: 350px;
+  background: linear-gradient(#03a8f5, #000000);
 }
 
 .grid-row {
@@ -39,23 +40,16 @@
   width: 22%;
   height: 100%;
   box-sizing: border-box;
-  background-color: #AAAAAA;
+  background: radial-gradient(#d0ebfd, rgb(147, 210, 255));
   font-weight: bold;
+  border-radius: 5px;
 }
 
-.grid-box[highlighted] {
-  border: 3px solid blue;
-}
-
-.grid-row[solved] .grid-box {
-  animation-name: correct;
-  animation-duration: 3s;
-  background-color: green;
-}
-
-@keyframes correct {
-  0% {background-color: white; color: white; border: none}
-  100% {background-color: green;}
+@media (max-width: 600px) {
+  .grid-box {
+    font-size: 12px;
+    font-weight: bold;
+  }
 }
 
 @media (min-width: 601px) {
@@ -64,9 +58,43 @@
   }
 }
 
-@media (max-width: 600px) {
-  .grid-box {
-    font-size: 12px;
-    font-weight: bold;
-  }
+.grid-row[solved]:nth-child(1) .grid-box, 
+.grid[rowscorrect="0"] .grid-box[highlighted] {
+  background: radial-gradient(rgb(88, 121, 253), rgb(10, 59, 255));
+}
+
+.grid-row[solved]:nth-child(2) .grid-box, 
+.grid[rowscorrect="1"] .grid-box[highlighted]  {
+  background: radial-gradient(rgb(1, 214, 54), rgb(0, 107, 36));
+}
+
+.grid-row[solved]:nth-child(3) .grid-box, 
+.grid[rowscorrect="2"] .grid-box[highlighted]  {
+  background: radial-gradient(rgb(252, 116, 252), rgb(192, 0, 176));
+}
+
+.grid-row[solved]:nth-child(4) .grid-box, 
+.grid[rowscorrect="3"] .grid-box[highlighted]  {
+  background: radial-gradient(rgb(0, 189, 179), rgb(0, 83, 94));
+}
+
+.grid-row[solved] .grid-box {
+  animation-name: correct;
+  animation-duration: 1s;
+  color: white;
+}
+
+@keyframes correct {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+.grid-box[highlighted] {
+  color: white;
+  animation-name: highlight;
+  animation-duration: 0.3s;
+}
+
+@keyframes highlight {
+  0% {background: radial-gradient(#d0ebfd, rgb(147, 210, 255)); color: black}
 }
