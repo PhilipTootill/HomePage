@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function OnlyConnectTimer({expiredCallback, forceend}) {
+function OnlyConnectTimer({expiredCallback, forceEnd}) {
   const maxTime = 180;
   const [timeTaken, setTimeTaken] = useState(0);
   const [callbackCalled, setCallbackCalled] = useState(false);
@@ -13,7 +13,7 @@ function OnlyConnectTimer({expiredCallback, forceend}) {
   var timeUsed = 100 * timeTaken / maxTime;
   var timeUsedPercentage = timeUsed.toString() + "%";
 
-  if (forceend) {
+  if (forceEnd) {
     timeUsedPercentage = "100%";
   }
 
@@ -27,7 +27,7 @@ function OnlyConnectTimer({expiredCallback, forceend}) {
     setTimeout(() => {
       if (timeTaken < maxTime) {
         setTimeTaken(timeTaken + 0.5);
-      } else if (!callbackCalled) {
+      } else if (!callbackCalled && !forceEnd) {
         setCallbackCalled(true);
         expiredCallback();
       }
