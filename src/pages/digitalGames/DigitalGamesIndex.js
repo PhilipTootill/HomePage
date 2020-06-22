@@ -12,6 +12,11 @@ const games = [
     "name": "Pocket Hexes",
     "image": PyxisImage,
     "url": "/digital-games/pocket-hexes"
+  },
+  {
+    "name": "Only Connect Grid",
+    "image": PyxisImage,
+    "url": "/digital-games/only-connect"
   }
 ]
 
