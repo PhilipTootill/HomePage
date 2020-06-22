@@ -1,24 +1,17 @@
 import React, {useState} from 'react';
 import ReactMarkdown from "react-markdown";
-import OnlyConnectGame from './OnlyConnectGame';
+import OnlyConnectApp from './OnlyConnectApp';
 import OnlyConnectMarkdown from './OnlyConnect.md';
 
 function OnlyConnect() {
   const [markdown, setMarkdown] = useState("");
   fetch(OnlyConnectMarkdown).then(res => res.text()).then(text => setMarkdown(text));
 
-  const answers = [
-    ["Apple", "Adam", "Ants", "Anorak"],
-    ["Banana", "Badger", "Bert", "Basic"],
-    ["Cave", "Coast", "Cliff", "Container"],
-    ["Day", "Dessert", "Dave", "Depot"]
-  ]
-
   return (
     <div>
       <p className="page-title">Only Connect Wall</p>
       <div>
-        <OnlyConnectGame answers={answers}/>
+        <OnlyConnectApp/>
       </div>
       <div className="page-section">
         <ReactMarkdown source={markdown} />
