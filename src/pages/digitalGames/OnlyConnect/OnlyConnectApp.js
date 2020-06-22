@@ -6,10 +6,10 @@ function OnlyConnectApp() {
     const [puzzle, setPuzzle] = useState(null);
 
     const testPuzzle = [
-        ["Apple", "Adam", "Ants", "Anorak"],
-        ["Banana", "Badger", "Bert", "Basic"],
-        ["Cave", "Coast", "Cliff", "Container"],
-        ["Day", "Dessert", "Dave", "Depot"]
+        ["Link", "Truss", "Annex", "Correlate"],
+        ["Samus", "Ratchet", "Steve", "Forty Seven"],
+        ["Fox", "Panther", "Zebu", "Snake"],
+        ["Papadam", "Seventy", "Marocain", "Gabelle"]
     ];
     
     const buttonClick = (puzzle) => {
