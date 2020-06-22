@@ -90,7 +90,6 @@
 @media (max-width: 600px) {
   .only-connect-grid-box {
     font-size: 12px;
-    font-weight: bold;
   }
 }
 
@@ -151,6 +150,18 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .only-connect-message-box {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 601px) {
+  .only-connect-message-box {
+    font-size: 20px;
+  }
 }
 
 .only-connect-info-box {
