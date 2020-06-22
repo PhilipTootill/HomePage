@@ -1,6 +1,7 @@
 import React from 'react';
 import './OnlyConnect.css';
 import { shuffleArray } from '../DigitalGamesUtils';
+import OnlyConnectTimer from './OnlyConnectTimer';
 
 class OnlyConnectGame extends React.Component {
     constructor(props) {
@@ -21,11 +22,23 @@ class OnlyConnectGame extends React.Component {
             unsolvedAnswers: unsolvedAnswers,
             solvedAnswers: [],
             highlightedAnswers: [],
-            answerList: answers
+            answerList: answers,
+            timerExpired: false,
+            message: false
         }
     }
 
     boxClickHandler(answer) {
+        if (this.state.timerExpired) {
+            return;
+        }
+
+        var alreadyAnsweredIndex = this.state.solvedAnswers.indexOf(answer);
+
+        if (alreadyAnsweredIndex >= 0) {
+            return;
+        }
+
         var answerIndex = this.state.highlightedAnswers.indexOf(answer);
 
         if (answerIndex >= 0) {
@@ -34,29 +47,38 @@ class OnlyConnectGame extends React.Component {
             this.state.highlightedAnswers.push(answer);
         }
 
+        var message;
         if (this.state.highlightedAnswers.length === 4) {
-            if (this.checkAnswers()) {
-                this.markAnswersAsCorrect();
-            } else {
-                console.log("Wrong!");
-            }
-
-            this.state.highlightedAnswers.splice(0, 4);
+            setTimeout(()=> {this.checkAnswers()}, 700);
         }
 
         this.setState({
-            highlightedAnswers: this.state.highlightedAnswers
+            highlightedAnswers: this.state.highlightedAnswers,
+            message: null
         })
     }
 
     checkAnswers() {
+        var answerIsCorrect = false;
+
         for (var i = 0; i < this.state.answerList.length; i++) {
             if (this.arraysMatch(this.state.highlightedAnswers, this.state.answerList[i])) {
-                return true;
+                answerIsCorrect = true;
             }
         }
 
-        return false;
+        var message;
+        if (answerIsCorrect) {
+            this.markAnswersAsCorrect();
+            message = "Correct!";
+        } else {
+            message = "Incorrect! That's not a group.";
+        }
+
+        this.setState({
+            highlightedAnswers: [],
+            message: message
+        })
     }
 
     markAnswersAsCorrect() {
@@ -99,24 +121,34 @@ class OnlyConnectGame extends React.Component {
         return answerGrid;
     }
 
+    timerExpires() {
+        var rowsCorrect = this.state.solvedAnswers.length / 4;
+
+        this.setState({
+            highlightedAnswers: [],
+            timerExpired: true,
+            message: "You're out of time! That's " + rowsCorrect + " points for the groups. There's a bonus point for getting the connections."
+        })
+    }
+
     render() {
         var answerGrid = this.splitAnswersIntoGrid();
         var rowsCorrect = this.state.solvedAnswers.length / 4;
 
         return (
             <div className="only-connect-game-container">
-                <div id='grid' className='grid' rowscorrect={rowsCorrect}>
+                <div id='grid' className='only-connect-grid' rowscorrect={rowsCorrect}>
                     {answerGrid.map((row, rowIndex) =>
                         <div
                             key={"grid-row-" + rowIndex} 
                             id={"grid-row-" + rowIndex} 
-                            className="grid-row"
+                            className="only-connect-grid-row"
                             solved={rowIndex < rowsCorrect ? "true": null}>
                             {row.map((boxText, columnIndex) =>
                                 <div
                                     key={"box-" + rowIndex + "-" + columnIndex} 
                                     id={"box-" + rowIndex + "-" + columnIndex} 
-                                    className="grid-box"
+                                    className="only-connect-grid-box"
                                     onClick={()=>{this.boxClickHandler(boxText)}}
                                     highlighted={this.state.highlightedAnswers.includes(boxText) ? "true" : null}>
                                     {boxText}
@@ -124,6 +156,10 @@ class OnlyConnectGame extends React.Component {
                             )}
                         </div>
                     )}
+                </div>
+                <OnlyConnectTimer callback={() => {this.timerExpires()}}/>
+                <div className="only-connect-message-box">
+                    {this.state.message}
                 </div>
             </div>
         );
