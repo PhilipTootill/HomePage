@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="main-page">
       <Header/>
-      <Router>
+      <Router basename={`${process.env.PUBLIC_URL}/`}>
         <Menu/>
         <div className="main-content">
           <Switch>
