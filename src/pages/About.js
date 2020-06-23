@@ -1,13 +1,14 @@
 import React from 'react';
 import './Page.css';
-import profilePhoto from '../assets/profilePhoto.jpg'
+import pyxisPhoto from '../assets/Pyxis.jpg';
+import internsPhoto from '../assets/InternsOfHades.jpeg';
 
 function About() {
   return (
     <div className="page-content">
       <p className="page-title">About</p>
       <div className="page-section">
-        <img src={profilePhoto} alt="The author"/>
+        <img className="page-inlay-image" src={pyxisPhoto} alt="Prototype of Pyxis"/> 
         <p>
           I'm an Oxford based software developer and amateur game designer. 
           I made this site using React to showcase my game designs. 
