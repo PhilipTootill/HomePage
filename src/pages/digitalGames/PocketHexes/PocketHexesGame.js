@@ -149,7 +149,7 @@ class PocketHexesGame extends React.Component {
 
         var highestAdjValue = this.getHighestAdjValue(hex);
         if (valueToPlace === 1) {
-            //1 can go anywhere not next to another value
+            //1 can go anywhere not next to another value greater 
             if (highestAdjValue === null) {
                 hex.state = hexStates.PLACABLE;
             }       
