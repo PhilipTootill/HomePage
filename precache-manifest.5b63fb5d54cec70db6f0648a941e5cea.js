@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "28d25c4fc0f2ee51dab5bf1ed7f343f7",
+    "revision": "aae09759384104356d0b943ef1b2c602",
     "url": "/HomePage/index.html"
   },
   {
-    "revision": "2784829866f7daaf80b0",
+    "revision": "d42fce22aecfe00318c0",
     "url": "/HomePage/static/css/main.2a4155ec.chunk.css"
   },
   {
-    "revision": "86b94a41db9e17dd6c5b",
-    "url": "/HomePage/static/js/2.0fab7e16.chunk.js"
+    "revision": "280bbf3ba61e9b3d2192",
+    "url": "/HomePage/static/js/2.39e381c4.chunk.js"
   },
   {
     "revision": "301056a7ca16ead6156b38e6917dbb28",
-    "url": "/HomePage/static/js/2.0fab7e16.chunk.js.LICENSE.txt"
+    "url": "/HomePage/static/js/2.39e381c4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2784829866f7daaf80b0",
-    "url": "/HomePage/static/js/main.e602bb99.chunk.js"
+    "revision": "d42fce22aecfe00318c0",
+    "url": "/HomePage/static/js/main.77c31604.chunk.js"
   },
   {
     "revision": "8c01759f71bcd902041e",
@@ -52,8 +52,36 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/HomePage/static/media/OnlyConnect.d77abdd8.md"
   },
   {
-    "revision": "09b6ca99ed731c68375486504c4f55d5",
-    "url": "/HomePage/static/media/PocketHexes.09b6ca99.md"
+    "revision": "5229c50cad547046b82ba379847f2e6e",
+    "url": "/HomePage/static/media/PocketHexes.5229c50c.md"
+  },
+  {
+    "revision": "fdf82643bf9189ab608905de60b696f3",
+    "url": "/HomePage/static/media/PocketHexes.fdf82643.pdf"
+  },
+  {
+    "revision": "6e031ae817b366c76feeab28bd85e57b",
+    "url": "/HomePage/static/media/PocketHexesExample1.6e031ae8.png"
+  },
+  {
+    "revision": "bc966fd2f823b0300efdaca7f7de36ba",
+    "url": "/HomePage/static/media/PocketHexesExample2.bc966fd2.png"
+  },
+  {
+    "revision": "e7f40e11759dd95effaf858a3a32df73",
+    "url": "/HomePage/static/media/PocketHexesExample3.e7f40e11.png"
+  },
+  {
+    "revision": "56380bb7803b7bc2484cf64661f75660",
+    "url": "/HomePage/static/media/PocketHexesScoring.56380bb7.png"
+  },
+  {
+    "revision": "7b1686936c374e52ca61d85875da4593",
+    "url": "/HomePage/static/media/PocketHexesScoringExample1.7b168693.png"
+  },
+  {
+    "revision": "9bac6343976f1730d57b71a47d9c205f",
+    "url": "/HomePage/static/media/PocketHexesScoringExample2.9bac6343.png"
   },
   {
     "revision": "64fd2218536487c0782b345445c34d2a",

@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/HomePage/static/css/main.2a4155ec.chunk.css",
-    "main.js": "/HomePage/static/js/main.e602bb99.chunk.js",
-    "main.js.map": "/HomePage/static/js/main.e602bb99.chunk.js.map",
+    "main.js": "/HomePage/static/js/main.77c31604.chunk.js",
+    "main.js.map": "/HomePage/static/js/main.77c31604.chunk.js.map",
     "runtime-main.js": "/HomePage/static/js/runtime-main.6df39322.js",
     "runtime-main.js.map": "/HomePage/static/js/runtime-main.6df39322.js.map",
-    "static/js/2.0fab7e16.chunk.js": "/HomePage/static/js/2.0fab7e16.chunk.js",
-    "static/js/2.0fab7e16.chunk.js.map": "/HomePage/static/js/2.0fab7e16.chunk.js.map",
+    "static/js/2.39e381c4.chunk.js": "/HomePage/static/js/2.39e381c4.chunk.js",
+    "static/js/2.39e381c4.chunk.js.map": "/HomePage/static/js/2.39e381c4.chunk.js.map",
     "index.html": "/HomePage/index.html",
-    "precache-manifest.fafcad19567dd2bff10533dc3b927c45.js": "/HomePage/precache-manifest.fafcad19567dd2bff10533dc3b927c45.js",
+    "precache-manifest.5b63fb5d54cec70db6f0648a941e5cea.js": "/HomePage/precache-manifest.5b63fb5d54cec70db6f0648a941e5cea.js",
     "service-worker.js": "/HomePage/service-worker.js",
     "static/css/main.2a4155ec.chunk.css.map": "/HomePage/static/css/main.2a4155ec.chunk.css.map",
-    "static/js/2.0fab7e16.chunk.js.LICENSE.txt": "/HomePage/static/js/2.0fab7e16.chunk.js.LICENSE.txt",
+    "static/js/2.39e381c4.chunk.js.LICENSE.txt": "/HomePage/static/js/2.39e381c4.chunk.js.LICENSE.txt",
     "static/media/Background.jpeg": "/HomePage/static/media/Background.be79be34.jpeg",
     "static/media/Herakles.md": "/HomePage/static/media/Herakles.a9476b69.md",
     "static/media/Herakles.jpg": "/HomePage/static/media/Herakles.d5add04a.jpg",
@@ -19,7 +19,14 @@
     "static/media/InternsOfHades.md": "/HomePage/static/media/InternsOfHades.a7fc08c1.md",
     "static/media/Numbers.md": "/HomePage/static/media/Numbers.e820be7a.md",
     "static/media/OnlyConnect.md": "/HomePage/static/media/OnlyConnect.d77abdd8.md",
-    "static/media/PocketHexes.md": "/HomePage/static/media/PocketHexes.09b6ca99.md",
+    "static/media/PocketHexes.md": "/HomePage/static/media/PocketHexes.5229c50c.md",
+    "static/media/PocketHexes.pdf": "/HomePage/static/media/PocketHexes.fdf82643.pdf",
+    "static/media/PocketHexesExample1.png": "/HomePage/static/media/PocketHexesExample1.6e031ae8.png",
+    "static/media/PocketHexesExample2.png": "/HomePage/static/media/PocketHexesExample2.bc966fd2.png",
+    "static/media/PocketHexesExample3.png": "/HomePage/static/media/PocketHexesExample3.e7f40e11.png",
+    "static/media/PocketHexesScoring.png": "/HomePage/static/media/PocketHexesScoring.56380bb7.png",
+    "static/media/PocketHexesScoringExample1.png": "/HomePage/static/media/PocketHexesScoringExample1.7b168693.png",
+    "static/media/PocketHexesScoringExample2.png": "/HomePage/static/media/PocketHexesScoringExample2.9bac6343.png",
     "static/media/Pyxis.md": "/HomePage/static/media/Pyxis.64fd2218.md",
     "static/media/Pyxis.jpg": "/HomePage/static/media/Pyxis.c67cadf1.jpg",
     "static/media/RulesInc.jpg": "/HomePage/static/media/RulesInc.2fe16e90.jpg",
@@ -30,8 +37,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.6df39322.js",
-    "static/js/2.0fab7e16.chunk.js",
+    "static/js/2.39e381c4.chunk.js",
     "static/css/main.2a4155ec.chunk.css",
-    "static/js/main.e602bb99.chunk.js"
+    "static/js/main.77c31604.chunk.js"
   ]
 }
