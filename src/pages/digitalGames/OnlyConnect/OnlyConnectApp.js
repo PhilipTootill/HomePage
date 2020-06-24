@@ -8,7 +8,7 @@ function OnlyConnectApp() {
     const testPuzzle = [
         ["Link", "Truss", "Annex", "Correlate"],
         ["Samus", "Ratchet", "Steve", "Forty Seven"],
-        ["Fox", "Panther", "Zebu", "Snake"],
+        ["Fox", "Panther", "Zebra", "Snake"],
         ["Papadam", "Seventy", "Marocain", "Gabelle"]
     ];
     
