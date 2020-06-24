@@ -57,13 +57,13 @@ class OnlyConnectGame extends React.Component {
             this.moveHighlightedBoxesToSolved();
             message = "Correct!";
             score++;
-            if (score === 2) {
+            if (score === 3) {
                 lives = 3;
                 message = "Correct! Remember, you only get 3 chances to guess the last groups."
-            } else if (score === 3) {
+            } else if (score === 4) {
                 this.revealAnswers();
                 score++;
-                message = "Well done! You got all 4 points for the groups. There's another point for getting each connection."
+                message = "Well done! You got all 5 points for the groups. There's another point for getting each connection."
             }
         } else {
             message = "Incorrect! That's not a group.";

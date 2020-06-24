@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 function OnlyConnectTimer({expiredCallback, forceEnd}) {
-  const maxTime = 180;
+  const maxTime = 240;
   const [timeTaken, setTimeTaken] = useState(0);
   const [callbackCalled, setCallbackCalled] = useState(false);
 

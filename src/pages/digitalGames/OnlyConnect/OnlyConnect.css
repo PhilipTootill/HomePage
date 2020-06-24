@@ -121,6 +121,11 @@
   background: radial-gradient(rgb(0, 189, 179), rgb(0, 83, 94));
 }
 
+.only-connect-grid-row[solved]:nth-child(5) .only-connect-grid-box, 
+.only-connect-grid[rowscorrect="4"] .only-connect-grid-box[highlighted]  {
+  background: radial-gradient(rgb(151, 0, 144), rgb(94, 0, 82));
+}
+
 .only-connect-grid-row[solved] .only-connect-grid-box {
   animation-name: correct;
   animation-duration: 1s;
@@ -159,7 +164,13 @@
   }
 }
 
-@media (min-width: 601px) {
+@media (max-width: 800px) and (min-width: 601px) {
+  .only-connect-message-box {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 801px) {
   .only-connect-message-box {
     font-size: 20px;
   }

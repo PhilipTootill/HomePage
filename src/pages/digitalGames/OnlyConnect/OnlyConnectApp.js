@@ -9,7 +9,8 @@ function OnlyConnectApp() {
         ["Link", "Truss", "Annex", "Correlate"],
         ["Samus", "Ratchet", "Steve", "Forty Seven"],
         ["Fox", "Panther", "Zebra", "Snake"],
-        ["Papadam", "Seventy", "Marocain", "Gabelle"]
+        ["Papadam", "Seventy", "Marocain", "Gabelle"],
+        ["Nine", "Twenty Five", "Forty Nine", "Sixty Four"]
     ];
     
     const buttonClick = (puzzle) => {

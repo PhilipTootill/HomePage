@@ -8,7 +8,8 @@ function OnlyConnectGrid({correctAnswers, remainingAnswers, highlightedAnswers, 
         allAnswers.slice(0, 4),
         allAnswers.slice(4, 8),
         allAnswers.slice(8, 12),
-        allAnswers.slice(12),
+        allAnswers.slice(12, 16),
+        allAnswers.slice(16),
     ];
 
     var rowsCorrect = correctAnswers.length / 4;
