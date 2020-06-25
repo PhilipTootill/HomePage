@@ -76,7 +76,7 @@ class OnlyConnectGame extends React.Component {
                 } else if (lives === 1) {
                     message = "Incorrect! Only one life left."
                 } else if (lives === 0) {
-                    message = "Game over! You get 2 points from the groups. You can still get a bonus point for each connection you get."
+                    message = "Game over! You get 3 points from the groups. You can still get a bonus point for each connection you get."
                     this.revealAnswers();
                 }
                 
