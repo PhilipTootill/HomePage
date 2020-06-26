@@ -116,6 +116,7 @@ class OnlyConnectGame extends React.Component {
             this.setState({
                 solvedAnswers: this.state.solvedAnswers.concat(this.state.answerList.flat()),
                 unsolvedAnswers: [],
+                answerList: [],
                 gameOver: true
             })
         }, 500);
