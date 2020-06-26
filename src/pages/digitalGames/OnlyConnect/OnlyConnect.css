@@ -46,6 +46,11 @@
   margin: 10px 20%;
 }
 
+.only-connect-intro-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .only-connect-start-button {
   padding: 10px 20px;
   background-color: white;
