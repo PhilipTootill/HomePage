@@ -2,13 +2,13 @@ export const testPuzzle = [
     {
         question: "Question 1. Which of the following is the largest?",
         answers: [
-            "An Elephant",
-            "The Moon",
+            "A Peanut",
             "A Kettle",
-            "A Peanut"
+            "The Moon",
+            "An Elephant"
         ],
         correctAnswer: "The Moon",
-        askA: "I think it's 'An Elephant'",
+        askA: "E.",
         askB: "No idea, it could be 'An Elephant'?",
         fiftyFiftyAnswer: "An Elephant"
     },
@@ -16,51 +16,52 @@ export const testPuzzle = [
         question: "Question 2. Which of these was a hit musical in 2015?",
         answers: [
             "Hamilton",
-            "Schumacher",
+            "Senna",
             "Vettel",
-            "Senna"
+            "Schumacher"
         ],
         correctAnswer: "Hamilton",
-        askA: "I think it's 'Hamilton'",
+        askA: "Really? Really?! It's A.",
         askB: "No idea, it could be 'Hamilton?",
         fiftyFiftyAnswer: "Schumacher"
     },
     {
         question: "Question 3. Which of these is a type of hat?",
         answers: [
+            "Potato Crisp",
             "Pork Pie",
             "Sausage Roll",
             "Scotch Egg",
-            "Potato Crisp"
+            
         ],
         correctAnswer: "Pork Pie",
-        askA: "I think it's 'Pork Pie'.",
+        askA: "bbbbbbbbbbbbb",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "Scotch Egg"
     },
     {
         question: "Question 4. Which of these acts was supposed to headline Glastonbury in 2020?",
         answers: [
-            "Taylor Swift",
             "U2",
+            "Taylor Swift",
             "Ed Sheeran",
             "Jedward"
         ],
         correctAnswer: "Taylor Swift",
-        askA: "I think it's 'Correct'.",
+        askA: "B? Not 100%.",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "Jedward"
     },
     {
         question: "Question 5. Which of these is a dance popularised by Fortnite?",
         answers: [
-            "Flossing",
             "Brushing",
             "Mouthwashing",
-            "Rinsing"
+            "Rinsing",
+            "Flossing"
         ],
         correctAnswer: "Flossing",
-        askA: "I think it's 'Correct'.",
+        askA: "I think it's D.",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "Mouthwashing"
     },
@@ -73,7 +74,7 @@ export const testPuzzle = [
             "Six"
         ],
         correctAnswer: "Four",
-        askA: "I think it's 'Correct'.",
+        askA: "Have you C-n them?",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "Two"
     },
@@ -86,22 +87,22 @@ export const testPuzzle = [
             "Salvador"
         ],
         correctAnswer: "Brasilia",
-        askA: "I think it's 'Correct'.",
+        askA: "A. Common misconception.",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "Salvador"
     },
     {
         question: "Question 8. Which of these mythological figures was NOT fathered by Zeus?",
         answers: [
-            "Poseidon",
             "Ares",
             "Apollo",
-            "Herakles"
+            "Dionysus",
+            "Poseidon"
         ],
         correctAnswer: "Poseidon",
-        askA: "I think it's 'Correct'.",
+        askA: "Definitely D - his brother.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "Herakles"
+        fiftyFiftyAnswer: "Dionysus"
     },
     {
         question: "Question 9. Which artist's greatest hits is the UK's highest selling album, as of December 2018?",
@@ -112,7 +113,7 @@ export const testPuzzle = [
             "Michael Jackson"
         ],
         correctAnswer: "Queen",
-        askA: "I think it's 'Correct'.",
+        askA: "Most likely A.",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "ABBA"
     },
@@ -125,33 +126,33 @@ export const testPuzzle = [
             "Ben Stiller"
         ],
         correctAnswer: "Melissa McCarthy",
-        askA: "I think it's 'Correct'.",
+        askA: "D? Blind guess, sorry!",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "Ben Stiller"
     },
     {
         question: "Question 11. Oberon is the satellite of which planet?",
         answers: [
-            "Mercury",
+            "Saturn",
             "Uranus",
             "Neptune",
             "Mars"
         ],
         correctAnswer: "Uranus",
-        askA: "I think it's 'Correct'.",
+        askA: "Err. B?",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "Neptune"
     },
     {
         question: "Question 12. Which king was married to Eleanor of Aquitaine?",
         answers: [
-            "Henry II",
-            "Henry I",
             "Henry V",
+            "Henry I",
+            "Henry II",
             "Richard I"
         ],
         correctAnswer: "Henry II",
-        askA: "I think it's 'Correct'.",
+        askA: "C? Not Richard certainly.",
         askB: "No idea, it could be 'One'?",
         fiftyFiftyAnswer: "Henry V"
     }

@@ -11,10 +11,6 @@ class MillionaireGame extends React.Component {
 
         this.questions = props.answers;
 
-        for (var i = 0; i < this.questions.length; i++) {
-            shuffleArray(this.questions[i].answers);
-        }
-
         this.state = {
             message: "Good luck! Here's question one.",
             questionIndex: 0,
@@ -77,6 +73,7 @@ class MillionaireGame extends React.Component {
 
         if (this.state.highlightedAnswer === correctAnswer) {
             var finalScoreIndex = this.state.finalScoreIndex;
+            var scoreIndex = this.state.scoreIndex;
 
             if (!this.state.finalScoreSet && this.state.questionIndex % 4 === 3) {
                 finalScoreIndex = this.state.questionIndex;
@@ -85,6 +82,7 @@ class MillionaireGame extends React.Component {
             var message =  "Correct! Get ready for the next question.";
 
             if (this.state.questionIndex === this.questions.length - 1) {
+                scoreIndex++;
                 message = "Congratulations! You got all the questions right!"
             }
 
@@ -93,6 +91,7 @@ class MillionaireGame extends React.Component {
                 finalScoreIndex: finalScoreIndex,
                 greenButtonText: sideButtons.CONTINUE,
                 redButtonText: sideButtons.NONE,
+                scoreIndex: scoreIndex,
                 questionState: questionState.CORRECT
             })
         } else {
@@ -188,7 +187,7 @@ class MillionaireGame extends React.Component {
         }
 
         this.setState({message: message});
-        this.consumeLifeline(button);
+        //this.consumeLifeline(button);
     }
 
     consumeLifeline = (lifeline) => {
