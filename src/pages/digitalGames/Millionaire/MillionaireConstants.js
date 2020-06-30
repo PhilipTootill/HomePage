@@ -12,3 +12,15 @@ export const pointsList = [
     "16 points",
     "20 points"
 ];
+
+export const lifelines = {
+    FIFTYFIFTY: "50/50",
+    ASKA: "Ask A",
+    ASKB: "Ask B"
+}
+
+export const sideButtons = {
+    NONE: "",
+    CONFIRM: "Confirm",
+    WALKAWAY: "Walk Away"
+}

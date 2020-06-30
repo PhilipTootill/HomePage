@@ -205,6 +205,10 @@
   border-color: green;
 }
 
+.millionaire-button-confirm[hidebutton] {
+  visibility: hidden;
+}
+
 .millionaire-button-walk-away {
   color: red;
   border-color: red;
