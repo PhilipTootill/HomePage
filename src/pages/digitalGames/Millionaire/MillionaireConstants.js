@@ -15,8 +15,8 @@ export const pointsList = [
 
 export const lifelines = {
     FIFTYFIFTY: "50/50",
-    ASKA: "Ask A",
-    ASKB: "Ask B"
+    ASKA: "Ask Dave",
+    ASKB: "Ask Radhika"
 }
 
 export const sideButtons = {

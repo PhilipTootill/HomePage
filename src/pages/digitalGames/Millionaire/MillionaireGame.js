@@ -168,6 +168,11 @@ class MillionaireGame extends React.Component {
     }
 
     lifelineFiftyFifty = () => {
+        if (this.state.greenButtonText !== sideButtons.NONE && 
+            this.state.greenButtonText !== sideButtons.CONFIRM) {
+            return;
+        }
+
         this.setState({
             message: "Okay, I've removed two incorrect answers!",
             fiftyFifty: true
@@ -177,6 +182,11 @@ class MillionaireGame extends React.Component {
     }
 
     lifelineAsk = (button) => {
+        if (this.state.greenButtonText !== sideButtons.NONE && 
+            this.state.greenButtonText !== sideButtons.CONFIRM) {
+            return;
+        }
+        
         console.log(button);
         var message;
         var currentQuestion = this.questions[this.state.questionIndex]

@@ -3,7 +3,6 @@
   margin: 0 auto;
   background: linear-gradient( #0d003d, rgb(51, 0, 77));
   box-sizing: border-box;
-  padding: 25px;
   height: 500px;
 }
 
@@ -75,15 +74,25 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.millionaire-question-container, .millionaire-answer {
+  background: rgb(0, 0, 150);
+  color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
 }
 
 .millionaire-question-container {
   height: 20%;
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  color: white;
   font-weight: bold;
 }
 
@@ -99,16 +108,10 @@
 .millionaire-answer {
   width: 40%;
   height: 30px;
-  background: rgb(0, 0, 150);
-  color: white;
-  border: 2px solid white;
-  border-radius: 10px;
   margin: 10px;
-  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   font-weight: bold;
 }
 
@@ -162,17 +165,21 @@
   width: 25%;
   display: flex;
   flex-direction: column;
+  border-left: 2px solid white;
+  padding: 10px;
+  background: linear-gradient(135deg, #040013, rgb(0, 43, 134));
 }
 
 .millionaire-score-tracker {
   flex: 1;
   display: flex;
   justify-content: space-evenly;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 
 .millionaire-points {
-  text-align:  center;
+  text-align: left;
+  padding-left: 20px;
   color: orange;
   font-weight: bold;
   font-size: 12px;
@@ -183,7 +190,9 @@
 }
 
 .millionaire-points[currentscore] {
-  border: 2px solid white;
+  background-color: orange;
+  color: black;
+  border-radius: 6px;
 }
 
 .millionaire-lifelines {
@@ -195,11 +204,13 @@
 .millionaire-lifeline {
   color: white;
   text-align: center;
-  border: 1px solid white;
-  padding: 5px;
+  border: 2px solid white;
+  padding: 2px;
   font-size: 10px;
-  width: 25%;
+  width: 32%;
   font-weight: bold;
+  height: 40px;
+  border-radius: 15px;
 }
 
 .millionaire-lifeline[hidelifeline] {
@@ -219,11 +230,12 @@
   width: 40%;
   font-weight: bold;
   height: 40px;
+  border-radius: 10px;
 }
 
 .millionaire-button-green {
-  color: green;
-  border-color: green;
+  color: black;
+  background-color: rgb(0, 194, 129);
 }
 
 .millionaire-buttons button[hidebutton] {
@@ -231,6 +243,6 @@
 }
 
 .millionaire-button-red {
-  color: red;
-  border-color: red;
+  color: black;
+  background-color: rgb(255, 23, 100);
 }
