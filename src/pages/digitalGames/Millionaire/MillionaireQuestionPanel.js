@@ -1,7 +1,14 @@
 import React from 'react';
 import './Millionaire.css';
 
-function MillionaireMainPanel({currentQuestion, message, highlightedAnswer, fiftyFifty, questionState, callback}) {
+const questionLetters = [
+    "A",
+    "B",
+    "C",
+    "D"
+]
+
+function MillionaireQuestionPanel({currentQuestion,highlightedAnswer, fiftyFifty, questionState, callback}) {
     function doesFiftyFiftyHide(answer) {
         if (!fiftyFifty) {
             return false;
@@ -13,7 +20,7 @@ function MillionaireMainPanel({currentQuestion, message, highlightedAnswer, fift
     }
     
     return (
-        <div className="millionaire-main-panel">
+        <div className="millionaire-question-panel">
             <div className="millionaire-question-container">
                 {currentQuestion.question}
             </div>
@@ -25,16 +32,18 @@ function MillionaireMainPanel({currentQuestion, message, highlightedAnswer, fift
                         hideanswer={doesFiftyFiftyHide(answer) ? "true" : null}
                         highlighted={answer === highlightedAnswer ? "true" : null}
                         onClick={() => {callback(answer)}}>
-                        {answer}
+                        <div className="millionaire-answer-letter">
+                            {questionLetters[answerIndex]}:
+                        </div>
+                        <div className="millionaire-answer-text">
+                            {answer}
+                        </div>
                     </div>
                 )}
-            </div>
-            <div className="millionaire-message-box">
-                {message}
             </div>
         </div>
     );
   }
 
 
-export default MillionaireMainPanel;
+export default MillionaireQuestionPanel;

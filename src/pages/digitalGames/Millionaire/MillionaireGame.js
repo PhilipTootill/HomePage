@@ -1,9 +1,9 @@
 import React from 'react';
 import './Millionaire.css';
-import { shuffleArray, arraysMatch } from '../DigitalGamesUtils';
-import MillionaireMainPanel from './MillionaireMainPanel';
+import MillionaireQuestionPanel from './MillionaireQuestionPanel';
+import MillionaireMessagePanel from './MillionaireMessagePanel';
 import MillionaireSidePanel from './MillionaireSidePanel';
-import { pointsList, lifelines, sideButtons, questionState } from './MillionaireConstants';
+import { pointsList, lifelines, eventButtons, questionState } from './MillionaireConstants';
 
 class MillionaireGame extends React.Component {
     constructor(props) {
@@ -19,16 +19,16 @@ class MillionaireGame extends React.Component {
             finalScoreSet: false,
             finalScoreIndex: -1,
             highlightedAnswer: null,
-            greenButtonText: sideButtons.NONE,
-            redButtonText: sideButtons.NONE,
+            greenButtonText: eventButtons.NONE,
+            redButtonText: eventButtons.NONE,
             questionState: questionState.GUESSING,
             fiftyFifty: false
         }
     }
 
     highlightQuestion = (answer) => {
-        if (this.state.greenButtonText !== sideButtons.NONE && 
-            this.state.greenButtonText !== sideButtons.CONFIRM) {
+        if (this.state.greenButtonText !== eventButtons.NONE && 
+            this.state.greenButtonText !== eventButtons.CONFIRM) {
             return;
         }
 
@@ -36,15 +36,15 @@ class MillionaireGame extends React.Component {
             this.setState({
                 highlightedAnswer: null,
                 message: null,
-                greenButtonText: sideButtons.NONE,
-                redButtonText: sideButtons.NONE
+                greenButtonText: eventButtons.NONE,
+                redButtonText: this.state.finalScoreSet ? eventButtons.NONE : eventButtons.WALKAWAY
             })
         } else {
             this.setState({
                 highlightedAnswer: answer,
                 message: "Are you sure?",
-                greenButtonText: sideButtons.CONFIRM,
-                redButtonText: sideButtons.RETHINK
+                greenButtonText: eventButtons.CONFIRM,
+                redButtonText: eventButtons.RETHINK
             })
         }
     };
@@ -54,15 +54,15 @@ class MillionaireGame extends React.Component {
             this.setState({
                 message: "Take your time.",
                 highlightedAnswer: null,
-                greenButtonText: sideButtons.NONE,
-                redButtonText: sideButtons.NONE
+                greenButtonText: eventButtons.NONE,
+                redButtonText: eventButtons.NONE
             })
         } else {
             this.setState({
                 message: "Take your time. You can still walk away.",
                 highlightedAnswer: null,
-                greenButtonText: sideButtons.NONE,
-                redButtonText: sideButtons.WALKAWAY
+                greenButtonText: eventButtons.NONE,
+                redButtonText: eventButtons.WALKAWAY
             })
         }
 
@@ -89,23 +89,23 @@ class MillionaireGame extends React.Component {
             this.setState({
                 message: message,
                 finalScoreIndex: finalScoreIndex,
-                greenButtonText: sideButtons.CONTINUE,
-                redButtonText: sideButtons.NONE,
+                greenButtonText: eventButtons.CONTINUE,
+                redButtonText: eventButtons.NONE,
                 scoreIndex: scoreIndex,
                 questionState: questionState.CORRECT
             })
         } else {
-            var nextButton = sideButtons.CONTINUE;
+            var nextButton = eventButtons.CONTINUE;
 
             if (!this.state.finalScoreSet) {
-                nextButton = sideButtons.OHNO;
+                nextButton = eventButtons.OHNO;
             }
 
             this.setState({
                 message: "I'm sorry, that's not the answer! The correct answer was " + correctAnswer + ".",
                 finalScoreSet: true,
                 greenButtonText: nextButton,
-                redButtonText: sideButtons.NONE,
+                redButtonText: eventButtons.NONE,
                 questionState: questionState.INCORRECT
             })
         }
@@ -132,7 +132,7 @@ class MillionaireGame extends React.Component {
     displayFinalScoreAndContinue = () => { 
         this.setState({
             message: "You got " + this.printScore(this.state.finalScoreIndex) + " for the round. You can do the rest of the questions while you wait.",
-            greenButtonText: sideButtons.CONTINUE
+            greenButtonText: eventButtons.CONTINUE
         })
     }
 
@@ -142,23 +142,23 @@ class MillionaireGame extends React.Component {
         if (questionIndex === this.questions.length) {
             this.setState({
                 message: "That's the end of the quiz! You got " + this.printScore(this.state.finalScoreIndex) + ". Thanks for playing.",
-                greenButtonText: sideButtons.NONE,
-                redButtonText: sideButtons.NONE
+                greenButtonText: eventButtons.NONE,
+                redButtonText: eventButtons.NONE
             });
         } else {
             var scoreIndex = this.state.scoreIndex;
-            var redButtonText = sideButtons.NONE;
+            var redButtonText = eventButtons.NONE;
 
             if (!this.state.finalScoreSet) {
                 scoreIndex++;
-                redButtonText = sideButtons.WALKAWAY;
+                redButtonText = eventButtons.WALKAWAY;
             }
     
             this.setState({
                 questionIndex: questionIndex,
                 scoreIndex: scoreIndex,
                 message: null,
-                greenButtonText: sideButtons.NONE,
+                greenButtonText: eventButtons.NONE,
                 redButtonText: redButtonText,
                 highlightedAnswer: null,
                 questionState: questionState.GUESSING,
@@ -168,8 +168,8 @@ class MillionaireGame extends React.Component {
     }
 
     lifelineFiftyFifty = () => {
-        if (this.state.greenButtonText !== sideButtons.NONE && 
-            this.state.greenButtonText !== sideButtons.CONFIRM) {
+        if (this.state.greenButtonText !== eventButtons.NONE && 
+            this.state.greenButtonText !== eventButtons.CONFIRM) {
             return;
         }
 
@@ -182,11 +182,11 @@ class MillionaireGame extends React.Component {
     }
 
     lifelineAsk = (button) => {
-        if (this.state.greenButtonText !== sideButtons.NONE && 
-            this.state.greenButtonText !== sideButtons.CONFIRM) {
+        if (this.state.greenButtonText !== eventButtons.NONE && 
+            this.state.greenButtonText !== eventButtons.CONFIRM) {
             return;
         }
-        
+
         console.log(button);
         var message;
         var currentQuestion = this.questions[this.state.questionIndex]
@@ -197,7 +197,7 @@ class MillionaireGame extends React.Component {
         }
 
         this.setState({message: message});
-        //this.consumeLifeline(button);
+        this.consumeLifeline(button);
     }
 
     consumeLifeline = (lifeline) => {
@@ -208,8 +208,8 @@ class MillionaireGame extends React.Component {
     walkAwayPrompt = () => {
         this.setState({
             message: "Are you sure you want to walk away with " + this.printScore(this.state.scoreIndex) + "?",
-            greenButtonText: sideButtons.WALKAWAYCONF,
-            redButtonText: sideButtons.WALKAWAYCANCEL
+            greenButtonText: eventButtons.WALKAWAYCONF,
+            redButtonText: eventButtons.WALKAWAYCANCEL
         });
     }
     
@@ -218,49 +218,56 @@ class MillionaireGame extends React.Component {
             finalScoreSet: true,
             finalScoreIndex: this.state.scoreIndex,
             message: "You get " + this.printScore(this.state.scoreIndex) + " for the round! You can keep going while you wait.",
-            greenButtonText: sideButtons.NONE,
-            redButtonText: sideButtons.NONE
+            greenButtonText: eventButtons.NONE,
+            redButtonText: eventButtons.NONE
         });
     }
 
     walkAwayCancel = () => {
         this.setState({
             message: "Good luck!",
-            greenButtonText: sideButtons.NONE,
+            greenButtonText: eventButtons.NONE,
             highlightedAnswer: null,
-            redButtonText: sideButtons.WALKAWAY,
+            redButtonText: eventButtons.WALKAWAY,
         });
     }
 
-    sideButtonPressed = (button) => {
+    handleEventButton = (button) => {
         switch (button) {
-            case sideButtons.CONFIRM:
+            case eventButtons.CONFIRM:
                 this.submitAnswer();
                 break;
-            case sideButtons.RETHINK:
+            case eventButtons.RETHINK:
                 this.clearAnswer();
                 break;
-            case sideButtons.OHNO:
+            case eventButtons.OHNO:
                 this.incorrectAnswerSubmitted();
                 break;
-            case sideButtons.CONTINUE:
+            case eventButtons.CONTINUE:
                 this.continueWithRound();
                 break;
+            case eventButtons.WALKAWAY:
+                this.walkAwayPrompt();
+                break;
+            case eventButtons.WALKAWAYCONF:
+                this.walkAwayConfirm();
+                break;
+            case eventButtons.WALKAWAYCANCEL:
+                this.walkAwayCancel();
+                break;
+            default:
+                break;
+        }
+    }
+
+    handleLifeline = (button) => {
+        switch (button) {
             case lifelines.FIFTYFIFTY:
                 this.lifelineFiftyFifty();
                 break;
             case lifelines.ASKA:
             case lifelines.ASKB:
                 this.lifelineAsk(button);
-                break;
-            case sideButtons.WALKAWAY:
-                this.walkAwayPrompt();
-                break;
-            case sideButtons.WALKAWAYCONF:
-                this.walkAwayConfirm();
-                break;
-            case sideButtons.WALKAWAYCANCEL:
-                this.walkAwayCancel();
                 break;
             default:
                 break;
@@ -270,20 +277,29 @@ class MillionaireGame extends React.Component {
     render() {
         return (
             <div className="millionaire-game-container">
-                <MillionaireMainPanel 
-                    currentQuestion={this.questions[this.state.questionIndex]} 
-                    highlightedAnswer={this.state.highlightedAnswer}
-                    questionState={this.state.questionState}
-                    fiftyFifty={this.state.fiftyFifty}
-                    message={this.state.message} 
-                    callback={this.highlightQuestion}
-                />
+                <div className="millionaire-main-panel">
+                    <MillionaireQuestionPanel 
+                        currentQuestion={this.questions[this.state.questionIndex]} 
+                        highlightedAnswer={this.state.highlightedAnswer}
+                        questionState={this.state.questionState}
+                        fiftyFifty={this.state.fiftyFifty}
+                        callback={this.highlightQuestion}
+                    />
+                    <MillionaireMessagePanel 
+                        currentQuestion={this.questions[this.state.questionIndex]} 
+                        highlightedAnswer={this.state.highlightedAnswer}
+                        questionState={this.state.questionState}
+                        fiftyFifty={this.state.fiftyFifty}
+                        message={this.state.message}
+                        greenButtonText={this.state.greenButtonText}
+                        redButtonText={this.state.redButtonText}
+                        callback={this.handleEventButton}
+                    />
+                </div>
                 <MillionaireSidePanel
                     currentScoreIndex={this.state.scoreIndex}
                     lifelines={this.state.lifelines}
-                    greenButtonText={this.state.greenButtonText}
-                    redButtonText={this.state.redButtonText}
-                    callback={this.sideButtonPressed}
+                    callback={this.handleLifeline}
                 />
             </div>
         );

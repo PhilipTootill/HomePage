@@ -78,11 +78,17 @@
   box-sizing: border-box;
 }
 
+.millionaire-question-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .millionaire-question-container, .millionaire-answer {
   background: rgb(0, 0, 150);
   color: white;
   border: 2px solid white;
-  border-radius: 10px;
   text-align: center;
   padding: 10px;
 }
@@ -91,6 +97,7 @@
   height: 20%;
   display: flex;
   width: 100%;
+  border-radius: 30px;
   justify-content: center;
   align-items: center;
   font-weight: bold;
@@ -107,12 +114,16 @@
 
 .millionaire-answer {
   width: 40%;
-  height: 30px;
+  height: 26px;
+  border-radius: 26px;
   margin: 10px;
   display: flex;
-  justify-content: center;
   align-items: center;
   font-weight: bold;
+}
+
+.millionaire-answer-letter {
+  width: 15%;
 }
 
 .millionaire-answer[hideanswer] {
@@ -125,11 +136,19 @@
 }
 
 .millionaire-answers-container[questionstate="correct"] .millionaire-answer[highlighted] {
-  background: green;
+  background: rgb(0, 194, 129);
 }
 
 .millionaire-answers-container[questionstate="incorrect"] .millionaire-answer[highlighted] {
   background: red;
+}
+
+.millionaire-message-panel {
+  display: flex;
+  height: 100px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .millionaire-message-box {
@@ -205,12 +224,12 @@
   color: white;
   text-align: center;
   border: 2px solid white;
-  padding: 2px;
-  font-size: 10px;
+  padding: 4px;
+  font-size: 9px;
   width: 32%;
   font-weight: bold;
   height: 40px;
-  border-radius: 15px;
+  border-radius: 50%;
 }
 
 .millionaire-lifeline[hidelifeline] {
@@ -219,8 +238,9 @@
 
 .millionaire-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 5px 0;
+  width: 100%;
 }
 
 .millionaire-buttons button {
@@ -239,10 +259,10 @@
 }
 
 .millionaire-buttons button[hidebutton] {
-  visibility: hidden;
+  display: none;
 }
 
 .millionaire-button-red {
   color: black;
-  background-color: rgb(255, 23, 100);
+  background-color: rgb(190, 0, 95);
 }

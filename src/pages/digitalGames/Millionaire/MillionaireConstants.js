@@ -19,7 +19,7 @@ export const lifelines = {
     ASKB: "Ask Radhika"
 }
 
-export const sideButtons = {
+export const eventButtons = {
     NONE: "",
     CONFIRM: "I'm sure",
     RETHINK: "Let me think...",
