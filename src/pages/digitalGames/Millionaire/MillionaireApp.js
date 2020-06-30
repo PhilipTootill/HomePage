@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Millionaire.css';
 import MillionaireGame from './MillionaireGame';
-import { testPuzzle } from './MillionaireQuestions';
+import { testPuzzle } from './MillionaireQuestionLists';
 
 function MillionaireApp() {
     const [puzzle, setPuzzle] = useState(null);

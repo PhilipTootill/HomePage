@@ -1,6 +1,7 @@
 import React from 'react';
 import './Millionaire.css';
 import { shuffleArray, arraysMatch } from '../DigitalGamesUtils';
+import MillionaireMainPanel from './MillionaireMainPanel';
 
 const pointsList = [
     "1 point",
@@ -34,28 +35,27 @@ class MillionaireGame extends React.Component {
         }
     }
 
+    highlightQuestion = (answer) => {
+        this.setState({
+            highlightedAnswer: answer,
+            message: "Are you sure?"
+        })
+    };
+
     render() {
         return (
             <div className="millionaire-game-container">
-                <div className="millionaire-main-panel">
-                    <div className="millionaire-question-container">
-                        {this.questions[this.state.questionIndex].question}
-                    </div>
-                    <div className="millionaire-answers-container">
-                        {this.questions[this.state.questionIndex].answers.map((answer, answerIndex) =>
-                            <div className="millionaire-answer">
-                                {answer}
-                            </div>
-                        )}
-                    </div>
-                    <div className="millionaire-message-box">
-                        {this.state.message}
-                    </div>
-                </div>
+                <MillionaireMainPanel 
+                    currentQuestion={this.questions[this.state.questionIndex]} 
+                    highlightedAnswer={this.state.highlightedAnswer} 
+                    message={this.state.message} 
+                    callback={this.highlightQuestion}
+                />
                 <div className="millionaire-side-panel">
                     <div className="millionaire-score-tracker">
                         {pointsList.map((points, pointsIndex) =>
-                            <div 
+                            <div
+                                key={"millionaire-points-" + pointsIndex}
                                 className="millionaire-points" 
                                 checkpoint={pointsIndex % 4 === 3 ? "true" : null}
                                 currentscore={this.state.questionIndex - 1 === pointsIndex ? "true" : null}>
