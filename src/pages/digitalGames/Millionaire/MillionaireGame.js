@@ -3,7 +3,7 @@ import './Millionaire.css';
 import MillionaireQuestionPanel from './MillionaireQuestionPanel';
 import MillionaireMessagePanel from './MillionaireMessagePanel';
 import MillionaireSidePanel from './MillionaireSidePanel';
-import { pointsList, lifelines, eventButtons, questionState } from './MillionaireConstants';
+import { pointsList, sideButtons, eventButtons, questionState } from './MillionaireConstants';
 
 class MillionaireGame extends React.Component {
     constructor(props) {
@@ -15,14 +15,15 @@ class MillionaireGame extends React.Component {
             message: "Good luck! Here's question one.",
             questionIndex: 0,
             scoreIndex: -1,
-            lifelines: [lifelines.FIFTYFIFTY, lifelines.ASKA, lifelines.ASKB],
+            lifelines: [sideButtons.FIFTYFIFTY, sideButtons.ASKA, sideButtons.ASKB],
             finalScoreSet: false,
             finalScoreIndex: -1,
             highlightedAnswer: null,
             greenButtonText: eventButtons.NONE,
             redButtonText: eventButtons.NONE,
             questionState: questionState.GUESSING,
-            fiftyFifty: false
+            fiftyFifty: false,
+            showWalkaway: false
         }
     }
 
@@ -37,7 +38,7 @@ class MillionaireGame extends React.Component {
                 highlightedAnswer: null,
                 message: null,
                 greenButtonText: eventButtons.NONE,
-                redButtonText: this.state.finalScoreSet ? eventButtons.NONE : eventButtons.WALKAWAY
+                redButtonText: eventButtons.NONE
             })
         } else {
             this.setState({
@@ -62,7 +63,7 @@ class MillionaireGame extends React.Component {
                 message: "Take your time. You can still walk away.",
                 highlightedAnswer: null,
                 greenButtonText: eventButtons.NONE,
-                redButtonText: eventButtons.WALKAWAY
+                redButtonText: eventButtons.NONE
             })
         }
 
@@ -80,10 +81,12 @@ class MillionaireGame extends React.Component {
             }
 
             var message =  "Correct! Get ready for the next question.";
-
-            if (this.state.questionIndex === this.questions.length - 1) {
+            var allQuestionsDone = (this.state.questionIndex === this.questions.length - 1);
+            if (allQuestionsDone && !this.state.finalScoreSet) {
                 scoreIndex++;
-                message = "Congratulations! You got all the questions right!"
+                message = "Congratulations! You got all the questions right!";
+            } else if (allQuestionsDone) {
+                message = "That's the last question.";
             }
 
             this.setState({
@@ -92,7 +95,8 @@ class MillionaireGame extends React.Component {
                 greenButtonText: eventButtons.CONTINUE,
                 redButtonText: eventButtons.NONE,
                 scoreIndex: scoreIndex,
-                questionState: questionState.CORRECT
+                questionState: questionState.CORRECT,
+                showWalkaway: (!allQuestionsDone && !this.state.finalScoreSet)
             })
         } else {
             var nextButton = eventButtons.CONTINUE;
@@ -106,7 +110,8 @@ class MillionaireGame extends React.Component {
                 finalScoreSet: true,
                 greenButtonText: nextButton,
                 redButtonText: eventButtons.NONE,
-                questionState: questionState.INCORRECT
+                questionState: questionState.INCORRECT,
+                showWalkaway: false
             })
         }
     }
@@ -147,11 +152,9 @@ class MillionaireGame extends React.Component {
             });
         } else {
             var scoreIndex = this.state.scoreIndex;
-            var redButtonText = eventButtons.NONE;
 
             if (!this.state.finalScoreSet) {
                 scoreIndex++;
-                redButtonText = eventButtons.WALKAWAY;
             }
     
             this.setState({
@@ -159,7 +162,7 @@ class MillionaireGame extends React.Component {
                 scoreIndex: scoreIndex,
                 message: null,
                 greenButtonText: eventButtons.NONE,
-                redButtonText: redButtonText,
+                redButtonText: eventButtons.NONE,
                 highlightedAnswer: null,
                 questionState: questionState.GUESSING,
                 fiftyFifty: false
@@ -178,7 +181,7 @@ class MillionaireGame extends React.Component {
             fiftyFifty: true
         });
         
-        this.consumeLifeline(lifelines.FIFTYFIFTY);
+        this.consumeLifeline(sideButtons.FIFTYFIFTY);
     }
 
     lifelineAsk = (button) => {
@@ -190,14 +193,14 @@ class MillionaireGame extends React.Component {
         console.log(button);
         var message;
         var currentQuestion = this.questions[this.state.questionIndex]
-        if (button === lifelines.ASKA) {
+        if (button === sideButtons.ASKA) {
             message = "Dave says: " + currentQuestion.askA;
         } else {
             message = "Radhika says: " + currentQuestion.askB;
         }
 
         this.setState({message: message});
-        this.consumeLifeline(button);
+        //this.consumeLifeline(button);
     }
 
     consumeLifeline = (lifeline) => {
@@ -219,7 +222,8 @@ class MillionaireGame extends React.Component {
             finalScoreIndex: this.state.scoreIndex,
             message: "You get " + this.printScore(this.state.scoreIndex) + " for the round! You can keep going while you wait.",
             greenButtonText: eventButtons.NONE,
-            redButtonText: eventButtons.NONE
+            redButtonText: eventButtons.NONE,
+            showWalkaway: false
         });
     }
 
@@ -228,7 +232,7 @@ class MillionaireGame extends React.Component {
             message: "Good luck!",
             greenButtonText: eventButtons.NONE,
             highlightedAnswer: null,
-            redButtonText: eventButtons.WALKAWAY,
+            redButtonText: eventButtons.NONE
         });
     }
 
@@ -246,9 +250,6 @@ class MillionaireGame extends React.Component {
             case eventButtons.CONTINUE:
                 this.continueWithRound();
                 break;
-            case eventButtons.WALKAWAY:
-                this.walkAwayPrompt();
-                break;
             case eventButtons.WALKAWAYCONF:
                 this.walkAwayConfirm();
                 break;
@@ -260,14 +261,17 @@ class MillionaireGame extends React.Component {
         }
     }
 
-    handleLifeline = (button) => {
+    handleSideButton = (button) => {
         switch (button) {
-            case lifelines.FIFTYFIFTY:
+            case sideButtons.FIFTYFIFTY:
                 this.lifelineFiftyFifty();
                 break;
-            case lifelines.ASKA:
-            case lifelines.ASKB:
+            case sideButtons.ASKA:
+            case sideButtons.ASKB:
                 this.lifelineAsk(button);
+                break;
+            case sideButtons.WALK:
+                this.walkAwayPrompt();
                 break;
             default:
                 break;
@@ -299,7 +303,8 @@ class MillionaireGame extends React.Component {
                 <MillionaireSidePanel
                     currentScoreIndex={this.state.scoreIndex}
                     lifelines={this.state.lifelines}
-                    callback={this.handleLifeline}
+                    showWalkAway={this.state.showWalkaway}
+                    callback={this.handleSideButton}
                 />
             </div>
         );

@@ -1,8 +1,8 @@
 import React from 'react';
 import './Millionaire.css';
-import { pointsList } from './MillionaireConstants';
+import { pointsList, sideButtons } from './MillionaireConstants';
 
-function MillionaireSidePanel({currentScoreIndex, lifelines, callback}) {
+function MillionaireSidePanel({currentScoreIndex, lifelines, showWalkAway, callback}) {
     return (
         <div className="millionaire-side-panel">
             <div className="millionaire-lifelines">
@@ -27,6 +27,15 @@ function MillionaireSidePanel({currentScoreIndex, lifelines, callback}) {
                     </div>
                 )}
             </div>
+            <div className="millionaire-walk-away">
+                <button 
+                    className="millionaire-button-red" 
+                    hidebutton={!showWalkAway ? "true" : null} 
+                    onClick={() => {callback(sideButtons.WALK)}}>
+                    Walk Away
+                </button>
+            </div>
+
         </div>
     );
   }

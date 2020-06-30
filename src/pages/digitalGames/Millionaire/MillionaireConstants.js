@@ -13,10 +13,11 @@ export const pointsList = [
     "20 points"
 ];
 
-export const lifelines = {
+export const sideButtons = {
     FIFTYFIFTY: "50/50",
     ASKA: "Ask Dave",
-    ASKB: "Ask Radhika"
+    ASKB: "Ask Radhika",
+    WALK: "Walk"
 }
 
 export const eventButtons = {
@@ -25,7 +26,6 @@ export const eventButtons = {
     RETHINK: "Let me think...",
     CONTINUE: "Continue",
     OHNO: "Oh no!",
-    WALKAWAY: "Walk Away",
     WALKAWAYCONF: "Walk",
     WALKAWAYCANCEL: "Keep Going"
 }
