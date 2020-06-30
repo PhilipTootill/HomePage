@@ -1,158 +1,158 @@
 export const testPuzzle = [
     {
-        question: "Question 1.",
+        question: "Question 1. Which of the following is the largest?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "An Elephant",
+            "The Moon",
+            "A Kettle",
+            "A Peanut"
         ],
-        correctAnswer: "Correct",
-        askA: "I think it's 'Correct'.",
-        askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        correctAnswer: "The Moon",
+        askA: "I think it's 'An Elephant'",
+        askB: "No idea, it could be 'An Elephant'?",
+        fiftyFiftyAnswer: "An Elephant"
     },
     {
-        question: "Question 2.",
+        question: "Question 2. Which of these was a hit musical in 2015?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Hamilton",
+            "Schumacher",
+            "Vettel",
+            "Senna"
         ],
-        correctAnswer: "Correct",
-        askA: "I think it's 'Correct'.",
-        askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        correctAnswer: "Hamilton",
+        askA: "I think it's 'Hamilton'",
+        askB: "No idea, it could be 'Hamilton?",
+        fiftyFiftyAnswer: "Schumacher"
     },
     {
-        question: "Question 3.",
+        question: "Question 3. Which of these is a type of hat?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Pork Pie",
+            "Sausage Roll",
+            "Scotch Egg",
+            "Potato Crisp"
         ],
-        correctAnswer: "Correct",
-        askA: "I think it's 'Correct'.",
+        correctAnswer: "Pork Pie",
+        askA: "I think it's 'Pork Pie'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Scotch Egg"
     },
     {
-        question: "Question 4.",
+        question: "Question 4. Which of these acts was supposed to headline Glastonbury in 2020?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Taylor Swift",
+            "U2",
+            "Ed Sheeran",
+            "Jedward"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Taylor Swift",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Jedward"
     },
     {
-        question: "Question 5.",
+        question: "Question 5. Which of these is a dance popularised by Fortnite?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Flossing",
+            "Brushing",
+            "Mouthwashing",
+            "Rinsing"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Flossing",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Mouthwashing"
     },
     {
-        question: "Question 6.",
+        question: "Question 6. How many James bond films did Pierce Brosnan make?",
         answers: [
             "One",
             "Two",
-            "Three",
-            "Correct"
+            "Four",
+            "Six"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Four",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Two"
     },
     {
-        question: "Question 7.",
+        question: "Question 7. What is the capital of Brazil?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Brasilia",
+            "São Paulo",
+            "Rio de Janeiro",
+            "Salvador"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Brasilia",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Salvador"
     },
     {
-        question: "Question 8.",
+        question: "Question 8. Which of these mythological figures was NOT fathered by Zeus?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Poseidon",
+            "Ares",
+            "Apollo",
+            "Herakles"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Poseidon",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Herakles"
     },
     {
-        question: "Question 9.",
+        question: "Question 9. Which artist's greatest hits is the UK's highest selling album, as of December 2018?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Queen",
+            "ABBA",
+            "The Beatles",
+            "Michael Jackson"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Queen",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "ABBA"
     },
     {
-        question: "Question 10.",
+        question: "Question 10. Which of these has never been a full cast member on Saturday Night Live?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Melissa McCarthy",
+            "Julia Louis-Dreyfus",
+            "Bill Murray",
+            "Ben Stiller"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Melissa McCarthy",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Ben Stiller"
     },
     {
-        question: "Question 11.",
+        question: "Question 11. Oberon is the satellite of which planet?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Mercury",
+            "Uranus",
+            "Neptune",
+            "Mars"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Uranus",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Neptune"
     },
     {
-        question: "Question 12.",
+        question: "Question 12. Which king was married to Eleanor of Aquitaine?",
         answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
+            "Henry II",
+            "Henry I",
+            "Henry V",
+            "Richard I"
         ],
-        correctAnswer: "Correct",
+        correctAnswer: "Henry II",
         askA: "I think it's 'Correct'.",
         askB: "No idea, it could be 'One'?",
-        fiftyFiftyAnswer: "One"
+        fiftyFiftyAnswer: "Henry V"
     }
 ];

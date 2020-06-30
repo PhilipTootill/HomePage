@@ -82,8 +82,14 @@ class MillionaireGame extends React.Component {
                 finalScoreIndex = this.state.questionIndex;
             }
 
+            var message =  "Correct! Get ready for the next question.";
+
+            if (this.state.questionIndex === this.questions.length - 1) {
+                message = "Congratulations! You got all the questions right!"
+            }
+
             this.setState({
-                message: "Correct! Get ready for the next question.",
+                message: message,
                 finalScoreIndex: finalScoreIndex,
                 greenButtonText: sideButtons.CONTINUE,
                 redButtonText: sideButtons.NONE,
