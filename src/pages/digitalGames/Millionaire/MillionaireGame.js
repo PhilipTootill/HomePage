@@ -163,19 +163,31 @@ class MillionaireGame extends React.Component {
     }
 
     lifelineFiftyFifty = () => {
-        var index = this.state.lifelines.indexOf(lifelines.FIFTYFIFTY);
+        this.setState({
+            message: "Okay, I've removed two incorrect answers!",
+            fiftyFifty: true
+        });
         
-        if (index >= 0) {
-            this.setState({
-                message: "Okay, I've removed two incorrect answers!",
-                fiftyFifty: true
-            });
-            this.state.lifelines[index] = "";
-        }       
+        this.consumeLifeline(lifelines.FIFTYFIFTY);
     }
 
     lifelineAsk = (button) => {
-        console.log('TODO: Ask ' + button);
+        console.log(button);
+        var message;
+        var currentQuestion = this.questions[this.state.questionIndex]
+        if (button === lifelines.ASKA) {
+            message = "Dave says: " + currentQuestion.askA;
+        } else {
+            message = "Radhika says: " + currentQuestion.askB;
+        }
+
+        this.setState({message: message});
+        this.consumeLifeline(button);
+    }
+
+    consumeLifeline = (lifeline) => {
+        var index = this.state.lifelines.indexOf(lifeline);
+        this.state.lifelines[index] = "";
     }
 
     walkAwayPrompt = () => {
