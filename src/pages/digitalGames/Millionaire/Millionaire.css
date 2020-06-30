@@ -1,3 +1,4 @@
+/* App container */
 .millionaire-app-container {
   margin: 0 auto;
   background: linear-gradient(#03a8f5, #000000);
@@ -20,6 +21,7 @@
   }
 }
 
+/* Intro Page*/
 .millionaire-intro-page {
   width: 100%;
   height: 100%;
@@ -61,6 +63,49 @@
   color: black;
 }
 
+/* Game Objects */
+.millionaire-game-container {
+  display: flex;
+  height: 100%;
+}
+
+.millionaire-main-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.millionaire-question-container {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.millionaire-answers-container {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.millionaire-answer {
+  width: 40%;
+  height: 35%;
+  background: blue;
+  color: white;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .millionaire-message-box {
   color: white;
   font-weight: bold;
@@ -71,8 +116,6 @@
   justify-content: center;
   text-align: center;
 }
-
-
 
 @media (max-width: 600px) {
   .millionaire-message-box {
@@ -90,4 +133,68 @@
   .millionaire-message-box {
     font-size: 20px;
   }
+}
+
+.millionaire-side-panel {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+
+.millionaire-score-tracker {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.millionaire-points {
+  text-align:  center;
+  color: orange;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.millionaire-points[checkpoint] {
+  color: rgb(255, 232, 181)
+}
+
+.millionaire-lifelines {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.millionaire-lifeline {
+  color: white;
+  text-align: center;
+  border: 1px solid white;
+  padding: 5px;
+  font-size: 10px;
+  width: 25%;
+  font-weight: bold;
+}
+
+.millionaire-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.millionaire-buttons button {
+  border: 1px solid;
+  padding: 5px;
+  font-size: 10px;
+  width: 40%;
+  font-weight: bold;
+}
+
+.millionaire-button-confirm {
+  color: green;
+  border-color: green;
+}
+
+.millionaire-button-walk-away {
+  color: red;
+  border-color: red;
 }
