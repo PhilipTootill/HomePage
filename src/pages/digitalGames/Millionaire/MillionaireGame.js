@@ -3,7 +3,7 @@ import './Millionaire.css';
 import { shuffleArray, arraysMatch } from '../DigitalGamesUtils';
 import MillionaireMainPanel from './MillionaireMainPanel';
 import MillionaireSidePanel from './MillionaireSidePanel';
-import { pointsList, lifelines, sideButtons } from './MillionaireConstants';
+import { pointsList, lifelines, sideButtons, questionState } from './MillionaireConstants';
 
 class MillionaireGame extends React.Component {
     constructor(props) {
@@ -24,7 +24,9 @@ class MillionaireGame extends React.Component {
             finalScoreIndex: -1,
             highlightedAnswer: null,
             greenButtonText: sideButtons.NONE,
-            redButtonText: sideButtons.NONE
+            redButtonText: sideButtons.NONE,
+            questionState: questionState.GUESSING,
+            fiftyFifty: false
         }
     }
 
@@ -84,7 +86,8 @@ class MillionaireGame extends React.Component {
                 message: "Correct! Get ready for the next question.",
                 finalScoreIndex: finalScoreIndex,
                 greenButtonText: sideButtons.CONTINUE,
-                redButtonText: sideButtons.NONE
+                redButtonText: sideButtons.NONE,
+                questionState: questionState.CORRECT
             })
         } else {
             var nextButton = sideButtons.CONTINUE;
@@ -97,7 +100,8 @@ class MillionaireGame extends React.Component {
                 message: "I'm sorry, that's not the answer! The correct answer was " + correctAnswer + ".",
                 finalScoreSet: true,
                 greenButtonText: nextButton,
-                redButtonText: sideButtons.NONE
+                redButtonText: sideButtons.NONE,
+                questionState: questionState.INCORRECT
             })
         }
     }
@@ -151,13 +155,23 @@ class MillionaireGame extends React.Component {
                 message: null,
                 greenButtonText: sideButtons.NONE,
                 redButtonText: redButtonText,
-                highlightedAnswer: null
+                highlightedAnswer: null,
+                questionState: questionState.GUESSING,
+                fiftyFifty: false
             });
         }
     }
 
     lifelineFiftyFifty = () => {
-        console.log('TODO: fifty fifty');
+        var index = this.state.lifelines.indexOf(lifelines.FIFTYFIFTY);
+        
+        if (index >= 0) {
+            this.setState({
+                message: "Okay, I've removed two incorrect answers!",
+                fiftyFifty: true
+            });
+            this.state.lifelines[index] = "";
+        }       
     }
 
     lifelineAsk = (button) => {
@@ -231,7 +245,9 @@ class MillionaireGame extends React.Component {
             <div className="millionaire-game-container">
                 <MillionaireMainPanel 
                     currentQuestion={this.questions[this.state.questionIndex]} 
-                    highlightedAnswer={this.state.highlightedAnswer} 
+                    highlightedAnswer={this.state.highlightedAnswer}
+                    questionState={this.state.questionState}
+                    fiftyFifty={this.state.fiftyFifty}
                     message={this.state.message} 
                     callback={this.highlightQuestion}
                 />

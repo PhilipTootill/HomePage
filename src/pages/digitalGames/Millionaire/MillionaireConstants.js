@@ -29,3 +29,9 @@ export const sideButtons = {
     WALKAWAYCONF: "Walk",
     WALKAWAYCANCEL: "Keep Going"
 }
+
+export const questionState = {
+    GUESSING: "guessing",
+    CORRECT: "correct",
+    INCORRECT: "incorrect"
+}

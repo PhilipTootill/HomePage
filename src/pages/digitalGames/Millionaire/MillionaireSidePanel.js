@@ -21,6 +21,7 @@ function MillionaireSidePanel({currentScoreIndex, lifelines, greenButtonText, re
                     <button 
                         key={"millionaire-lifelines-" + lifelineIndex}
                         className="millionaire-lifeline"
+                        hidelifeline={lifeline === "" ? "true" : null}
                         onClick={() => {callback(lifeline)}}>
                         {lifeline}
                     </button>

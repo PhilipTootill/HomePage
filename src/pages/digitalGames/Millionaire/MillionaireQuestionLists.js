@@ -7,7 +7,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 2.",
@@ -17,7 +20,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 3.",
@@ -27,7 +33,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 4.",
@@ -37,7 +46,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 5.",
@@ -47,7 +59,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 6.",
@@ -57,7 +72,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 7.",
@@ -67,7 +85,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 8.",
@@ -77,7 +98,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 9.",
@@ -87,7 +111,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 10.",
@@ -97,7 +124,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 11.",
@@ -107,7 +137,10 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     },
     {
         question: "Question 12.",
@@ -117,6 +150,9 @@ export const testPuzzle = [
             "Three",
             "Correct"
         ],
-        correctAnswer: "Correct"
+        correctAnswer: "Correct",
+        askA: "I think it's 'Correct'.",
+        askB: "No idea, it could be 'One'?",
+        fiftyFiftyAnswer: "One"
     }
 ];

@@ -109,8 +109,20 @@
   font-weight: bold;
 }
 
+.millionaire-answer[hideanswer] {
+  visibility: hidden;
+}
+
 .millionaire-answer[highlighted] {
   background: gold;
+}
+
+.millionaire-answers-container[questionstate="correct"] .millionaire-answer[highlighted] {
+  background: green;
+}
+
+.millionaire-answers-container[questionstate="incorrect"] .millionaire-answer[highlighted] {
+  background: red;
 }
 
 .millionaire-message-box {
@@ -184,6 +196,10 @@
   font-size: 10px;
   width: 25%;
   font-weight: bold;
+}
+
+.millionaire-lifeline[hidelifeline] {
+  visibility: hidden;
 }
 
 .millionaire-buttons {
