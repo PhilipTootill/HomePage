@@ -19,7 +19,7 @@ function MillionaireApp() {
             <p className="millionaire-intro-title">Who Wants To Win 20 Points?</p>
             <p className="millionaire-intro-text">When your whole team can see your screen and is ready, click start to begin!</p>
             <div className="millionaire-intro-buttons">
-                <button className="millionaire-start-button" onClick={()=>{buttonClick(testPuzzle)}}>Test</button>
+                <button className="millionaire-start-button" onClick={()=>{buttonClick(testPuzzle)}}>Start</button>
             </div> 
         </div>
     }
