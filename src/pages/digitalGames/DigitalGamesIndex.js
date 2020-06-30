@@ -17,6 +17,11 @@ const games = [
     "name": "Only Connect Grid",
     "image": PyxisImage,
     "url": "/digital-games/only-connect"
+  },
+  {
+    "name": "Who Wants To Be A Millionaire",
+    "image": PyxisImage,
+    "url": "/digital-games/millionaire"
   }
 ]
 

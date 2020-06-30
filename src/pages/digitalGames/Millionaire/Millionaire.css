@@ -1,0 +1,93 @@
+.millionaire-app-container {
+  margin: 0 auto;
+  background: linear-gradient(#03a8f5, #000000);
+  box-sizing: border-box;
+  padding: 25px;
+  height: 500px;
+}
+
+@media (min-width: 426px) {
+  .millionaire-app-container {
+    max-width: 900px;
+    width: 90vw;
+  }
+}
+
+@media (max-width: 425px) {
+  .millionaire-app-container {
+    max-width: 450px;
+    width: 90vw;
+  }
+}
+
+.millionaire-intro-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.millionaire-intro-title,
+.millionaire-intro-text {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.millionaire-intro-title {
+  font-size: 40px;
+  margin: 10px 20%;
+}
+
+.millionaire-intro-text {
+  font-size: 20px;
+  margin: 10px 20%;
+}
+
+.millionaire-intro-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.millionaire-start-button {
+  padding: 10px 20px;
+  background-color: white;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 10px;
+  margin: 15px;
+  color: black;
+}
+
+.millionaire-message-box {
+  color: white;
+  font-weight: bold;
+  height: 40px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+
+@media (max-width: 600px) {
+  .millionaire-message-box {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 800px) and (min-width: 601px) {
+  .millionaire-message-box {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 801px) {
+  .millionaire-message-box {
+    font-size: 20px;
+  }
+}
