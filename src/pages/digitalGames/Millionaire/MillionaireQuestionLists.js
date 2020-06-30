@@ -40,16 +40,6 @@ export const testPuzzle = [
         correctAnswer: "Correct"
     },
     {
-        question: "Question 4.",
-        answers: [
-            "One",
-            "Two",
-            "Three",
-            "Correct"
-        ],
-        correctAnswer: "Correct"
-    },
-    {
         question: "Question 5.",
         answers: [
             "One",

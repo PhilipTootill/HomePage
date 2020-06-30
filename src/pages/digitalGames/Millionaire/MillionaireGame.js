@@ -16,17 +16,24 @@ class MillionaireGame extends React.Component {
         }
 
         this.state = {
-            message: "This is the message box!",
+            message: "Good luck! Here's question one.",
             questionIndex: 0,
+            scoreIndex: -1,
             lifelines: [lifelines.FIFTYFIFTY, lifelines.ASKA, lifelines.ASKB],
             gameOver: false,
-            finalScore: null,
+            finalScoreIndex: -1,
             highlightedAnswer: null,
-            greenButtonText: sideButtons.NONE
+            greenButtonText: sideButtons.NONE,
+            redButtonText: sideButtons.NONE
         }
     }
 
     highlightQuestion = (answer) => {
+        if (this.state.greenButtonText !== sideButtons.NONE && 
+            this.state.greenButtonText !== sideButtons.CONFIRM) {
+            return;
+        }
+
         if (answer === this.state.highlightedAnswer) {
             this.setState({
                 highlightedAnswer: null,
@@ -37,13 +44,88 @@ class MillionaireGame extends React.Component {
             this.setState({
                 highlightedAnswer: answer,
                 message: "Are you sure?",
-                greenButtonText: sideButtons.CONFIRM
+                greenButtonText: sideButtons.CONFIRM,
+                redButtonText: sideButtons.RETHINK
             })
         }
     };
 
+    clearAnswer = () => {
+        this.setState({
+            message: "Take your time. You can still walk away.",
+            highlightedAnswer: null,
+            greenButtonText: sideButtons.NONE,
+            redButtonText: sideButtons.WALKAWAY
+        })
+    }
+
     submitAnswer = () => {
-        console.log('TODO: Submit');
+        var correctAnswer = this.questions[this.state.questionIndex].correctAnswer;
+
+        if (this.state.highlightedAnswer === correctAnswer) {
+            var finalScoreIndex = this.state.finalScoreIndex;
+
+            if (this.state.questionIndex % 4 === 3) {
+                finalScoreIndex = this.state.questionIndex;
+            }
+
+            this.setState({
+                message: "Correct! Get ready for the next question.",
+                finalScoreIndex: finalScoreIndex,
+                greenButtonText: sideButtons.CONTINUE,
+                redButtonText: sideButtons.NONE
+            })
+        } else {
+            var nextButton = sideButtons.CONTINUE;
+
+            if (!this.state.gameOver) {
+                nextButton = sideButtons.OHNO;
+            }
+
+            this.setState({
+                message: "I'm sorry, that's not the answer! The correct answer was " + correctAnswer + ".",
+                gameOver: true,
+                greenButtonText: nextButton,
+                redButtonText: sideButtons.NONE
+            })
+        }
+    }
+
+    incorrectAnswerSubmitted = () => {
+        this.setState({
+            scoreIndex: this.state.finalScoreIndex
+        });
+
+        this.displayFinalScoreAndContinue();
+    }
+
+    displayFinalScoreAndContinue = () => {
+        var finalScoreString = "0 points";
+
+        if (this.state.finalScoreIndex >= 0) {
+            finalScoreString = pointsList[this.state.finalScoreIndex];
+        }
+        this.setState({
+            message: "You got " + finalScoreString + " for the round. You can do the rest of the questions while you wait.",
+            greenButtonText: sideButtons.CONTINUE
+        })
+    }
+
+    continueWithRound = () => {
+        var scoreIndex = this.state.scoreIndex;
+
+        if (!this.state.gameOver) {
+            scoreIndex++;
+        }
+
+        this.setState({
+            questionIndex: this.state.questionIndex + 1,
+            scoreIndex: scoreIndex,
+            message: null,
+            greenButtonText: sideButtons.NONE,
+            redButtonText: sideButtons.WALKAWAY,
+            highlightedAnswer: null
+        });
     }
 
     lifelineFiftyFifty = () => {
@@ -54,15 +136,33 @@ class MillionaireGame extends React.Component {
         console.log('TODO: Ask ' + button);
     }
 
-    walkAway = () => {
-        console.log('TODO: Walkaway');
+    walkAwayPrompt = () => {
+        var finalScore = pointsList[this.state.questionIndex - 1]
 
+        this.setState({
+            message: "Are you sure you want to walk away with " + finalScore + " points?",
+            greenButtonText: sideButtons.WALKAWAYCONF,
+            redButtonText: sideButtons.WALKAWAYCANCEL
+        });
+    }
+    
+    walkAwayConfirm = () => {
         var finalScore = pointsList[this.state.questionIndex - 1]
 
         this.setState({
             gameOver: true,
             finalScore: finalScore,
-            message: "You get " + finalScore + " points for the round!"
+            message: "You get " + finalScore + " points for the round! You can keep going while you wait.",
+            greenButtonText: sideButtons.CONTINUE
+        });
+    }
+
+    walkAwayCancel = () => {
+        this.setState({
+            message: "Good luck!",
+            greenButtonText: sideButtons.NONE,
+            highlightedAnswer: null,
+            redButtonText: sideButtons.WALKAWAY,
         });
     }
 
@@ -70,6 +170,15 @@ class MillionaireGame extends React.Component {
         switch (button) {
             case sideButtons.CONFIRM:
                 this.submitAnswer();
+                break;
+            case sideButtons.RETHINK:
+                this.clearAnswer();
+                break;
+            case sideButtons.OHNO:
+                this.incorrectAnswerSubmitted();
+                break;
+            case sideButtons.CONTINUE:
+                this.continueWithRound();
                 break;
             case lifelines.FIFTYFIFTY:
                 this.lifelineFiftyFifty();
@@ -79,7 +188,13 @@ class MillionaireGame extends React.Component {
                 this.lifelineAsk(button);
                 break;
             case sideButtons.WALKAWAY:
-                this.walkAway();
+                this.walkAwayPrompt();
+                break;
+            case sideButtons.WALKAWAYCONF:
+                this.walkAwayConfirm();
+                break;
+            case sideButtons.WALKAWAYCANCEL:
+                this.walkAwayCancel();
                 break;
             default:
                 break;
@@ -96,9 +211,10 @@ class MillionaireGame extends React.Component {
                     callback={this.highlightQuestion}
                 />
                 <MillionaireSidePanel
-                    currentScoreIndex={this.state.questionIndex - 1}
+                    currentScoreIndex={this.state.scoreIndex}
                     lifelines={this.state.lifelines}
                     greenButtonText={this.state.greenButtonText}
+                    redButtonText={this.state.redButtonText}
                     callback={this.sideButtonPressed}
                 />
             </div>

@@ -167,7 +167,7 @@
 }
 
 .millionaire-points[currentscore] {
-  color: green
+  border: 2px solid white;
 }
 
 .millionaire-lifelines {
@@ -198,18 +198,19 @@
   font-size: 10px;
   width: 40%;
   font-weight: bold;
+  height: 40px;
 }
 
-.millionaire-button-confirm {
+.millionaire-button-green {
   color: green;
   border-color: green;
 }
 
-.millionaire-button-confirm[hidebutton] {
+.millionaire-buttons button[hidebutton] {
   visibility: hidden;
 }
 
-.millionaire-button-walk-away {
+.millionaire-button-red {
   color: red;
   border-color: red;
 }

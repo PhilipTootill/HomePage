@@ -21,6 +21,11 @@ export const lifelines = {
 
 export const sideButtons = {
     NONE: "",
-    CONFIRM: "Confirm",
-    WALKAWAY: "Walk Away"
+    CONFIRM: "I'm sure",
+    RETHINK: "Let me think...",
+    CONTINUE: "Continue",
+    OHNO: "Oh no!",
+    WALKAWAY: "Walk Away",
+    WALKAWAYCONF: "Walk",
+    WALKAWAYCANCEL: "Keep Going"
 }
