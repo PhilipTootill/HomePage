@@ -20,7 +20,7 @@ class MillionaireGame extends React.Component {
             questionIndex: 0,
             scoreIndex: -1,
             lifelines: [lifelines.FIFTYFIFTY, lifelines.ASKA, lifelines.ASKB],
-            gameOver: false,
+            finalScoreSet: false,
             finalScoreIndex: -1,
             highlightedAnswer: null,
             greenButtonText: sideButtons.NONE,
@@ -38,7 +38,8 @@ class MillionaireGame extends React.Component {
             this.setState({
                 highlightedAnswer: null,
                 message: null,
-                greenButtonText: sideButtons.NONE
+                greenButtonText: sideButtons.NONE,
+                redButtonText: sideButtons.NONE
             })
         } else {
             this.setState({
@@ -51,12 +52,22 @@ class MillionaireGame extends React.Component {
     };
 
     clearAnswer = () => {
-        this.setState({
-            message: "Take your time. You can still walk away.",
-            highlightedAnswer: null,
-            greenButtonText: sideButtons.NONE,
-            redButtonText: sideButtons.WALKAWAY
-        })
+        if (this.state.finalScoreSet) {
+            this.setState({
+                message: "Take your time.",
+                highlightedAnswer: null,
+                greenButtonText: sideButtons.NONE,
+                redButtonText: sideButtons.NONE
+            })
+        } else {
+            this.setState({
+                message: "Take your time. You can still walk away.",
+                highlightedAnswer: null,
+                greenButtonText: sideButtons.NONE,
+                redButtonText: sideButtons.WALKAWAY
+            })
+        }
+
     }
 
     submitAnswer = () => {
@@ -65,7 +76,7 @@ class MillionaireGame extends React.Component {
         if (this.state.highlightedAnswer === correctAnswer) {
             var finalScoreIndex = this.state.finalScoreIndex;
 
-            if (this.state.questionIndex % 4 === 3) {
+            if (!this.state.finalScoreSet && this.state.questionIndex % 4 === 3) {
                 finalScoreIndex = this.state.questionIndex;
             }
 
@@ -78,13 +89,13 @@ class MillionaireGame extends React.Component {
         } else {
             var nextButton = sideButtons.CONTINUE;
 
-            if (!this.state.gameOver) {
+            if (!this.state.finalScoreSet) {
                 nextButton = sideButtons.OHNO;
             }
 
             this.setState({
                 message: "I'm sorry, that's not the answer! The correct answer was " + correctAnswer + ".",
-                gameOver: true,
+                finalScoreSet: true,
                 greenButtonText: nextButton,
                 redButtonText: sideButtons.NONE
             })
@@ -99,33 +110,50 @@ class MillionaireGame extends React.Component {
         this.displayFinalScoreAndContinue();
     }
 
-    displayFinalScoreAndContinue = () => {
-        var finalScoreString = "0 points";
+    printScore = (index) => {
+        var string = "0 points";
 
-        if (this.state.finalScoreIndex >= 0) {
-            finalScoreString = pointsList[this.state.finalScoreIndex];
+        if (index >= 0) {
+            string = pointsList[index];
         }
+
+        return string;
+    }
+
+    displayFinalScoreAndContinue = () => { 
         this.setState({
-            message: "You got " + finalScoreString + " for the round. You can do the rest of the questions while you wait.",
+            message: "You got " + this.printScore(this.state.finalScoreIndex) + " for the round. You can do the rest of the questions while you wait.",
             greenButtonText: sideButtons.CONTINUE
         })
     }
 
     continueWithRound = () => {
-        var scoreIndex = this.state.scoreIndex;
+        var questionIndex = this.state.questionIndex + 1;
 
-        if (!this.state.gameOver) {
-            scoreIndex++;
+        if (questionIndex === this.questions.length) {
+            this.setState({
+                message: "That's the end of the quiz! You got " + this.printScore(this.state.finalScoreIndex) + ". Thanks for playing.",
+                greenButtonText: sideButtons.NONE,
+                redButtonText: sideButtons.NONE
+            });
+        } else {
+            var scoreIndex = this.state.scoreIndex;
+            var redButtonText = sideButtons.NONE;
+
+            if (!this.state.finalScoreSet) {
+                scoreIndex++;
+                redButtonText = sideButtons.WALKAWAY;
+            }
+    
+            this.setState({
+                questionIndex: questionIndex,
+                scoreIndex: scoreIndex,
+                message: null,
+                greenButtonText: sideButtons.NONE,
+                redButtonText: redButtonText,
+                highlightedAnswer: null
+            });
         }
-
-        this.setState({
-            questionIndex: this.state.questionIndex + 1,
-            scoreIndex: scoreIndex,
-            message: null,
-            greenButtonText: sideButtons.NONE,
-            redButtonText: sideButtons.WALKAWAY,
-            highlightedAnswer: null
-        });
     }
 
     lifelineFiftyFifty = () => {
@@ -137,23 +165,20 @@ class MillionaireGame extends React.Component {
     }
 
     walkAwayPrompt = () => {
-        var finalScore = pointsList[this.state.questionIndex - 1]
-
         this.setState({
-            message: "Are you sure you want to walk away with " + finalScore + " points?",
+            message: "Are you sure you want to walk away with " + this.printScore(this.state.scoreIndex) + "?",
             greenButtonText: sideButtons.WALKAWAYCONF,
             redButtonText: sideButtons.WALKAWAYCANCEL
         });
     }
     
     walkAwayConfirm = () => {
-        var finalScore = pointsList[this.state.questionIndex - 1]
-
         this.setState({
-            gameOver: true,
-            finalScore: finalScore,
-            message: "You get " + finalScore + " points for the round! You can keep going while you wait.",
-            greenButtonText: sideButtons.CONTINUE
+            finalScoreSet: true,
+            finalScoreIndex: this.state.scoreIndex,
+            message: "You get " + this.printScore(this.state.scoreIndex) + " for the round! You can keep going while you wait.",
+            greenButtonText: sideButtons.NONE,
+            redButtonText: sideButtons.NONE
         });
     }
 
