@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/HomePage/static/css/main.119b6ff5.chunk.css",
-    "main.js": "/HomePage/static/js/main.85e8ddeb.chunk.js",
-    "main.js.map": "/HomePage/static/js/main.85e8ddeb.chunk.js.map",
+    "main.css": "/HomePage/static/css/main.e7e4c2ad.chunk.css",
+    "main.js": "/HomePage/static/js/main.a7830db2.chunk.js",
+    "main.js.map": "/HomePage/static/js/main.a7830db2.chunk.js.map",
     "runtime-main.js": "/HomePage/static/js/runtime-main.6df39322.js",
     "runtime-main.js.map": "/HomePage/static/js/runtime-main.6df39322.js.map",
-    "static/js/2.39e381c4.chunk.js": "/HomePage/static/js/2.39e381c4.chunk.js",
-    "static/js/2.39e381c4.chunk.js.map": "/HomePage/static/js/2.39e381c4.chunk.js.map",
+    "static/js/2.5b0217c6.chunk.js": "/HomePage/static/js/2.5b0217c6.chunk.js",
+    "static/js/2.5b0217c6.chunk.js.map": "/HomePage/static/js/2.5b0217c6.chunk.js.map",
     "index.html": "/HomePage/index.html",
-    "precache-manifest.abbc44f5239d83c6cd0d13951a790378.js": "/HomePage/precache-manifest.abbc44f5239d83c6cd0d13951a790378.js",
+    "precache-manifest.a91438c02996237610fb2e63fcb05317.js": "/HomePage/precache-manifest.a91438c02996237610fb2e63fcb05317.js",
     "service-worker.js": "/HomePage/service-worker.js",
-    "static/css/main.119b6ff5.chunk.css.map": "/HomePage/static/css/main.119b6ff5.chunk.css.map",
-    "static/js/2.39e381c4.chunk.js.LICENSE.txt": "/HomePage/static/js/2.39e381c4.chunk.js.LICENSE.txt",
+    "static/css/main.e7e4c2ad.chunk.css.map": "/HomePage/static/css/main.e7e4c2ad.chunk.css.map",
+    "static/js/2.5b0217c6.chunk.js.LICENSE.txt": "/HomePage/static/js/2.5b0217c6.chunk.js.LICENSE.txt",
     "static/media/Background.jpeg": "/HomePage/static/media/Background.be79be34.jpeg",
     "static/media/Herakles.md": "/HomePage/static/media/Herakles.a9476b69.md",
     "static/media/Herakles.jpg": "/HomePage/static/media/Herakles.d5add04a.jpg",
     "static/media/InternsOfHades.jpeg": "/HomePage/static/media/InternsOfHades.2f156d4f.jpeg",
     "static/media/InternsOfHades.md": "/HomePage/static/media/InternsOfHades.a7fc08c1.md",
+    "static/media/Millionaire.md": "/HomePage/static/media/Millionaire.a55df584.md",
     "static/media/Numbers.md": "/HomePage/static/media/Numbers.e820be7a.md",
     "static/media/OnlyConnect.md": "/HomePage/static/media/OnlyConnect.9925a43f.md",
     "static/media/PocketHexes.md": "/HomePage/static/media/PocketHexes.5229c50c.md",
@@ -37,8 +38,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.6df39322.js",
-    "static/js/2.39e381c4.chunk.js",
-    "static/css/main.119b6ff5.chunk.css",
-    "static/js/main.85e8ddeb.chunk.js"
+    "static/js/2.5b0217c6.chunk.js",
+    "static/css/main.e7e4c2ad.chunk.css",
+    "static/js/main.a7830db2.chunk.js"
   ]
 }
