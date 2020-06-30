@@ -159,6 +159,10 @@
   color: rgb(255, 232, 181)
 }
 
+.millionaire-points[currentscore] {
+  color: green
+}
+
 .millionaire-lifelines {
   display: flex;
   justify-content: space-between;
