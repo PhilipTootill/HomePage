@@ -82,6 +82,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .millionaire-question-container, .millionaire-answer {
@@ -93,7 +94,7 @@
 }
 
 .millionaire-question-container {
-  height: 20%;
+  height: 70px;
   display: flex;
   width: 100%;
   border-radius: 30px;
@@ -106,18 +107,20 @@
   display: flex;
   align-content: center;
   width: 100%;
+  margin: 10px 0;
   flex-wrap: wrap;
   position: relative;
 }
 
 .millionaire-answer {
-  width: 40%;
+  width: 42%;
   height: 26px;
   border-radius: 26px;
   margin: 10px;
   display: flex;
   align-items: center;
   font-weight: bold;
+  text-align: left;
 }
 
 .millionaire-answer-letter {
@@ -246,7 +249,7 @@
 .millionaire-button-green {
   border: 2px solid;
   padding: 5px;
-  font-size: 10px;
+  font-size: 14px;
   width: 40%;
   font-weight: bold;
   height: 40px;

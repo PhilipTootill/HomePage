@@ -68,10 +68,10 @@ export const testPuzzle = [
     {
         question: "Question 6. How many James bond films did Pierce Brosnan make?",
         answers: [
-            "One",
             "Two",
+            "Three",
             "Four",
-            "Six"
+            "Five"
         ],
         correctAnswer: "Four",
         askA: "Have you C-n them?",
