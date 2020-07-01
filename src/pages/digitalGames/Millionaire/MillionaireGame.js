@@ -200,7 +200,7 @@ class MillionaireGame extends React.Component {
         }
 
         this.setState({message: message});
-        //this.consumeLifeline(button);
+        this.consumeLifeline(button);
     }
 
     consumeLifeline = (lifeline) => {

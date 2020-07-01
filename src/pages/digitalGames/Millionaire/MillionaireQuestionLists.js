@@ -66,7 +66,7 @@ export const testPuzzle = [
         fiftyFiftyAnswer: "Mouthwashing"
     },
     {
-        question: "Question 6. How many James bond films did Pierce Brosnan make?",
+        question: "Question 6. How many James Bond films did Pierce Brosnan make?",
         answers: [
             "Two",
             "Three",
@@ -101,7 +101,7 @@ export const testPuzzle = [
         ],
         correctAnswer: "Poseidon",
         askA: "Definitely D - his brother.",
-        askB: "I err don’t know. Poseidon and Zeus were siblings according to Percy Jackson series so maybe Poseidon? Apollo and Hercules were definitely Zeus’ sons.",
+        askB: "I err don’t know. Poseidon and Zeus were siblings according to Percy Jackson series so maybe Poseidon? Apollo was definitely Zeus’ son.",
         fiftyFiftyAnswer: "Dionysus"
     },
     {
@@ -136,7 +136,7 @@ export const testPuzzle = [
             "Saturn",
             "Uranus",
             "Neptune",
-            "Mars"
+            "Jupiter"
         ],
         correctAnswer: "Uranus",
         askA: "Err. B?",

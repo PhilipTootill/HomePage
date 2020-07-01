@@ -1,7 +1,7 @@
 /* App container */
 .millionaire-app-container {
   margin: 0 auto;
-  background: linear-gradient( #0d003d, rgb(51, 0, 77));
+  background: linear-gradient( #0d003d, rgb(40, 0, 77));
   box-sizing: border-box;
   height: 500px;
 }
@@ -113,14 +113,11 @@
 }
 
 .millionaire-answer {
-  width: 42%;
-  height: 26px;
-  border-radius: 26px;
-  margin: 10px;
   display: flex;
   align-items: center;
   font-weight: bold;
   text-align: left;
+  border-radius: 26px;
 }
 
 .millionaire-answer-letter {
@@ -144,6 +141,38 @@
   background: red;
 }
 
+@media (min-width: 931px) {
+  .millionaire-question-panel {
+    font-size: 16px;
+  }
+
+  .millionaire-answers-container {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .millionaire-answer {
+    width: 42%;
+    height: 26px;
+    margin: 10px;
+  }
+}
+
+@media (max-width: 930px) {
+  .millionaire-question-panel {
+    font-size: 13px;
+  }
+
+  .millionaire-answers-container {
+    flex-direction: column;
+  }
+
+  .millionaire-answer {
+    width: 100%;
+    margin: 5px;
+  }
+}
+
 .millionaire-message-panel {
   display: flex;
   flex: 1;
@@ -164,21 +193,61 @@
   text-align: center;
 }
 
-@media (max-width: 600px) {
+@media (min-width: 931px) {
+  .millionaire-message-box {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 930px) {
   .millionaire-message-box {
     font-size: 12px;
   }
 }
 
-@media (max-width: 800px) and (min-width: 601px) {
-  .millionaire-message-box {
-    font-size: 16px;
+.millionaire-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.millionaire-button-red,
+.millionaire-button-green {
+  border: 2px solid;
+  padding: 5px;
+  width: 40%;
+  font-weight: bold;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.millionaire-button-green {
+  color: black;
+  background-color: rgb(0, 194, 129);
+}
+
+.millionaire-buttons button[hidebutton] {
+  display: none;
+}
+
+.millionaire-button-red {
+  color: black;
+  background-color: rgb(190, 0, 95);
+}
+
+@media (min-width: 931px) {
+  .millionaire-button-red,
+  .millionaire-button-green {
+    font-size: 14px;
+    width: 40%;
   }
 }
 
-@media (min-width: 801px) {
-  .millionaire-message-box {
-    font-size: 20px;
+@media (max-width: 930px) {
+  .millionaire-button-red,
+  .millionaire-button-green {
+    font-size: 10px;
   }
 }
 
@@ -200,10 +269,13 @@
 
 .millionaire-points {
   text-align: left;
-  padding-left: 20px;
   color: orange;
   font-weight: bold;
-  font-size: 12px;
+  display: flex;
+}
+
+.millionaire-points-label {
+  text-align: right;
 }
 
 .millionaire-points[checkpoint] {
@@ -213,13 +285,38 @@
 .millionaire-points[currentscore] {
   background-color: orange;
   color: black;
-  border-radius: 6px;
+  border-radius: 10px;
+}
+
+@media (min-width: 931px) {
+  .millionaire-points {
+    padding: 5px 0 5px 20px;
+    font-size: 12px;
+  }
+
+  .millionaire-points-label {
+    width: 20px;
+    text-align: right;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 930px) {
+  .millionaire-points {
+    padding: 5px 0 5px 5px;
+    font-size: 10px;
+  }
+
+  .millionaire-points-label {
+    width: 15px;
+    text-align: right;
+    margin-right: 10px;
+  }
 }
 
 .millionaire-lifelines {
   display: flex;
   justify-content: space-between;
-  margin: 5px 0;
 }
 
 .millionaire-lifeline {
@@ -228,9 +325,7 @@
   border: 2px solid white;
   padding: 4px;
   font-size: 9px;
-  width: 32%;
   font-weight: bold;
-  height: 40px;
   border-radius: 50%;
 }
 
@@ -238,36 +333,32 @@
   visibility: hidden;
 }
 
-.millionaire-buttons {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 5px 0;
-  width: 100%;
+@media (min-width: 931px) {
+  .millionaire-lifelines {
+    flex-direction: row;
+    margin: 5px 0;
+  }
+
+  .millionaire-lifeline {
+    padding: 4px;
+    font-size: 9px;
+    width: 32%;
+    height: 40px;
+    border-radius: 50%;
+  }
 }
 
-.millionaire-button-red,
-.millionaire-button-green {
-  border: 2px solid;
-  padding: 5px;
-  font-size: 14px;
-  width: 40%;
-  font-weight: bold;
-  height: 40px;
-  border-radius: 10px;
-}
+@media (max-width: 930px) {
+  .millionaire-lifelines {
+    flex-direction: column;
+  }
 
-.millionaire-button-green {
-  color: black;
-  background-color: rgb(0, 194, 129);
-}
-
-.millionaire-buttons button[hidebutton] {
-  display: none;
-}
-
-.millionaire-button-red {
-  color: black;
-  background-color: rgb(190, 0, 95);
+  .millionaire-lifeline {
+    font-size: 9px;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
 }
 
 .millionaire-walk-away {

@@ -23,7 +23,12 @@ function MillionaireSidePanel({currentScoreIndex, lifelines, showWalkAway, callb
                         className="millionaire-points" 
                         checkpoint={pointsIndex % 4 === 3 ? "true" : null}
                         currentscore={currentScoreIndex === pointsIndex ? "true" : null}>
-                        {points}
+                        <div className="millionaire-points-label">
+                            {pointsIndex + 1}
+                        </div>
+                        <div>
+                            {points}
+                        </div>
                     </div>
                 )}
             </div>
