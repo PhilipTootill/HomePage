@@ -21,6 +21,14 @@ function OnlyConnectApp() {
         ["Meg", "Jo", "Beth", "Amy"]
     ];
 
+    const puzzle3 = [
+        ["Vandella", "Supreme", "Temptation", "Wonder"],
+        ["Kiev", "Hunter's", "Coronation", "Chasseur"],
+        ["Bride for a brother", "Deadly Sin", "Continent", "Day of the Week"],
+        ["Dwarf", "Elf", "Orc", "Hobbit"],
+        ["Acht", "Vier", "Drei", "Zehn"]
+    ];
+
     const donnasPuzzle = [
         ["Langham", "Szmanda", "Eads", "Hall"],
         ["Sadness", "Riley", "Joy", "Disgust"],
@@ -44,7 +52,7 @@ function OnlyConnectApp() {
             <div className="only-connect-intro-buttons">
                 <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle1)}}>Puzzle 1</button>
                 <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle2)}}>Puzzle 2</button>
-            
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle3)}}>Puzzle 3</button>     
             </div>
             
         </div>
