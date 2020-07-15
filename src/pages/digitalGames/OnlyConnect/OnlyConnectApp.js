@@ -29,6 +29,56 @@ function OnlyConnectApp() {
         ["Acht", "Vier", "Drei", "Zehn"]
     ];
 
+    const jane1 = [
+        ["London", "Private", "Naked", "Cat's"],
+        ["Montreal", "Munich", "Atlanta", "Sidney"],
+        ["Ordinary World", "Rio", "Save A Prayer", "The Reflex"],
+        ["Planet Earth", "Frozen Planet", "Zoo Quest", "Africa"]
+    ];
+
+    const jane2 = [
+        ["Drury", "Hanger", "Chancery", "Penny"],
+        ["Camel", "Strand", "Pallmall", "Mayfair"],
+        ["Whitehall", "London", "Daniel", "Black"],
+        ["Long Distance", "Road", "Blade", "Bow Street"]
+    ];
+
+    const jane3 = [
+        ["Spanner", "Dagger", "Candlestick", "Revolver"],
+        ["Psycho", "Vertigo", "Rear Window", "Rope"],
+        ["Cannon", "Ironside", "Rockford", "Shaft"],
+        ["Kremlin", "Grand Slam", "Hopman", "Davis"]
+    ];
+
+    const jane4 = [
+        ["Horse", "Peg", "Line", "Brush"],
+        ["English Breakfast", "House", "Strength", "Stop"],
+        ["Wee", "Eye", "Hymn", "Ewe"],
+        ["Hind", "Jenny", "Hen", "Sow"]
+    ];
+
+    const jane5 = [
+        ["Malaprop", "Grundy", "Doubtfire", "Robinson"],
+        ["Washboard", "Mangle", "Airer", "Dolly"],
+        ["Rose", "Casey", "Wood", "Donald"],
+        ["Iris", "Pupil", "Cornea", "Sclera"]
+    ];
+
+    const jane6 = [
+        ["Martin", "Lawford", "Bishop", "Sinatra"],
+        ["Lampard", "Oz", "Spencer", "Zappa"],
+        ["Ames", "Liver", "Avid", "Uke"],
+        ["Deacon", "Priest", "Pope", "Canon"]
+    ];
+
+    const jane7 = [
+        ["Marbles", "Temper", "Bearings", "Grip"],
+        ["Heathrow", "Majority", "Browning", "Mayor"],
+        ["Krypton", "Gallifrey", "Vulcan", "Tatooine"],
+        ["Wellington", "Harris", "Halifax", "Lancaster"]
+    ];
+
+
     const donnasPuzzle = [
         ["Langham", "Szmanda", "Eads", "Hall"],
         ["Sadness", "Riley", "Joy", "Disgust"],
@@ -54,7 +104,17 @@ function OnlyConnectApp() {
                 <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle2)}}>Puzzle 2</button>
                 <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle3)}}>Puzzle 3</button>     
             </div>
-            
+            <div className="only-connect-intro-buttons">
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane1)}}>Jane 1</button>
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane2)}}>Jane 2</button>
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane3)}}>Jane 3</button>     
+            </div>
+            <div className="only-connect-intro-buttons">
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane4)}}>Jane 4</button>
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane5)}}>Jane 5</button>
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane5)}}>Jane 5</button>
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane7)}}>Jane 7</button>     
+            </div>
         </div>
     }
     return (

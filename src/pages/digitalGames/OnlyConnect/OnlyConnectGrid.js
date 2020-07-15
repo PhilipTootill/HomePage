@@ -4,13 +4,11 @@ import './OnlyConnect.css';
 function OnlyConnectGrid({correctAnswers, remainingAnswers, highlightedAnswers, boxClickHandler}) {
     var allAnswers = correctAnswers.concat(remainingAnswers);
 
-    var answerGrid = [
-        allAnswers.slice(0, 4),
-        allAnswers.slice(4, 8),
-        allAnswers.slice(8, 12),
-        allAnswers.slice(12, 16),
-        allAnswers.slice(16),
-    ];
+    var answerGrid = [];
+
+    while (allAnswers.length > 0) {
+        answerGrid.push(allAnswers.splice(0,4))
+    }
 
     var rowsCorrect = correctAnswers.length / 4;
 
