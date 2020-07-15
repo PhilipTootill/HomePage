@@ -14,9 +14,9 @@ function OnlyConnectApp() {
     ];
 
     const puzzle2 = [
-        ["Bonehead", "The Edge", "Slash", "Joe Strummer"],
+        ["Bonehead", "Dylan", "Slash", "Strummer"],
         ["Trustworthy", "Misevent", "Freighter", "Zaniness"],
-        ["Pan", "The Italian", "Cheeseburger", "Crown"],
+        ["Pan", "The Italian", "Cheeseburger", "The Edge"],
         ["Stelmaria", "Hester", "Asta", "Kirjava"],
         ["Meg", "Jo", "Beth", "Amy"]
     ];
