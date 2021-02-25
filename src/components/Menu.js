@@ -22,7 +22,7 @@ function Menu() {
           <Link to="/digital-games">Digital Games</Link>
         </li>
         <li className="menu-list-item">
-          <Link to="/digital-games/millionaire">Quiz Round</Link>
+          <Link to="/digital-games/only-connect">Quiz Round</Link>
         </li>
         <li className="menu-list-item">
           <Link to="/contact">Contact</Link>

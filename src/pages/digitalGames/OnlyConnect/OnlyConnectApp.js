@@ -100,20 +100,7 @@ function OnlyConnectApp() {
             <p className="only-connect-intro-title">Only Connect Wall Round!</p>
             <p className="only-connect-intro-text">When your whole team can see your screen and is ready, choose a puzzle to begin!</p>
             <div className="only-connect-intro-buttons">
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle1)}}>Puzzle 1</button>
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle2)}}>Puzzle 2</button>
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle3)}}>Puzzle 3</button>     
-            </div>
-            <div className="only-connect-intro-buttons">
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane1)}}>Jane 1</button>
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane2)}}>Jane 2</button>
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane3)}}>Jane 3</button>     
-            </div>
-            <div className="only-connect-intro-buttons">
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane4)}}>Jane 4</button>
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane5)}}>Jane 5</button>
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane5)}}>Jane 5</button>
-                <button className="only-connect-start-button" onClick={()=>{buttonClick(jane7)}}>Jane 7</button>     
+                <button className="only-connect-start-button" onClick={()=>{buttonClick(puzzle2)}}>Start Puzzle</button>   
             </div>
         </div>
     }
